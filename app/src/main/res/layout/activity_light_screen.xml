@@ -4,18 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".LightScreen">
 
-    <Button
-        android:id="@+id/switchButton"
-        android:layout_width="161dp"
-        android:layout_height="79dp"
-        android:onClick="onClick"
-        android:text="Wechsel zu Screen 2"
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="577dp"
+        android:layout_height="421dp"
+        android:alpha="5"
+        android:text="Activity 2 wurde geöfnnet."
+        android:textAppearance="@style/TextAppearance.AppCompat.Display4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.477"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.469" />
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
