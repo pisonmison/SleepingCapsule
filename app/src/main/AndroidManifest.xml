@@ -5,11 +5,11 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="Snooze"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LightScreen"></activity>
+        <activity android:name=".LightScreen"/>
         <activity android:name=".MusicScreen" />
         <activity android:name=".SeatScreen" />
         <activity android:name=".MainActivity">
