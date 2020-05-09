@@ -27,9 +27,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         //set variable to the created imagebutton, cast to a imagebutton
-         seatButton = (ImageButton) findViewById(R.id.seat_button1);
-         lightButton = (ImageButton) findViewById(R.id.light_button1);
-         musicButton = (ImageButton) findViewById(R.id.music_button1);
+         seatButton =   findViewById(R.id.seat_button1);
+         lightButton =  findViewById(R.id.light_button1);
+         musicButton =  findViewById(R.id.music_button1);
 
         /*we use "this" to pass the activity itself, which implements onclicklistener,
         therefore we spare alot of code defining on click methods for all 3 buttons
