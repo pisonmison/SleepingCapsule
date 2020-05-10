@@ -6,4 +6,7 @@
     <string name="blue">B</string>
     <string name="red">TextView</string>
     <string name="yellow">B</string>
+    <string name="nr1">int</string>
+    <string name="nr2">int</string>
+    <string name="nr3">int</string>
 </resources>

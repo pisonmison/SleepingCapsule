@@ -35,16 +35,16 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.293"
+        app:layout_constraintHorizontal_bias="0.289"
         app:layout_constraintStart_toEndOf="@+id/SaveAsFavorite"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.917" />
+        app:layout_constraintTop_toBottomOf="@+id/blue"
+        app:layout_constraintVertical_bias="0.7" />
 
     <SeekBar
         android:id="@+id/seekBar2"
         android:layout_width="428dp"
         android:layout_height="84dp"
-        android:layout_marginStart="192dp"
+        android:layout_marginStart="108dp"
         android:layout_marginBottom="188dp"
         android:indeterminate="false"
         android:max="40"
@@ -52,38 +52,39 @@
         app:layout_constraintBottom_toTopOf="@+id/SaveAsFavorite"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.984" />
 
     <TextView
         android:id="@+id/blue"
         android:layout_width="75dp"
         android:layout_height="75dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="28dp"
         android:background="#0027FF"
         android:isScrollContainer="false"
         android:text="@string/blue"
         android:textAlignment="center"
-        android:textSize="36sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.716"
+        android:textColor="#000000"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/nr3"
+        app:layout_constraintHorizontal_bias="0.896"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/yellow"
-        app:layout_constraintVertical_bias="0.0"
         tools:text="B" />
 
     <TextView
         android:id="@+id/yellow"
         android:layout_width="75dp"
         android:layout_height="75dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="28dp"
         android:background="#FFE500"
         android:text="@string/yellow"
         android:textAlignment="center"
-        android:textSize="36sp"
+        android:textColor="#000000"
+        android:textSize="50sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.716"
+        app:layout_constraintEnd_toStartOf="@+id/nr2"
+        app:layout_constraintHorizontal_bias="0.896"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/red"
         tools:text="Y" />
@@ -92,15 +93,61 @@
         android:id="@+id/red"
         android:layout_width="75dp"
         android:layout_height="75dp"
-        android:layout_marginTop="172dp"
+        android:layout_marginTop="148dp"
         android:background="#FB0202"
         android:text="@string/red"
         android:textAlignment="center"
-        android:textSize="36sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.716"
+        android:textColor="#000000"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/nr1"
+        app:layout_constraintHorizontal_bias="0.897"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="R" />
+
+    <EditText
+        android:id="@+id/nr1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="132dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/nr1"
+        android:inputType="number"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/nr2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.712" />
+
+    <EditText
+        android:id="@+id/nr2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="264dp"
+        android:layout_marginEnd="132dp"
+        android:ems="10"
+        android:hint="@string/nr2"
+        android:inputType="number"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:autofillHints="" />
+
+    <EditText
+        android:id="@+id/nr3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="132dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/nr3"
+        android:inputType="number"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nr2"
+        app:layout_constraintVertical_bias="0.128" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
