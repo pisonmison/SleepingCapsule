@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">SleepingCapsule</string>
     <string name="Snooze" />
+    <string name="save_as_favorite">Save as Favorite</string>
+    <string name="show_favorite">Show Favorite</string>
+    <string name="blue">B</string>
+    <string name="red">TextView</string>
+    <string name="yellow">B</string>
 </resources>
