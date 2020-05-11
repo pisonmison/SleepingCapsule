@@ -42,7 +42,6 @@
         android:layout_marginStart="100dp"
         android:layout_marginTop="75dp"
         android:background="@drawable/strand_icon"
-        android:src="@drawable/strand_icon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -53,7 +52,6 @@
         android:layout_marginStart="175dp"
         android:layout_marginTop="75dp"
         android:background="@drawable/regen_icon"
-        android:src="@drawable/regen_icon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -64,7 +62,6 @@
         android:layout_marginStart="250dp"
         android:layout_marginTop="75dp"
         android:background="@drawable/jungle_icon"
-        android:src="@drawable/jungle_icon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -75,7 +72,6 @@
         android:layout_marginStart="100dp"
         android:layout_marginTop="150dp"
         android:background="@drawable/mountain_icon"
-        android:src="@drawable/mountain_icon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -86,7 +82,6 @@
         android:layout_marginStart="175dp"
         android:layout_marginTop="150dp"
         android:background="@drawable/lagerfeuer_icon"
-        android:src="@drawable/lagerfeuer_icon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -97,7 +92,6 @@
         android:layout_marginStart="250dp"
         android:layout_marginTop="150dp"
         android:background="@drawable/wald_icon"
-        android:src="@drawable/wald_icon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
