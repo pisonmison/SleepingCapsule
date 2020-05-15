@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">SleepingCapsule</string>
+    <string name="play_favorite_button">play favorite</string>
+    <string name="save_favorite_button">save favorite</string>
     <string name="Snooze" />
 </resources>
