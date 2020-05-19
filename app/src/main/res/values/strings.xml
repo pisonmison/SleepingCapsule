@@ -1,4 +1,33 @@
 <resources>
     <string name="app_name">SleepingCapsule</string>
-    <string name="Snooze" />
+    <string name="Snooze">Snooze</string>
+
+
+    <string name="adjustPosition"> Adjust Position!</string>
+
+    <string name="pickPosition"> Pick a Position!</string>
+
+    <string name="FavPos"> Favorite</string>
+
+    <string name="LyingPose"> Lying</string>
+
+    <string name="ZeroGravityPos"> Zero-Gravity</string>
+
+    <string name="SittingPos"> Sitting</string>
+
+    <string name="backrest"> Backrest</string>
+
+    <string name="seatrest"> Seat</string>
+
+    <string name="footrest"> Footrest</string>
+
+    <string name="backrestInt"> 0°</string>
+
+    <string name="seatrestInt"> 15°</string>
+
+    <string name="footrestInt"> 30°</string>
+    />
+
+
+    />
 </resources>
