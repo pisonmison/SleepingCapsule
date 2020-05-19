@@ -1,14 +1,4 @@
 <resources>
     <string name="app_name">SleepingCapsule</string>
     <string name="Snooze" />
-    <string name="save_as_favorite">Save as Favorite</string>
-    <string name="show_favorite">Show Favorite</string>
-    <string name="blue">B</string>
-    <string name="red">TextView</string>
-    <string name="yellow">B</string>
-    <string name="nr1">int</string>
-    <string name="nr2">int</string>
-    <string name="nr3">int</string>
-    <string name="y">Y</string>
-    <string name="r">R</string>
 </resources>
