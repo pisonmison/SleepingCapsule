@@ -1,5 +1,16 @@
 <resources>
     <string name="app_name">SleepingCapsule</string>
+    <string name="play_favorite_button">play favorite</string>
+    <string name="save_favorite_button">save favorite</string>
+    <string name="berg">Berge</string>
+    <string name="dschungel">dschungel</string>
+    <string name="regen">regen</string>
+    <string name="strand">strand</string>
+    <string name="lagerfeuer">lagerfeuer</string>
+    <string name="wald">wald</string>
+    <string name="bluetooth">bluetooth</string>
+    <string name="spotify">spotify</string>
+    <string name="musiclibrary">musiclibrary</string>
     <string name="Snooze" />
     <string name="save_as_favorite">Save as Favorite</string>
     <string name="show_favorite">Show Favorite</string>
