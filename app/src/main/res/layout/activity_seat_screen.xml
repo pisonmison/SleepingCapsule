@@ -364,8 +364,8 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/stopchairButton_ID"
-        android:layout_width="111dp"
-        android:layout_height="114dp"
+        android:layout_width="110dp"
+        android:layout_height="120dp"
         android:layout_marginTop="540dp"
         android:layout_marginEnd="176dp"
         android:backgroundTint="#D61D3F"
@@ -381,7 +381,7 @@
         android:layout_width="117dp"
         android:layout_height="50dp"
         android:layout_marginStart="324dp"
-        android:layout_marginBottom="108dp"
+        android:layout_marginBottom="88dp"
         android:background="@drawable/rounded_corners"
         android:text="Save"
         app:layout_constraintBottom_toBottomOf="parent"
