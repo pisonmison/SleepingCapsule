@@ -2,6 +2,15 @@
     <string name="app_name">SleepingCapsule</string>
     <string name="Snooze">Snooze</string>
 
+    <string name="save_as_favorite">Save as Favorite</string>
+    <string name="show_favorite">Show Favorite</string>
+    <string name="blue">blue</string>
+    <string name="green">green</string>
+    <string name="red">red</string>
+    <string name="nr1">int</string>
+    <string name="nr2">int</string>
+    <string name="nr3">int</string>
+
 
     <string name="adjustPosition"> Adjust Position!</string>
 
@@ -19,6 +28,8 @@
 
     <string name="seatrest"> Seat</string>
 
+    <string name="seatrest22222"> Seat</string>
+
     <string name="footrest"> Footrest</string>
 
     <string name="backrestInt"> 0°</string>
@@ -26,6 +37,18 @@
     <string name="seatrestInt"> 15°</string>
 
     <string name="footrestInt"> 30°</string>
+    <string name="save_favorite_button" />
+    <string name="play_favorite_button" />
+    <string name="berg" />
+    <string name="dschungel" />
+    <string name="lagerfeuer" />
+    <string name="regen" />
+    <string name="strand" />
+    <string name="wald" />
+    <string name="bluetooth" />
+    <string name="spotify" />
+    <string name="musiclibrary" />
+
     />
 
 
