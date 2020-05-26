@@ -5,4 +5,5 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="darkblue">#006e8c</color>
     <color name="orangeRed">#ff9800</color>
+    <colors name="snoozeBlau">#38c7ef</colors>
 </resources>
