@@ -25,6 +25,21 @@
 
     <string name="seatrestInt"> 15°</string>
 
+
+    <string name="save_as_favorite">Save as Favorite</string>
+    <string name="show_favorite">Show Favorite</string>
+    <string name="blue">blue</string>
+    <string name="green">green</string>
+    <string name="red">red</string>
+    <string name="nr1">int</string>
+    <string name="nr2">int</string>
+    <string name="nr3">int</string>
+    <string name="light_intensity">Light Intensity</string>
+    <string name="color_code">Color Code</string>
+    <string name="light_off">Light Off</string>
+    <string name="light_on">Light On</string>
+    <string name="pick_from_colorwheel">Pick from Colorwheel</string>
+
     <string name="footrestInt"> 30°</string>
     <string name="save_favorite"> Save favorite</string>
     <string name="play_favorite"> Play favorite</string>

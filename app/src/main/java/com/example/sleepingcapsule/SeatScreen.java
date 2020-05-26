@@ -22,13 +22,13 @@ public class SeatScreen extends AppCompatActivity {
    private Button saveButton;
 
    //button bar layout??
-    private
+
 
 
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seat_screen);
     }

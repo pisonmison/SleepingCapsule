@@ -156,7 +156,7 @@
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_marginBottom="144dp"
-        android:background="@drawable/colorwheel"
+
         android:shadowColor="#FFFFFF"
         android:text="@string/pick_from_colorwheel"
         android:textAlignment="center"
