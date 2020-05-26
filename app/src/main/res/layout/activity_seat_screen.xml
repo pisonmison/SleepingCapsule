@@ -168,6 +168,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout4"
         android:layout_width="131dp"
         android:layout_height="341dp"
         android:layout_marginTop="172dp"
@@ -353,7 +354,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="661dp" />
+        app:layout_constraintGuide_begin="640dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
@@ -368,14 +369,14 @@
         android:id="@+id/stopchairButton_ID"
         android:layout_width="110dp"
         android:layout_height="120dp"
-        android:layout_marginEnd="56dp"
 
-        android:layout_marginBottom="212dp"
+        android:layout_marginTop="536dp"
+        android:layout_marginEnd="40dp"
         android:backgroundTint="#D61D3F"
         android:backgroundTintMode="src_in"
         android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
     <Button
@@ -396,6 +397,13 @@
         android:layout_marginBottom="140dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintGuide_begin="611dp" />
+        app:layout_constraintGuide_begin="646dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="54dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
