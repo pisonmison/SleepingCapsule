@@ -26,6 +26,17 @@
     <string name="seatrestInt"> 15°</string>
 
     <string name="footrestInt"> 30°</string>
+    <string name="save_favorite"> Save favorite</string>
+    <string name="play_favorite"> Play favorite</string>
+    <string name="berge"> Mountains</string>
+    <string name="strand"> Beach</string>
+    <string name="regen"> rain</string>
+    <string name="lagerfeuer"> fire place</string>
+    <string name="dschungel"> jungle</string>
+    <string name="wald"> forrest</string>
+    <string name="bluetooth"> bluetooth</string>
+    <string name="musiclibrary"> musiclibrary</string>
+    <string name="spotify"> spotify</string>
     />
 
 
