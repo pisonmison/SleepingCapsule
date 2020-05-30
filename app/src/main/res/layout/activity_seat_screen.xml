@@ -40,7 +40,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/favPos_ID"
             android:layout_width="73dp"
             android:layout_height="64dp"
             android:layout_marginBottom="10dp"
@@ -53,7 +53,7 @@
 
 
         <ImageButton
-            android:id="@+id/imageButton2"
+            android:id="@+id/lyingPos_ID"
             android:layout_width="73dp"
             android:layout_height="65dp"
             android:layout_marginBottom="10dp"
@@ -66,7 +66,7 @@
             app:srcCompat="@drawable/lying_position_icon" />
 
         <ImageButton
-            android:id="@+id/imageButton3"
+            android:id="@+id/zeroGPos_ID"
             android:layout_width="73dp"
             android:layout_height="64dp"
             android:layout_marginBottom="10dp"
@@ -79,7 +79,7 @@
             app:srcCompat="@drawable/zerogravity_position_icon" />
 
         <ImageButton
-            android:id="@+id/imageButton4"
+            android:id="@+id/sittingPos_ID"
             android:layout_width="73dp"
             android:layout_height="63dp"
             android:layout_weight="1"
@@ -106,7 +106,7 @@
             android:layout_width="match_parent"
             android:layout_height="84dp"
             android:layout_gravity="center_horizontal"
-
+            android:max="87"
             android:layout_weight="1"
             android:foregroundGravity="center" />
 
@@ -115,14 +115,19 @@
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:layout_gravity="center"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:max ="30"
+
+            />
 
         <SeekBar
             android:id="@+id/seekBarDown_ID"
             android:layout_width="match_parent"
             android:layout_height="82dp"
             android:layout_gravity="center"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:max="90"
+            />
 
     </LinearLayout>
 
@@ -136,7 +141,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/seekBarViewInfo_Top_ID"
             android:layout_width="91dp"
             android:layout_height="67dp"
             android:layout_weight="1"
@@ -144,7 +149,7 @@
             android:text="@string/backrestInt" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/seekBarViewInfo_Mid_ID"
             android:layout_width="91dp"
             android:layout_height="67dp"
             android:layout_weight="1"
@@ -152,7 +157,7 @@
             android:text="@string/seatrestInt" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/seekBarViewInfo_Down_ID"
             android:layout_width="match_parent"
             android:layout_height="81dp"
             android:layout_weight="1"
@@ -226,16 +231,17 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/editTextBackrest_ID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="43dp"
             android:layout_weight="1"
             android:ems="10"
+
             android:inputType="number" />
 
         <EditText
-            android:id="@+id/editText3"
+            android:id="@+id/editTextSeat_ID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="70dp"
@@ -245,7 +251,7 @@
             android:inputType="number" />
 
         <EditText
-            android:id="@+id/editText4"
+            android:id="@+id/editTextFeetrest_ID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="37dp"
@@ -366,13 +372,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/savebutton_ID"
         android:layout_width="117dp"
         android:layout_height="50dp"
         android:layout_marginStart="336dp"
         android:layout_marginTop="576dp"
         android:background="@drawable/rounded_corners"
-        android:text="Save"
+        android:text="Save as Favorite"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -393,16 +399,12 @@
         app:layout_constraintGuide_begin="54dp" />
 
     <ImageButton
+        android:id="@+id/stopChair_seatScreen_ID"
         android:layout_width="110dp"
         android:layout_height="110dp"
-        android:layout_marginTop="512dp"
+        android:layout_marginTop="536dp"
         android:layout_marginEnd="40dp"
-        android:adjustViewBounds="true"
-        android:padding="10dp"
-        android:background="@drawable/stopbuttoncustom"
-        android:scaleType="centerInside"
-        android:src="@drawable/stopchair_text"
-        app:fabCustomSize="110dp"
+        android:background="@drawable/stop_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -7,9 +7,12 @@ import android.media.Image;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
+
+
 
 import java.time.ZoneOffset;
 
