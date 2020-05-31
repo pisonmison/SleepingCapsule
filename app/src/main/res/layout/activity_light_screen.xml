@@ -14,7 +14,7 @@
         android:layout_marginTop="1dp"
         android:background="@color/snoozeBlau"
 
-        android:backgroundTint="#314D59"
+        android:backgroundTint="#000000"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -24,21 +24,21 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            app:srcCompat="@drawable/ic_action_seat" />
+            app:srcCompat="@drawable/seat_icon_white" />
 
         <ImageView
             android:id="@+id/lightImageView_LightScreen_ID"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            app:srcCompat="@drawable/light_icon" />
+            app:srcCompat="@drawable/light_icon_white" />
 
         <ImageView
             android:id="@+id/musicImageView_LightScreen_ID"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            app:srcCompat="@drawable/music_icon" />
+            app:srcCompat="@drawable/music_icon_white" />
     </LinearLayout>
 
 
