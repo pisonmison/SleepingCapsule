@@ -11,7 +11,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:layout_marginTop="1dp"
         android:background="@color/snoozeBlau"
 
         android:backgroundTint="#000000"
@@ -46,8 +45,8 @@
         android:id="@+id/colorCode"
         android:layout_width="335dp"
         android:layout_height="60dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="208dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="260dp"
         android:fontFamily="@font/bungee"
         android:text="@string/color_code"
         android:textAlignment="center"
@@ -262,14 +261,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="123dp" />
+        app:layout_constraintGuide_begin="201dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="1153dp" />
+        app:layout_constraintGuide_begin="1071dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

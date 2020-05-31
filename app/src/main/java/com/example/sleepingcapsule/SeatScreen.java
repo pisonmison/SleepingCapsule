@@ -69,32 +69,38 @@ public class SeatScreen extends AppCompatActivity implements SeekBar.OnSeekBarCh
     //position class with 3 values
     public class Position {
         //class for positons
-        int backPos;
-        int midPos;
-        int feetPos;
+        int backAngle;
+        int seatAngle;
+        int feetAngle;
 
-        public int getBackPos() {
-            return backPos;
+        public int getBackAngle() {
+            return backAngle;
         }
 
-        public void setBackPos(int backPos) {
-            this.backPos = backPos;
+        public void setBackAngle(int backAngle) {
+            this.backAngle = backAngle;
         }
 
-        public int getMidPos() {
-            return midPos;
+        public int getSeatAngle() {
+            return seatAngle;
         }
 
-        public void setMidPos(int midPos) {
-            this.midPos = midPos;
+        public void setSeatAngle(int midAngle) {
+            this.seatAngle = midAngle;
         }
 
-        public int getFeetPos() {
-            return feetPos;
+        public int getFeetAngle() {
+            return feetAngle;
         }
 
-        public void setFeetPos(int feetPos) {
-            this.feetPos = feetPos;
+        public void setFeetAngle(int feetAngle) {
+            this.feetAngle = feetAngle;
+        }
+
+        //printing object for testing
+        @Override
+        public String toString() {
+            return getClass().getSimpleName() + "[Angles:" + backAngle + "/" + seatAngle + "/" + feetAngle + "]";
         }
     }
 
@@ -181,19 +187,19 @@ public class SeatScreen extends AppCompatActivity implements SeekBar.OnSeekBarCh
 
     //method which sets parameters in the position object
     public void configurePosition(Position p, int a, int b, int c){
-        p.setBackPos(a);
-        p.setMidPos(b);
-        p.setFeetPos(c);
+        p.setBackAngle(a);
+        p.setSeatAngle(b);
+        p.setFeetAngle(c);
         System.out.println("Position was set:" + p + "Back:" + a + "Seat:" + b + "Feet:" + c);
 
     }
 
     //updates actual position based chosen position and passes to server
     public void updateActualPosition(Position p){
-       actualPosition.setFeetPos(p.getFeetPos());
-       actualPosition.setMidPos(p.getMidPos());
-       actualPosition.setMidPos(p.getFeetPos());
-       System.out.println("updated Actual Pos:" + p.getBackPos() + "/" + p.getMidPos() + "/" + p.getFeetPos());
+       actualPosition.setBackAngle(p.getBackAngle());
+       actualPosition.setSeatAngle(p.getSeatAngle());
+       actualPosition.setFeetAngle(p.getFeetAngle());
+       System.out.println("updated Actual Pos:" + p.getBackAngle() + "/" + p.getSeatAngle() + "/" + p.getFeetAngle());
     }
 
 
@@ -245,18 +251,19 @@ public class SeatScreen extends AppCompatActivity implements SeekBar.OnSeekBarCh
                     inputBackrest.setText(String.valueOf(progress));
                     System.out.println(progress);
                     seekBarInfoTop.setText(String.valueOf(progress) + "°");
+                    actualPosition.setBackAngle(progress);
                     break;
                 case R.id.seekBarMiddle_ID:
                     inputSeat.setText(String.valueOf(progress));
                     System.out.println(progress);
                     seekBarInfoMid.setText(String.valueOf(progress) + "°");
-
+                    actualPosition.setSeatAngle(progress);
                     break;
                 case R.id.seekBarDown_ID:
                     inputFeetrest.setText(String.valueOf(progress));
                     System.out.println(progress);
                     seekBarInfoDown.setText(String.valueOf(progress) + "°");
-
+                    actualPosition.setFeetAngle(progress);
                     break;
             }
         }
@@ -293,8 +300,9 @@ public class SeatScreen extends AppCompatActivity implements SeekBar.OnSeekBarCh
                     Toast.makeText(this, "Sitting Position chosen", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.savebutton_ID:
-                    configurePosition(favoritePosition, barBackrestValue, barSeatValue, barFeetValue);
+                    configurePosition(favoritePosition, actualPosition.getBackAngle(),actualPosition.getSeatAngle(), actualPosition.getFeetAngle());
                     Toast.makeText(this, "Saved to Fav. Position!", Toast.LENGTH_SHORT).show();
+                    System.out.print(actualPosition);
                     break;
                 case R.id.stopChair_seatScreen_ID:
                     //stopchair();

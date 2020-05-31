@@ -11,7 +11,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:layout_marginTop="1dp"
         android:background="@color/snoozeBlau"
 
         android:backgroundTint="#000000"
@@ -248,7 +247,7 @@
         android:layout_marginBottom="140dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintGuide_begin="600dp" />
+        app:layout_constraintGuide_begin="671dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline8"
