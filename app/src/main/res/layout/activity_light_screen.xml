@@ -8,6 +8,40 @@
     tools:context=".LightScreen">
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/snoozeBlau"
+
+        android:backgroundTint="#314D59"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/seatImageView__LightScreen_ID"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/ic_action_seat" />
+
+        <ImageView
+            android:id="@+id/lightImageView_LightScreen_ID"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/light_icon" />
+
+        <ImageView
+            android:id="@+id/musicImageView_LightScreen_ID"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/music_icon" />
+    </LinearLayout>
+
+
     <TextView
         android:id="@+id/colorCode"
         android:layout_width="335dp"
