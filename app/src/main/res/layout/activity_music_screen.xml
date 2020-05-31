@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/darkblue"
@@ -19,76 +20,77 @@
 
     <TextView
         android:id="@+id/textView9"
-        android:layout_width="207dp"
-        android:layout_height="41dp"
-        android:layout_marginStart="296dp"
-        android:layout_marginTop="76dp"
-        android:fontFamily="@font/bungee"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="250dp"
+
         android:gravity="center"
-        android:text="@string/adjustPosition"
+        android:text="@string/picktheme"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline6"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView10"
-        android:layout_width="185dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="788dp"
-        android:layout_marginTop="76dp"
-        android:fontFamily="@font/bungee_inline"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="250dp"
         android:gravity="center"
-        android:text="@string/pickPosition"
+        android:text="@string/ownmusic"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline6"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/button_save_favorite"
+        android:id="@+id/playbutton"
         android:layout_width="117dp"
         android:layout_height="50dp"
-        android:layout_marginStart="200dp"
-        android:layout_marginBottom="200dp"
-        android:background="@drawable/rounded_corners"
-        android:text="@string/save_favorite"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        android:visibility="visible"
+        android:layout_marginStart="300dp"
+        android:layout_marginBottom="128dp"
+        android:background="@drawable/red_rounded_corners"
+        android:text="@string/play_favorite"
+        android:textColor="#0B0A0A"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/savebutton"
         android:layout_width="117dp"
         android:layout_height="50dp"
-        android:layout_marginStart="930dp"
-        android:layout_marginEnd="300dp"
+        android:layout_marginStart="300dp"
         android:layout_marginBottom="208dp"
-        android:background="@drawable/red_rounded_corners"
-        android:text="@string/play_favorite"
-        android:textColor="#0B0A0A"
-        android:textSize="18sp"
+        android:background="@drawable/rounded_corners"
+        android:text="@string/save_as_favorite"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="445dp"
-        android:layout_height="304dp"
-        android:layout_marginStart="108dp"
-        android:layout_marginTop="140dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_width="450dp"
+        android:layout_height="150dp"
 
-        <LinearLayout
+        app:layout_constraintStart_toStartOf="@+id/guideline8"
+        app:layout_constraintTop_toTopOf="@+id/guideline6">
+
+        <androidx.gridlayout.widget.GridLayout
             android:layout_width="450dp"
-            android:layout_height="320dp"
-            android:orientation="vertical"
-            app:layout_constraintStart_toEndOf="@+id/guideline8"
-            app:layout_constraintTop_toBottomOf="@+id/guideline6">
+            android:layout_height="195dp"
+            android:layout_marginEnd="12dp"
+            app:columnCount="2"
+            app:rowCount="2"
+            app:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/guideline7"
+            app:layout_constraintEnd_toStartOf="@+id/guideline9">
 
+            <ImageButton
+                android:id="@+id/wald_button"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:background="@drawable/wald"
+                android:contentDescription="@string/wald" />
             <ImageButton
                 android:id="@+id/berg_button"
                 android:layout_width="150dp"
@@ -125,25 +127,23 @@
                 android:background="@drawable/strand"
                 android:contentDescription="@string/strand" />
 
-            <ImageButton
-                android:id="@+id/wald_button"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:background="@drawable/wald"
-                android:contentDescription="@string/wald" />
+        </androidx.gridlayout.widget.GridLayout>
 
-        </LinearLayout>
+
+
+
+
     </ScrollView>
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="312dp"
         android:layout_height="119dp"
-        android:layout_marginEnd="90dp"
-        android:layout_marginBottom="90dp"
+        android:layout_marginEnd="220dp"
+        android:layout_marginBottom="300dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toStartOf="@+id/guideline9">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <ImageButton
             android:id="@+id/imageButton4"
@@ -178,9 +178,9 @@
         android:layout_width="385dp"
         android:layout_height="96dp"
         android:layout_marginTop="140dp"
-        android:layout_marginEnd="71dp"
+        android:layout_marginEnd="200dp"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toStartOf="@+id/guideline9"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
@@ -188,6 +188,7 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:backgroundTint="#006e8c"
+            android:contentDescription="@string/playbutton"
             android:scaleType="fitCenter"
             app:srcCompat="@android:drawable/ic_media_play" />
 
@@ -214,7 +215,7 @@
         android:layout_marginBottom="140dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintGuide_begin="704dp" />
+        app:layout_constraintGuide_begin="600dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline8"
@@ -224,6 +225,22 @@
         android:orientation="vertical"
         app:layout_constraintGuide_begin="106dp"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/stopchairButton_ID"
+        android:layout_width="110dp"
+        android:layout_height="120dp"
+
+        android:layout_marginTop="536dp"
+        android:layout_marginEnd="40dp"
+        android:backgroundTint="#D61D3F"
+        android:backgroundTintMode="src_in"
+        android:clickable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -51,6 +51,10 @@
     <string name="bluetooth"> bluetooth</string>
     <string name="musiclibrary"> musiclibrary</string>
     <string name="spotify"> spotify</string>
+    <string name="picktheme"> Pick a theme sound</string>
+    <string name="ownmusic"> Hear your own music</string>
+    <string name="playbutton"> play button</string>
+
     />
 
 
