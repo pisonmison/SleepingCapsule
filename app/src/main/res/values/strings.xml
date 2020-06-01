@@ -29,7 +29,6 @@
     <string name="show_favorite">Show Favorite</string>
     <string name="blue">blue</string>
     <string name="green">green</string>
-    <string name="angle">angle</string>
     <string name="red">red</string>
     <string name="nr1">int</string>
     <string name="nr2">int</string>
@@ -59,6 +58,11 @@
     <string name="G">G</string>
     <string name="B">B</string>
     <string name="hex">Hex:</string>
+    <string name="colorwheel">TODO</string>
+    <string name="stopchair">TODO</string>
+    <string name="chair">TODO</string>
+    <string name="light">TODO</string>
+    <string name="music">TODO</string>
 
     />
 
