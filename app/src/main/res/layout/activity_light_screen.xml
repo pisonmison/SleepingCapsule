@@ -133,10 +133,10 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="77dp"
-        android:layout_height="257dp"
-        android:layout_marginTop="208dp"
-        android:layout_marginEnd="448dp"
+        android:layout_width="83dp"
+        android:layout_height="343dp"
+        android:layout_marginTop="184dp"
+        android:layout_marginEnd="452dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -145,7 +145,7 @@
             android:id="@+id/red"
             android:layout_width="75dp"
             android:layout_height="wrap_content"
-            android:background="#FB0202"
+            android:background="@drawable/radiusred"
             android:text="@string/R"
             android:textAlignment="center"
             android:textColor="#000000"
@@ -157,8 +157,8 @@
             android:id="@+id/yellow"
             android:layout_width="75dp"
             android:layout_height="75dp"
-            android:layout_marginTop="15dp"
-            android:background="#08FF00"
+            android:layout_marginTop="35dp"
+            android:background="@drawable/radiusgreen"
             android:text="@string/G"
             android:textAlignment="center"
             android:textColor="#000000"
@@ -170,8 +170,8 @@
             android:id="@+id/blue"
             android:layout_width="75dp"
             android:layout_height="75dp"
-            android:layout_marginTop="20dp"
-            android:background="#0030FF"
+            android:layout_marginTop="35dp"
+            android:background="@drawable/radiusblue"
             android:isScrollContainer="false"
             android:text="@string/B"
             android:textAlignment="center"
@@ -257,8 +257,8 @@
 
     <TextView
         android:id="@+id/Color"
-        android:layout_width="154dp"
-        android:layout_height="24dp"
+        android:layout_width="180dp"
+        android:layout_height="51dp"
         android:layout_marginTop="76dp"
         android:layout_marginEnd="344dp"
         android:fontFamily="@font/bungee2"

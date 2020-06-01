@@ -6,4 +6,7 @@
     <color name="darkblue">#006e8c</color>
     <color name="orangeRed">#ff9800</color>
     <color name="snoozeBlau">#38c7ef</color>
+    <color name="red">#FFD10505</color>
+    <color name="green">#FF05AF00</color>
+    <color name="blue">#0030FF</color>
 </resources>
