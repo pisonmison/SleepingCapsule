@@ -48,7 +48,7 @@
         android:layout_marginEnd="180dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintGuide_begin="1158dp" />
+        app:layout_constraintGuide_begin="1060dp" />
 
     <TextView
         android:id="@+id/textView9"
@@ -80,7 +80,7 @@
         android:id="@+id/playbutton"
         android:layout_width="117dp"
         android:layout_height="50dp"
-        android:layout_marginStart="300dp"
+        android:layout_marginStart="372dp"
         android:layout_marginBottom="208dp"
         android:background="@drawable/red_rounded_corners"
         android:text="@string/play_favorite"
@@ -93,26 +93,25 @@
         android:id="@+id/savebutton"
         android:layout_width="117dp"
         android:layout_height="50dp"
-        android:layout_marginStart="150dp"
         android:layout_marginBottom="208dp"
         android:background="@drawable/rounded_corners"
         android:text="@string/save_as_favorite"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/guideline8" />
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="450dp"
+        android:layout_width="300dp"
         android:layout_height="300dp"
 
         app:layout_constraintStart_toStartOf="@+id/guideline8"
         app:layout_constraintTop_toTopOf="@+id/guideline6">
 
         <androidx.gridlayout.widget.GridLayout
-            android:layout_width="450dp"
-            android:layout_height="195dp"
+            android:layout_width="300dp"
+            android:layout_height="200dp"
             android:layout_marginEnd="12dp"
-            app:columnCount="2"
+            app:columnCount="3"
             app:layout_constraintBottom_toTopOf="@+id/guideline7"
             app:layout_constraintEnd_toStartOf="@+id/guideline9"
             app:orientation="vertical"
@@ -120,44 +119,45 @@
 
             <ImageButton
                 android:id="@+id/wald_button"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:background="@drawable/wald"
                 android:contentDescription="@string/wald" />
 
             <ImageButton
                 android:id="@+id/berg_button"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:background="@drawable/berg"
                 android:contentDescription="@string/berge" />
 
             <ImageButton
-                android:id="@+id/dschungel_button"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:background="@drawable/dschungel"
-                android:contentDescription="@string/dschungel" />
+                android:id="@+id/regen_button"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@drawable/regen"
+                android:contentDescription="@string/regen" />
 
             <ImageButton
                 android:id="@+id/lagerfeuer_button"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:background="@drawable/lagerfeuer"
                 android:contentDescription="@string/lagerfeuer" />
 
             <ImageButton
-                android:id="@+id/regen_button"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:background="@drawable/regen"
-                android:contentDescription="@string/regen" />
+                android:id="@+id/dschungel_button"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@drawable/dschungel"
+                android:contentDescription="@string/dschungel"/>
+
 
 
             <ImageButton
                 android:id="@+id/strand_button"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:background="@drawable/strand"
                 android:contentDescription="@string/strand" />
 
@@ -170,11 +170,10 @@
         android:id="@+id/linearLayout"
         android:layout_width="312dp"
         android:layout_height="119dp"
-        android:layout_marginEnd="220dp"
-        android:layout_marginBottom="250dp"
+        android:layout_marginBottom="248dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toStartOf="@+id/guideline9">
 
         <ImageButton
             android:id="@+id/imageButton4"
@@ -208,10 +207,9 @@
         android:id="@+id/linearLayout3"
         android:layout_width="385dp"
         android:layout_height="96dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginEnd="200dp"
+        android:layout_marginTop="204dp"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline9"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
@@ -254,7 +252,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="180dp"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="106dp"
+        app:layout_constraintGuide_percent="0.16"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
@@ -264,7 +262,7 @@
         android:layout_marginTop="536dp"
         android:layout_marginEnd="40dp"
         android:background="@drawable/stop_button"
-        android:contentDescription="@string"
+        android:contentDescription="@string/stopchair"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
