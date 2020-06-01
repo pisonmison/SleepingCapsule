@@ -61,5 +61,6 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
                 break;
 
         }
+
     }
 }

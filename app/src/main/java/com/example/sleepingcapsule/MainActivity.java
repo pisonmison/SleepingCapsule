@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         //switch statement for checking which button is clicked, checks button_id
+        //open desired activity on user click
         switch (v.getId()){
             case R.id.seat_button1:
                 openSeatScreen(mContext);
@@ -78,6 +79,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    /*
+    this method colors the corresponding taskbar icon depending on designed icon and
+    the type of the screen "currentScreen" assigned.
+     */
     public static void setTaskBarIcon(ImageView view, String currentScreen){
 
         if(currentScreen.equals("seat")){
@@ -98,23 +103,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-        //those functions will create a new acitivity for the specified screen we want
+        /*those functions will create a new acitivity for the specified screen we want
+        * if an activity already exitsts, it will be moved to the front, with all progress made.
+        * -> done by addFlags function.
+        * Static for use in the three screens.
+        * */
+
     public static void openSeatScreen(Context mContext){
 
-        Intent login = new Intent(mContext, SeatScreen.class);
-        mContext.startActivity(login);
+        Intent intent = new Intent(mContext, SeatScreen.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        mContext.startActivity(intent);
+
     }
 
     public static void openLightScreen(Context mContext){
 
-        Intent login = new Intent(mContext, LightScreen.class);
-        mContext.startActivity(login);
+        Intent intent= new Intent(mContext, LightScreen.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        mContext.startActivity(intent);
     }
 
     public static void openMusicScreen(Context mContext){
 
-        Intent login = new Intent(mContext, MusicScreen.class);
-        mContext.startActivity(login);
+        Intent intent = new Intent(mContext, MusicScreen.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        mContext.startActivity(intent);
     }
 
 

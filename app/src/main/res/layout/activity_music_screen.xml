@@ -11,7 +11,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:layout_marginTop="1dp"
         android:background="@color/snoozeBlau"
 
         android:backgroundTint="#000000"
@@ -53,14 +52,14 @@
 
     <TextView
         android:id="@+id/textView9"
-        android:layout_width="200dp"
+        android:layout_width="250dp"
         android:layout_height="40dp"
         android:layout_marginStart="250dp"
-
+        android:fontFamily="@font/bungee2"
         android:gravity="center"
         android:text="@string/picktheme"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textSize="24sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline6"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -69,10 +68,11 @@
         android:layout_width="250dp"
         android:layout_height="40dp"
         android:layout_marginEnd="250dp"
+        android:fontFamily="@font/bungee2"
         android:gravity="center"
         android:text="@string/ownmusic"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textSize="24sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline6"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -81,7 +81,7 @@
         android:layout_width="117dp"
         android:layout_height="50dp"
         android:layout_marginStart="300dp"
-        android:layout_marginBottom="128dp"
+        android:layout_marginBottom="208dp"
         android:background="@drawable/red_rounded_corners"
         android:text="@string/play_favorite"
         android:textColor="#0B0A0A"
@@ -93,7 +93,7 @@
         android:id="@+id/savebutton"
         android:layout_width="117dp"
         android:layout_height="50dp"
-        android:layout_marginStart="300dp"
+        android:layout_marginStart="150dp"
         android:layout_marginBottom="208dp"
         android:background="@drawable/rounded_corners"
         android:text="@string/save_as_favorite"
@@ -103,7 +103,7 @@
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="450dp"
-        android:layout_height="150dp"
+        android:layout_height="300dp"
 
         app:layout_constraintStart_toStartOf="@+id/guideline8"
         app:layout_constraintTop_toTopOf="@+id/guideline6">
@@ -113,10 +113,10 @@
             android:layout_height="195dp"
             android:layout_marginEnd="12dp"
             app:columnCount="2"
-            app:rowCount="2"
-            app:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@+id/guideline7"
-            app:layout_constraintEnd_toStartOf="@+id/guideline9">
+            app:layout_constraintEnd_toStartOf="@+id/guideline9"
+            app:orientation="vertical"
+            app:rowCount="2">
 
             <ImageButton
                 android:id="@+id/wald_button"
@@ -124,6 +124,7 @@
                 android:layout_height="150dp"
                 android:background="@drawable/wald"
                 android:contentDescription="@string/wald" />
+
             <ImageButton
                 android:id="@+id/berg_button"
                 android:layout_width="150dp"
@@ -163,9 +164,6 @@
         </androidx.gridlayout.widget.GridLayout>
 
 
-
-
-
     </ScrollView>
 
     <LinearLayout
@@ -173,7 +171,7 @@
         android:layout_width="312dp"
         android:layout_height="119dp"
         android:layout_marginEnd="220dp"
-        android:layout_marginBottom="300dp"
+        android:layout_marginBottom="250dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -210,7 +208,7 @@
         android:id="@+id/linearLayout3"
         android:layout_width="385dp"
         android:layout_height="96dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="200dp"
         android:layout_marginEnd="200dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -248,7 +246,7 @@
         android:layout_marginBottom="140dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintGuide_begin="600dp" />
+        app:layout_constraintGuide_begin="671dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline8"
@@ -259,19 +257,16 @@
         app:layout_constraintGuide_begin="106dp"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/stopchairButton_ID"
+    <ImageButton
+        android:id="@+id/stopChair_seatScreen_ID"
         android:layout_width="110dp"
-        android:layout_height="120dp"
-
+        android:layout_height="110dp"
         android:layout_marginTop="536dp"
         android:layout_marginEnd="40dp"
-        android:backgroundTint="#D61D3F"
-        android:backgroundTintMode="src_in"
-        android:clickable="true"
+        android:background="@drawable/stop_button"
+        android:contentDescription="@string"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline17"

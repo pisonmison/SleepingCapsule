@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.media.Image;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 public class MusicScreen extends AppCompatActivity implements  Button.OnClickListener  {
@@ -35,6 +37,14 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
         MainActivity.setTaskBarIcon(musicIcon,currentScreen);
         //////
 
+        final MediaPlayer wavesounds = MediaPlayer.create(this, R.raw.meeresrauschen);
+        ImageButton playwavesound = (ImageButton) this.findViewById(R.id.strand_button);
+        playwavesound.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                wavesounds.start();
+            }
+        });
 
 
 
@@ -62,6 +72,7 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
                 break;
 
         }
+
     }
 
 
