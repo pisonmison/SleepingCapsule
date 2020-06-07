@@ -81,29 +81,30 @@
         android:layout_width="117dp"
         android:layout_height="50dp"
         android:layout_marginStart="372dp"
-        android:layout_marginBottom="208dp"
+        android:layout_marginTop="576dp"
         android:background="@drawable/red_rounded_corners"
         android:text="@string/play_favorite"
         android:textColor="#0B0A0A"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/savebutton"
         android:layout_width="117dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="208dp"
+        android:layout_marginTop="576dp"
         android:background="@drawable/rounded_corners"
         android:text="@string/save_as_favorite"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline8" />
+        app:layout_constraintStart_toStartOf="@+id/guideline8"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_height="200dp"
 
+        android:layout_marginTop="50dp"
         app:layout_constraintStart_toStartOf="@+id/guideline8"
         app:layout_constraintTop_toTopOf="@+id/guideline6">
 
@@ -150,8 +151,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:background="@drawable/dschungel"
-                android:contentDescription="@string/dschungel"/>
-
+                android:contentDescription="@string/dschungel" />
 
 
             <ImageButton
@@ -260,7 +260,7 @@
         android:layout_width="110dp"
         android:layout_height="110dp"
         android:layout_marginTop="536dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/stop_button"
         android:contentDescription="@string/stopchair"
         app:layout_constraintEnd_toEndOf="parent"
@@ -272,6 +272,14 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="57dp" />
+
+    <TextView
+        android:id="@+id/textViewtheme"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="440dp"
+        app:layout_constraintStart_toStartOf="@+id/guideline8"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
