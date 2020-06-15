@@ -120,7 +120,7 @@
             android:textColor="#FFFFFF" />
 
         <EditText
-            android:id="@+id/nr"
+            android:id="@+id/nr3"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_marginBottom="20dp"
@@ -144,7 +144,7 @@
         <TextView
             android:id="@+id/red"
             android:layout_width="75dp"
-            android:layout_height="wrap_content"
+            android:layout_height="75dp"
             android:background="@drawable/radiusred"
             android:text="@string/R"
             android:textAlignment="center"
@@ -236,14 +236,14 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/colorwheel"
             android:layout_width="300dp"
             android:layout_height="300dp"
             app:srcCompat="@drawable/colorwheel1"
             android:contentDescription="@string/colorwheel" />
 
         <View
-            android:id="@+id/view"
+            android:id="@+id/ausgabe"
             android:layout_width="match_parent"
             android:layout_height="59dp" />
 
