@@ -23,6 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:contentDescription="@string/chair"
             app:srcCompat="@drawable/seat_icon_white" />
 
         <ImageView
@@ -30,6 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:contentDescription="@string/light"
             app:srcCompat="@drawable/light_icon_white" />
 
         <ImageView
@@ -37,6 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:contentDescription="@string/music"
             app:srcCompat="@drawable/music_icon_white" />
     </LinearLayout>
 
@@ -99,72 +102,7 @@
         app:layout_constraintStart_toStartOf="@+id/guideline8"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ScrollView
-        android:id="@+id/scrollView2"
-        android:layout_width="300dp"
-        android:layout_height="200dp"
 
-        android:layout_marginTop="50dp"
-        app:layout_constraintStart_toStartOf="@+id/guideline8"
-        app:layout_constraintTop_toTopOf="@+id/guideline6">
-
-        <androidx.gridlayout.widget.GridLayout
-            android:layout_width="300dp"
-            android:layout_height="200dp"
-            android:layout_marginEnd="12dp"
-            app:columnCount="3"
-            app:layout_constraintBottom_toTopOf="@+id/guideline7"
-            app:layout_constraintEnd_toStartOf="@+id/guideline9"
-            app:orientation="vertical"
-            app:rowCount="2">
-
-            <ImageButton
-                android:id="@+id/wald_button"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:background="@drawable/wald"
-                android:contentDescription="@string/wald" />
-
-            <ImageButton
-                android:id="@+id/berg_button"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:background="@drawable/berg"
-                android:contentDescription="@string/berge" />
-
-            <ImageButton
-                android:id="@+id/regen_button"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:background="@drawable/regen"
-                android:contentDescription="@string/regen" />
-
-            <ImageButton
-                android:id="@+id/lagerfeuer_button"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:background="@drawable/lagerfeuer"
-                android:contentDescription="@string/lagerfeuer" />
-
-            <ImageButton
-                android:id="@+id/dschungel_button"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:background="@drawable/dschungel"
-                android:contentDescription="@string/dschungel" />
-
-
-            <ImageButton
-                android:id="@+id/strand_button"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:background="@drawable/strand"
-                android:contentDescription="@string/strand" />
-
-        </androidx.gridlayout.widget.GridLayout>
-
-
-    </ScrollView>
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -277,9 +215,20 @@
         android:id="@+id/textViewtheme"
         android:layout_width="200dp"
         android:layout_height="30dp"
-        android:layout_marginTop="440dp"
+        android:layout_marginTop="500dp"
         app:layout_constraintStart_toStartOf="@+id/guideline8"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="300dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="80dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="@+id/guideline8"
+        app:layout_constraintTop_toTopOf="@+id/guideline6" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
