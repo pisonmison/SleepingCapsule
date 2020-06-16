@@ -29,14 +29,14 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
     private Button showColor;
 
     //create two color objects for current color and favorite color for saving
-    RGBColor currentColor;
-    RGBColor favoriteColor;
+    private RGBColor currentColor;
+    private RGBColor favoriteColor;
 
 
-    ImageView mColorwheel;
-    TextView mHex;
-    View mAusgabe;
-    Bitmap bitmap;
+    private ImageView mColorwheel;
+    private TextView mHex;
+    private View mAusgabe;
+    private Bitmap bitmap;
 
 
 
@@ -82,6 +82,8 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
 
 
     }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -150,8 +152,7 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
         * prints current color choice afterwards in console
 
         * */
-
-        public void startColorWheel(View v, MotionEvent event){
+    public void startColorWheel(View v, MotionEvent event){
 
             //get pixels data from the color wheel image
             if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_MOVE) {
@@ -315,6 +316,7 @@ on focus change checks wether an edit text is actually focused or not, therefore
 
                 break;
             case R.id.saveAsFavoriteColor_ID:
+
 
                 favoriteColor = currentColor;
                 System.out.println("Current Saved Color:" + favoriteColor);
