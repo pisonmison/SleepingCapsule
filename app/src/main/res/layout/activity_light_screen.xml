@@ -57,7 +57,7 @@
 
 
     <Button
-        android:id="@+id/SaveAsFavorite"
+        android:id="@+id/saveAsFavoriteColor_ID"
         android:layout_width="117dp"
         android:layout_height="50dp"
         android:layout_marginStart="336dp"
@@ -71,7 +71,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/ShowFavorite"
+        android:id="@+id/showFavoriteButton_ID"
         android:layout_width="117dp"
         android:layout_height="50dp"
         android:layout_marginTop="576dp"
@@ -96,7 +96,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
-            android:id="@+id/nr1"
+            android:id="@+id/editText_R_ID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="55dp"
@@ -108,7 +108,7 @@
             android:textColor="#FFFFFF" />
 
         <EditText
-            android:id="@+id/nr2"
+            android:id="@+id/editText_G_ID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="60dp"
@@ -120,7 +120,7 @@
             android:textColor="#FFFFFF" />
 
         <EditText
-            android:id="@+id/nr3"
+            android:id="@+id/editText_B_ID"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_marginBottom="20dp"
@@ -256,7 +256,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/Color"
+        android:id="@+id/colorShowView_ID"
         android:layout_width="180dp"
         android:layout_height="51dp"
         android:layout_marginTop="76dp"

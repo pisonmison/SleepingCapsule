@@ -4,19 +4,25 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.View;
-import android.view.Window;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
-import java.time.ZoneOffset;
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 //we need to implement onclicklistener to later use less code for button functions
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -25,15 +31,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageButton seatButton;
     private ImageButton musicButton;
     private ImageButton lightButton;
-    private static Context mContext;
-
-    private static Intent intent;
+    public static Context mContext;
+    private Client apiClient;
+   // private static Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mContext = this;
+        mContext= this;
         //set variable to the created imagebutton, cast to a imagebutton
          seatButton =   findViewById(R.id.seat_button1);
          lightButton =  findViewById(R.id.light_button1);
@@ -49,8 +56,45 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         lightButton.setOnClickListener(this);
         musicButton.setOnClickListener(this);
 
-
     }
+
+
+
+
+/* use this as template for later get request of several json theme objects
+    public void updatePost(){
+
+
+        Call<Themes> call = dummyServerAPI.putPost(5);
+
+        call.enqueue(new Callback<Integer>() {
+        @Override
+        public void onResponse(Call<Themes> call, Response<Post> response) {
+            if(!response.isSuccessful()){
+                System.out.println("Code unsuccesfull:" + response.code());
+                response.getThemeID...
+                response.getThemeName...
+                return;
+            }
+
+            String content ="";
+            content+= "Code Succesfull:" + response.code() + "\n";
+
+        }
+
+        @Override
+        public void onFailure(Call<Integer> call, Throwable t) {
+                System.out.println("Message:"+t.getMessage());
+        }
+    });
+
+
+
+
+    }*/
+
+
+
 
 
     //here we define the different methods, which the buttons shall call
@@ -62,6 +106,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //open desired activity on user click
         switch (v.getId()){
             case R.id.seat_button1:
+
+
+
                 openSeatScreen(mContext);
                 Toast.makeText(this,"Seat Button clicked", Toast.LENGTH_SHORT).show();
                 break;
@@ -130,6 +177,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         mContext.startActivity(intent);
     }
+
+    public static void openMainMenu(Context mContext){
+
+        Intent intent = new Intent(mContext, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        mContext.startActivity(intent);
+
+    }
+
 
 
 

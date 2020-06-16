@@ -19,7 +19,7 @@ public class MusicScreen<soundpool> extends AppCompatActivity implements  Button
     private ImageView seatIcon;
     private ImageView lightIcon;
     private ImageView musicIcon;
-    private Context mContext;
+    public static Context mContext;
     private String currentScreen = "music";
 
     //textview theme
@@ -33,7 +33,6 @@ public class MusicScreen<soundpool> extends AppCompatActivity implements  Button
 
     SoundPool soundpool;
     int beachsound, feuersound, rainsound, forestsound, junglesound, mountainsound;
-
 
 
 
@@ -101,13 +100,6 @@ public class MusicScreen<soundpool> extends AppCompatActivity implements  Button
 
 
     }
-
-
-
-
-
-
-
 
 
     @Override

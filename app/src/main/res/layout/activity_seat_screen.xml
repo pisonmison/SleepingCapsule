@@ -94,10 +94,10 @@
             android:layout_marginBottom="10dp"
             android:layout_weight="1"
             android:adjustViewBounds="true"
-            android:background="@drawable/roundbutton"
+            android:background="@drawable/statelist"
             android:padding="18dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/favorite_position_icon" />
+            android:src="@drawable/herz_icon_transparent" />
 
 
         <ImageButton
@@ -107,11 +107,11 @@
             android:layout_marginBottom="10dp"
             android:layout_weight="1"
             android:adjustViewBounds="true"
-            android:background="@drawable/roundbutton"
+            android:background="@drawable/statelist"
             android:padding="7dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/lying_position_icon"
-            app:srcCompat="@drawable/lying_position_icon" />
+            android:src="@drawable/lying_icon_transparent"
+             />
 
         <ImageButton
             android:id="@+id/zeroGPos_ID"
@@ -120,11 +120,11 @@
             android:layout_marginBottom="10dp"
             android:layout_weight="1"
             android:adjustViewBounds="true"
-            android:background="@drawable/roundbutton"
+            android:background="@drawable/statelist"
             android:padding="10dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/zerogravity_position_icon"
-            app:srcCompat="@drawable/zerogravity_position_icon" />
+            android:src="@drawable/zerog_icon_transparent"
+             />
 
         <ImageButton
             android:id="@+id/sittingPos_ID"
@@ -132,11 +132,11 @@
             android:layout_height="63dp"
             android:layout_weight="1"
             android:adjustViewBounds="true"
-            android:background="@drawable/roundbutton"
+            android:background="@drawable/statelist"
             android:padding="10dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/sitting_position_icon"
-            app:srcCompat="@drawable/sitting_position_icon" />
+            android:src="@drawable/sitting_icon_transparent"
+             />
     </LinearLayout>
 
     <LinearLayout
@@ -195,7 +195,7 @@
             android:autofillHints=""
 
             android:gravity="center"
-            android:hint="@string/angle"
+
 
             android:inputType="number" />
 
@@ -210,7 +210,7 @@
             android:autofillHints=""
 
             android:gravity="center"
-            android:hint="@string/angle"
+
             android:inputType="number" />
 
         <EditText
@@ -222,7 +222,7 @@
             android:autofillHints=""
 
             android:gravity="center"
-            android:hint="@string/angle"
+
             android:ems="10"
             android:inputType="number" />
     </LinearLayout>
@@ -250,7 +250,7 @@
             android:layout_height="67dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/seatrestInt" />
+            android:text="@string/backrestInt" />
 
         <TextView
             android:id="@+id/seekBarViewInfo_Down_ID"
@@ -258,7 +258,7 @@
             android:layout_height="81dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/footrestInt" />
+            android:text="@string/backrestInt" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline4"
@@ -322,7 +322,10 @@
             android:layout_gravity="center_horizontal"
             android:layout_weight="1"
             android:foregroundGravity="center"
-            android:max="87" />
+            android:max="87"
+            android:progressDrawable="@drawable/custom_seekbar"
+            android:thumb="@drawable/custom_thumb"
+            />
 
         <SeekBar
             android:id="@+id/seekBarMiddle_ID"
@@ -331,6 +334,8 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:max="30"
+            android:progressDrawable="@drawable/custom_seekbar"
+            android:thumb="@drawable/custom_thumb"
 
             />
 
@@ -340,7 +345,9 @@
             android:layout_height="82dp"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:max="90" />
+            android:max="90"
+            android:progressDrawable="@drawable/custom_seekbar"
+            android:thumb="@drawable/custom_thumb"/>
 
     </LinearLayout>
 
