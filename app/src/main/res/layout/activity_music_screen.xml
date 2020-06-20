@@ -106,11 +106,13 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="312dp"
+        android:layout_width="250dp"
         android:layout_height="119dp"
         android:layout_marginTop="80dp"
+        android:layout_marginEnd="250dp"
+        android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toStartOf="@+id/guideline9"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline6">
 
         <ImageButton
@@ -134,11 +136,13 @@
 
     <LinearLayout
         android:id="@+id/linearLayout3"
-        android:layout_width="287dp"
+        android:layout_width="250dp"
         android:layout_height="100dp"
         android:layout_marginTop="500dp"
+        android:layout_marginEnd="250dp"
+        android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toStartOf="@+id/guideline9"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
@@ -209,9 +213,10 @@
 
     <TextView
         android:id="@+id/textViewtheme"
-        android:layout_width="200dp"
+        android:layout_width="250dp"
         android:layout_height="30dp"
         android:layout_marginTop="500dp"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/guideline8"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -223,6 +228,19 @@
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="@+id/guideline8"
         app:layout_constraintTop_toTopOf="@+id/guideline6" />
+
+    <TextView
+        android:id="@+id/SoundControl"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="250dp"
+        android:layout_marginBottom="270dp"
+        android:fontFamily="@font/bungee2"
+        android:gravity="center"
+        android:text="@string/soundcontrol"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
