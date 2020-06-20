@@ -104,6 +104,68 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="250dp"
+        android:layout_height="119dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="250dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline6">
+
+        <ImageButton
+            android:id="@+id/musicLibraryButton"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:backgroundTint="#006e8c"
+            android:contentDescription="@string/musiclibrary"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/musiclibrary" />
+
+        <ImageButton
+            android:id="@+id/spotifyButton"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:backgroundTint="#006e8c"
+            android:contentDescription="@string/spotify"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/spotify" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="500dp"
+        android:layout_marginEnd="250dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/playbutton"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:backgroundTint="#00BCD4"
+            android:contentDescription="@string/playbutton"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/playsoundbutton" />
+
+        <ImageButton
+            android:id="@+id/pausebutton"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:backgroundTint="#00BCD4"
+            android:contentDescription="@string/pausebutton"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/pausesoundbutton" />
+
+
+    </LinearLayout>
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline6"
         android:layout_width="wrap_content"
@@ -136,7 +198,7 @@
         android:layout_width="110dp"
         android:layout_height="110dp"
         android:layout_marginTop="536dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/stop_button"
         android:contentDescription="@string/stopchair"
         app:layout_constraintEnd_toEndOf="parent"
@@ -151,9 +213,10 @@
 
     <TextView
         android:id="@+id/textViewtheme"
-        android:layout_width="200dp"
+        android:layout_width="250dp"
         android:layout_height="30dp"
         android:layout_marginTop="500dp"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/guideline8"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -166,66 +229,18 @@
         app:layout_constraintStart_toStartOf="@+id/guideline8"
         app:layout_constraintTop_toTopOf="@+id/guideline6" />
 
-    <ImageButton
-        android:id="@+id/spotifyButton"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginEnd="240dp"
-        android:backgroundTint="#006e8c"
-        android:contentDescription="@string/spotify"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@+id/musicLibraryButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.833"
-        app:layout_constraintStart_toEndOf="@+id/musicLibraryButton"
-        app:layout_constraintTop_toTopOf="@+id/musicLibraryButton"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/spotify" />
-
-    <ImageButton
-        android:id="@+id/musicLibraryButton"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="768dp"
-        android:layout_marginTop="132dp"
-        android:backgroundTint="#006e8c"
-        android:contentDescription="@string/musiclibrary"
-        android:scaleType="fitCenter"
+    <TextView
+        android:id="@+id/SoundControl"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="250dp"
+        android:layout_marginBottom="270dp"
+        android:fontFamily="@font/bungee2"
+        android:gravity="center"
+        android:text="@string/soundcontrol"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline17"
-        app:layout_constraintVertical_bias="0.023"
-        app:srcCompat="@drawable/musiclibrary" />
-
-    <ImageButton
-        android:id="@+id/playbutton"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="780dp"
-        android:layout_marginBottom="224dp"
-        android:backgroundTint="#00BCD4"
-        android:contentDescription="@string/playbutton"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline17"
-        app:layout_constraintVertical_bias="0.855"
-        app:srcCompat="@drawable/playsoundbutton" />
-
-    <ImageButton
-        android:id="@+id/pausebutton"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginEnd="280dp"
-        android:layout_marginBottom="268dp"
-        android:backgroundTint="#00BCD4"
-        android:contentDescription="@string/pausebutton"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@+id/playbutton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/playbutton"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/pausesoundbutton" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
