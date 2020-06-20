@@ -335,15 +335,17 @@ public void sendPositionAngles2Server(){
                 if(!hasFocus){
                     apiClient.simpleGetRequest("setanglebackrest", actualPosition.getBackAngle());
                 }
+                break;
             case R.id.editTextSeat_ID:
                 if(!hasFocus){
                     apiClient.simpleGetRequest("setangleseating", actualPosition.getSeatAngle());
                 }
+                break;
             case R.id.editTextFeetrest_ID:
                 if(!hasFocus){
                     apiClient.simpleGetRequest("setanglefootrest", actualPosition.getFeetAngle());
                 }
-
+            break;
 
     }}
 

@@ -40,6 +40,8 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
 
 
 
+
+
     //color class which handles has all three colors as parameters
     public class RGBColor{
 
@@ -82,6 +84,7 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
 
 
     }
+
 
 
     @Override
@@ -152,7 +155,10 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
         * prints current color choice afterwards in console
 
         * */
-    public void startColorWheel(View v, MotionEvent event){
+    public void startColorWheel(View v, MotionEvent event) {
+
+        try {
+            //  Block of code to try
 
             //get pixels data from the color wheel image
             if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_MOVE) {
@@ -160,27 +166,31 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
 
                 int pixel = bitmap.getPixel((int)event.getX(), (int)event.getY());
 
+
                 int r = Color.red(pixel);
-                currentColor.setrValue(r);
-                editTextR.setText(String.valueOf(r));
-
-
                 int g = Color.green(pixel);
-                currentColor.setgValue(g);
-                editTextG.setText(String.valueOf(g));
-
-
                 int b = Color.blue(pixel);
-                currentColor.setbValue(b);
-                editTextB.setText(String.valueOf(b));
+
+                if(r!=0 && g!=0 && b!=0){
+                    currentColor.setrValue(r);
+                    editTextR.setText(String.valueOf(r));
+
+                    currentColor.setgValue(g);
+                    editTextG.setText(String.valueOf(g));
+
+                    currentColor.setbValue(b);
+                    editTextB.setText(String.valueOf(b));
 
 
-                String hex ="#"+ Integer.toHexString(pixel);
+                    String hex ="#"+ Integer.toHexString(pixel);
+                    mAusgabe.setBackgroundColor(Color.rgb(r,g,b));
 
-                mAusgabe.setBackgroundColor(Color.rgb(r,g,b));
+                    mHex.setText("RGB: "+ r +", "+  g +", "+ b ); //\nHEX:wert
 
-                mHex.setText("RGB: "+ r +", "+  g +", "+ b );
-                System.out.println("CURRENT COLOR:" + currentColor);
+                    System.out.println("CURRENT COLOR:" + currentColor);
+                }
+
+
 
 
 
@@ -188,6 +198,13 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
 
             }
         }
+        catch(Exception e) {
+                e.printStackTrace();
+                System.out.println("!Touching outside the color wheel!");
+            }
+
+
+    }
 
 
 
@@ -227,6 +244,7 @@ on focus change checks wether an edit text is actually focused or not, therefore
                             currentColor.setrValue(Integer.valueOf(temp));
                             System.out.println("Set R Color to:" +  temp);
                             //send server data
+                           // mAusgabe.setBackgroundColor(Color.rgb(currentColor.getrValue(), currentColor.getgValue(), currentColor.getgValue()));  edit text soll fabre updaten
 
 
                         }

@@ -117,6 +117,10 @@ public class MusicScreen<soundpool> extends AppCompatActivity implements  Button
         themelist.add( new Themes("Mountain", "The sound of the nature", R.drawable.berg, mountainsound));
 
 
+        //load extra themes from server if needed.
+        //loadDataFromServer();
+
+
         musicListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapter , View view, int position, long l) {
