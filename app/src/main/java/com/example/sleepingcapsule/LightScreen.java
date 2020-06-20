@@ -38,6 +38,8 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
     private View mAusgabe;
     private Bitmap bitmap;
 
+    Client apiLightClient;
+
 
 
 
@@ -124,6 +126,7 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
         currentColor = new RGBColor();
         favoriteColor = new RGBColor();
 
+        apiLightClient = new Client();
 
 
         ///taskbar code////
@@ -198,8 +201,15 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
 
 
             }
+            /**
+             *  /*send light http request here:  setlightseat | setlightinterior
+                  when user releases his finger from wheel -> color chosen.
+                    currently this only works for seat.
+             */
+
             else if(event.getAction() == MotionEvent.ACTION_UP){
-                //send light http request here
+
+                apiLightClient.colorGetRequest("setlightseat", currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue());
 
             }
         }
@@ -249,7 +259,8 @@ on focus change checks wether an edit text is actually focused or not, therefore
                             currentColor.setrValue(Integer.valueOf(temp));
                             System.out.println("Set R Color to:" +  temp);
                             //send server data
-                           // mAusgabe.setBackgroundColor(Color.rgb(currentColor.getrValue(), currentColor.getgValue(), currentColor.getgValue()));  edit text soll fabre updaten
+                            mAusgabe.setBackgroundColor(Color.rgb(currentColor.getrValue(), currentColor.getgValue(), currentColor.getgValue()));
+                            apiLightClient.colorGetRequest("setlightseat", currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue());
 
 
                         }
@@ -274,7 +285,8 @@ on focus change checks wether an edit text is actually focused or not, therefore
                             currentColor.setgValue(Integer.valueOf(temp));
                             System.out.println("Set G Color to:" +  temp);
                             //send server data
-
+                            mAusgabe.setBackgroundColor(Color.rgb(currentColor.getrValue(), currentColor.getgValue(), currentColor.getgValue()));
+                            apiLightClient.colorGetRequest("setlightseat", currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue());
 
                         }
                         else{
@@ -299,7 +311,8 @@ on focus change checks wether an edit text is actually focused or not, therefore
                             currentColor.setbValue(Integer.valueOf(temp));
                             System.out.println("Set B Color to:" +  temp);
                             //send server data
-
+                            mAusgabe.setBackgroundColor(Color.rgb(currentColor.getrValue(), currentColor.getgValue(), currentColor.getgValue()));
+                            apiLightClient.colorGetRequest("setlightseat", currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue());
 
                         }
                         else{
@@ -349,6 +362,7 @@ on focus change checks wether an edit text is actually focused or not, therefore
 
 
                 currentColor = favoriteColor;
+                apiLightClient.colorGetRequest("setlightseat", currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue());
                 System.out.println("Current Color showing:" + currentColor);
 
                 break;

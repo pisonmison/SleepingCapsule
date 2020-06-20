@@ -232,6 +232,8 @@ public class MusicScreen<soundpool> extends AppCompatActivity implements  Button
 
     }
 
+
+    //transfers data into our listview
 public class ThemesListAdapter extends ArrayAdapter<Themes> {
 
 

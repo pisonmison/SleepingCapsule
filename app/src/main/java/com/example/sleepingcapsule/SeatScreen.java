@@ -2,6 +2,7 @@ package com.example.sleepingcapsule;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -162,11 +163,13 @@ public class SeatScreen extends AppCompatActivity implements SeekBar.OnSeekBarCh
         apiClient = new Client();
     }
 
+    /**
+     * timer method which handles executing http requests slighty delayed for callback failure evasion
+     */
 
 
 
-
-    //not real settings, just for testing
+    //pre configure settings for different positions
     public void setPositionsOnStart(){
         configurePosition(actualPosition, 0,0,0);
         configurePosition(lyingPosition, 0, 0, 90);
@@ -239,6 +242,7 @@ public void sendPositionAngles2Server(){
 
 
             }
+
             else if (inputSeat.isFocused()) {
                 String temp = inputSeat.getText().toString();
                 if(temp.isEmpty()){
@@ -338,19 +342,24 @@ public void sendPositionAngles2Server(){
             case R.id.editTextBackrest_ID:
                 if(!hasFocus){
                     apiClient.seatGetRequest("setanglebackrest", actualPosition.getBackAngle());
+
                 }
                 break;
+
+
             case R.id.editTextSeat_ID:
                 if(!hasFocus){
                     apiClient.seatGetRequest("setangleseating", actualPosition.getSeatAngle());
+
                 }
                 break;
             case R.id.editTextFeetrest_ID:
                 if(!hasFocus){
                     apiClient.seatGetRequest("setanglefootrest", actualPosition.getFeetAngle());
-                }
-            break;
 
+
+                }
+                break;
     }}
 
         //send data to server only when user has finished using the seekbar, as the chair moves not in realtime.
@@ -359,6 +368,7 @@ public void sendPositionAngles2Server(){
         public void onStopTrackingTouch(SeekBar seekBar) {
             switch (seekBar.getId()) {
                 case R.id.seekBarTop_ID:
+
                     apiClient.seatGetRequest("setanglebackrest", actualPosition.getBackAngle());
 
                     break;
