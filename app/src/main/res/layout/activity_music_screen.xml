@@ -80,7 +80,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/playbutton"
+        android:id="@+id/playFavoriteButtonMusic_ID"
         android:layout_width="117dp"
         android:layout_height="50dp"
         android:layout_marginStart="372dp"
@@ -93,7 +93,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/savebutton"
+        android:id="@+id/saveFovriteThemeButton_ID"
         android:layout_width="117dp"
         android:layout_height="50dp"
         android:layout_marginTop="576dp"
@@ -103,12 +103,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="312dp"
         android:layout_height="119dp"
-        android:layout_marginBottom="248dp"
+        android:layout_marginBottom="200dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline9">
@@ -143,27 +142,32 @@
 
     <LinearLayout
         android:id="@+id/linearLayout3"
-        android:layout_width="385dp"
-        android:layout_height="96dp"
-        android:layout_marginTop="204dp"
+        android:layout_width="287dp"
+        android:layout_height="100dp"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toStartOf="@+id/guideline9"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/seekBarMusic">
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/playbutton"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:backgroundTint="#006e8c"
             android:contentDescription="@string/playbutton"
             android:scaleType="fitCenter"
-            app:srcCompat="@android:drawable/ic_media_play" />
+            app:srcCompat="@drawable/playsoundbutton" />
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="297dp"
-            android:layout_height="70dp" />
+        <ImageButton
+            android:id="@+id/pausebutton"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:backgroundTint="#006e8c"
+            android:contentDescription="@string/pausebutton"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/pausesoundbutton" />
+
+
     </LinearLayout>
 
     <androidx.constraintlayout.widget.Guideline
@@ -228,7 +232,13 @@
         app:layout_constraintStart_toStartOf="@+id/guideline8"
         app:layout_constraintTop_toTopOf="@+id/guideline6" />
 
-
+    <SeekBar
+        android:id="@+id/seekBarMusic"
+        android:layout_width="400dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="80dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline9"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

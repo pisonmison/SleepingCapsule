@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ public class MusicScreen<soundpool> extends AppCompatActivity implements  Button
     private Context mContext;
     private String currentScreen = "music";
 
-
+    private SeekBar seekbar;
 
 
     ArrayList<Themes> themelist = new ArrayList<Themes>();
@@ -45,10 +46,18 @@ public class MusicScreen<soundpool> extends AppCompatActivity implements  Button
     ImageButton mountainbutton;
     TextView themeview;
 
+    private Button playFavoriteThemeButton;
+    private Button saveFavoriteThemeButton;
+    private ImageButton playButton;
+    private ImageButton pauseButton;
+
+
+
     SoundPool soundpool;
     int beachsound, feuersound, rainsound, forrestsound, junglesound, mountainsound;
 
-
+    Themes currentTheme;
+    Themes favoriteTheme;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +91,27 @@ public class MusicScreen<soundpool> extends AppCompatActivity implements  Button
         musicIcon.setOnClickListener(this);
 
         //zuordnung
-        themeview = (TextView) findViewById(R.id.textViewtheme);
+        themeview =  findViewById(R.id.textViewtheme);
+
+        playButton=findViewById(R.id.playbutton);
+        pauseButton = findViewById(R.id.pausebutton);
+        seekbar= findViewById(R.id.seekBarMusic);
+
+        saveFavoriteThemeButton = findViewById(R.id.saveFovriteThemeButton_ID);
+        playFavoriteThemeButton = findViewById(R.id.playFavoriteButtonMusic_ID);
+
+        playButton.setOnClickListener(this);
+        pauseButton.setOnClickListener(this);
+
+        saveFavoriteThemeButton.setOnClickListener(this);
+        playFavoriteThemeButton.setOnClickListener(this);
+
+
+       // seekbar.setOnSeekBarChangeListener((SeekBar.OnSeekBarChangeListener) this);
+
+
+        currentTheme = new Themes(); //create theme for saving
+        favoriteTheme = new Themes();
        // beachbutton = (ImageButton) findViewById(R.id.strand_button);
        // rainbutton = (ImageButton) findViewById(R.id.regen_button);
        //forrestbutton = (ImageButton) findViewById(R.id.wald_button);
@@ -124,112 +153,19 @@ public class MusicScreen<soundpool> extends AppCompatActivity implements  Button
         musicListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapter , View view, int position, long l) {
-
-
                 Themes theme = themelist.get(position);
                 themeview.setText(theme.getDescription());
-
                 soundpool.play(theme.getMusic(), 1, 1, 1, -1, 1);
-
-
-
             }
 
         });
-
-
-    }
-
-
-
-public class ThemesListAdapter extends ArrayAdapter<Themes> {
-
-
-    public ThemesListAdapter(@NonNull Context context,  @NonNull ArrayList<Themes> objects) {
-        super(context, 0, objects);
-
-
-    }
-
-    @NonNull
-    @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        View itemView = convertView;
-        if (itemView == null){
-            itemView = LayoutInflater.from(getContext()).inflate(R.layout.adapter_view_layout,parent,false);
-        }
-        Themes currentTheme = getItem(position);
-
-        TextView themeTitle = itemView.findViewById(R.id.themetitle);
-
-        assert currentTheme != null;
-        themeTitle.setText(currentTheme.getTitle());
-
-
-
-        ImageView themeImage = itemView.findViewById(R.id.themeimage);
-
-        themeImage.setImageResource(currentTheme.getImage());
-
-
-
-
-        return itemView;
-
-    }
-}
-
-
-
-    @Override
-    public void onClick(View v) {
-
-        switch (v.getId()) {
-            case R.id.seatImageView__MusicScreen_ID:
-                MainActivity.openSeatScreen(mContext);
-                break;
-            case R.id.lightImageView_MusicScreen_ID:
-                MainActivity.openLightScreen(mContext);
-                break;
-            case R.id.musicImageView_MusicScreen_ID:
-                MainActivity.openMusicScreen(mContext);
-                break;
-         /*   case R.id.savebutton:
-                saveFavorite();
-                break;
-            case R.id.playbutton:
-                playFavorite();
-                break;
-*/
-          /*  case R.id.strand_button:
-                themeview.setText("Beach");
-                soundpool.play(beachsound, 1, 1, 0, -1, 1);
-                break;*/
-          /*  case R.id.wald_button:
-                themeview.setText("Forrest");
-                soundpool.play(forrestsound, 1, 1, 0, -1, 1);
-                break;*/
-           /* case R.id.lagerfeuer_button:
-                themeview.setText("Fireplace");
-                soundpool.play(feuersound, 1, 1, 0, -1, 1);
-                break;
-            case R.id.dschungel_button:
-                themeview.setText("Jungle");
-                soundpool.play(junglesound, 1, 1, 0, -1, 1);
-                break;
-            case R.id.regen_button:
-                themeview.setText("Rain");
-                soundpool.play(rainsound, 1, 1, 0, -1, 1);
-                break;
-            case R.id.berg_button:
-                themeview.setText("Mountain");
-                soundpool.play(mountainsound, 1, 1, 0, -1, 1);
-                break;
-*/
+/*
+        public void onProgressChanged(SeekBar seekbar; int progress; boolean arg2) {
+            seekbar.setMax(soundpool.getDuration());
         }
 
+*/
     }
-
 
     public class Themes {
         public String mTitle;
@@ -237,10 +173,12 @@ public class ThemesListAdapter extends ArrayAdapter<Themes> {
         public int mImage;
         public int mMusic;
 
+        public Themes() {
+
+        }
 
 
-
-        public Themes(String Title, String Description, int image, int music) {
+        public  Themes(String Title, String Description, int image, int music) {
             mTitle=Title;
             mDescription=Description;
             mImage=image;
@@ -284,22 +222,111 @@ public class ThemesListAdapter extends ArrayAdapter<Themes> {
         }
 
     }
-/*
-public void saveFavorite(Themes favTheme){
+
+public class ThemesListAdapter extends ArrayAdapter<Themes> {
 
 
-    favTheme.setmDescription();
-    favTheme.setmMusic();
+    public ThemesListAdapter(@NonNull Context context,  @NonNull ArrayList<Themes> objects) {
+        super(context, 0, objects);
 
 
+    }
 
+    @NonNull
+    @Override
+    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        View itemView = convertView;
+        if (itemView == null){
+            itemView = LayoutInflater.from(getContext()).inflate(R.layout.adapter_view_layout,parent,false);
+        }
+
+        currentTheme = getItem(position);
+        TextView themeTitle = itemView.findViewById(R.id.themetitle);
+
+        assert currentTheme != null;
+        themeTitle.setText(currentTheme.getTitle());
+
+        ImageView themeImage = itemView.findViewById(R.id.themeimage);
+        themeImage.setImageResource(currentTheme.getImage());
+
+        return itemView;
+
+    }
 }
-public void playFavorite(Themes favTheme){
-    themeview.setText(favTheme.getDescription());
 
-    soundpool.play(favTheme.getMusic(), 1, 1, 1, -1, 1);
 
-}
+
+    @Override
+    public void onClick(View v) {
+
+        switch (v.getId()) {
+            case R.id.seatImageView__MusicScreen_ID:
+                MainActivity.openSeatScreen(mContext);
+                break;
+            case R.id.lightImageView_MusicScreen_ID:
+                MainActivity.openLightScreen(mContext);
+                break;
+            case R.id.musicImageView_MusicScreen_ID:
+                MainActivity.openMusicScreen(mContext);
+                break;
+            case R.id.playbutton:
+                soundpool.autoResume();
+                break;
+            case R.id.pausebutton:
+                soundpool.autoPause();
+                break;
+
+            case R.id.saveFovriteThemeButton_ID:
+                favoriteTheme=currentTheme;
+                break;
+            case R.id.playFavoriteButtonMusic_ID:
+
+                playFavorite();
+
+
+                break;
+
+          /*  case R.id.strand_button:
+                themeview.setText("Beach");
+                soundpool.play(beachsound, 1, 1, 0, -1, 1);
+                break;*/
+          /*  case R.id.wald_button:
+                themeview.setText("Forrest");
+                soundpool.play(forrestsound, 1, 1, 0, -1, 1);
+                break;*/
+           /* case R.id.lagerfeuer_button:
+                themeview.setText("Fireplace");
+                soundpool.play(feuersound, 1, 1, 0, -1, 1);
+                break;
+            case R.id.dschungel_button:
+                themeview.setText("Jungle");
+                soundpool.play(junglesound, 1, 1, 0, -1, 1);
+                break;
+            case R.id.regen_button:
+                themeview.setText("Rain");
+                soundpool.play(rainsound, 1, 1, 0, -1, 1);
+                break;
+            case R.id.berg_button:
+                themeview.setText("Mountain");
+                soundpool.play(mountainsound, 1, 1, 0, -1, 1);
+                break;
 */
+        }
+
+    }
+
+
+
+
+
+public void playFavorite(){
+
+    soundpool.play(favoriteTheme.getMusic(), 1, 1, 1, -1, 1);
+    themeview.setText(favoriteTheme.getDescription());
+
+
+
+}
+
 
 }
