@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -50,6 +51,7 @@ public class MusicScreen<soundpool> extends AppCompatActivity implements  Button
     private Button saveFavoriteThemeButton;
     private ImageButton playButton;
     private ImageButton pauseButton;
+    private ImageButton musicLibraryButton;
 
 
 
@@ -95,19 +97,21 @@ public class MusicScreen<soundpool> extends AppCompatActivity implements  Button
 
         playButton=findViewById(R.id.playbutton);
         pauseButton = findViewById(R.id.pausebutton);
-        seekbar= findViewById(R.id.seekBarMusic);
+        musicLibraryButton=findViewById(R.id.musicLibraryButton);
 
-        saveFavoriteThemeButton = findViewById(R.id.saveFovriteThemeButton_ID);
-        playFavoriteThemeButton = findViewById(R.id.playFavoriteButtonMusic_ID);
+
+        saveFavoriteThemeButton = findViewById(R.id.saveFovriteThemeButton);
+        playFavoriteThemeButton = findViewById(R.id.playFavoriteThemeButton);
 
         playButton.setOnClickListener(this);
         pauseButton.setOnClickListener(this);
+        musicLibraryButton.setOnClickListener(this);
 
         saveFavoriteThemeButton.setOnClickListener(this);
         playFavoriteThemeButton.setOnClickListener(this);
 
 
-       // seekbar.setOnSeekBarChangeListener((SeekBar.OnSeekBarChangeListener) this);
+
 
 
         actualTheme = new Themes(); //create theme for saving
@@ -176,6 +180,7 @@ public class MusicScreen<soundpool> extends AppCompatActivity implements  Button
         public String mDescription;
         public int mImage;
         public int mMusic;
+
 
         public Themes() {
 
@@ -281,15 +286,14 @@ public class ThemesListAdapter extends ArrayAdapter<Themes> {
                 soundpool.autoPause();
                 break;
 
-            case R.id.saveFovriteThemeButton_ID:
+            case R.id.saveFovriteThemeButton:
                 favoriteTheme = actualTheme;
                 break;
-            case R.id.playFavoriteButtonMusic_ID:
-
+            case R.id.playFavoriteThemeButton:
                 playFavorite();
-
-
                 break;
+            case R.id.musicLibraryButton:
+                Toast.makeText(this, "Unplug the AUX cable from the tablet and plug it into your device.", Toast.LENGTH_LONG).show();
 
           /*  case R.id.strand_button:
                 themeview.setText("Beach");

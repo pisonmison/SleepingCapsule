@@ -9,10 +9,11 @@
     tools:context=".MusicScreen">
 
     <LinearLayout
+        android:id="@+id/linearLayout6"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="@color/snoozeBlau"
 
+        android:background="@color/snoozeBlau"
         android:backgroundTint="#000000"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -80,7 +81,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/playFavoriteButtonMusic_ID"
+        android:id="@+id/playFavoriteThemeButton"
         android:layout_width="117dp"
         android:layout_height="50dp"
         android:layout_marginStart="372dp"
@@ -93,7 +94,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/saveFovriteThemeButton_ID"
+        android:id="@+id/saveFovriteThemeButton"
         android:layout_width="117dp"
         android:layout_height="50dp"
         android:layout_marginTop="576dp"
@@ -107,22 +108,13 @@
         android:id="@+id/linearLayout"
         android:layout_width="312dp"
         android:layout_height="119dp"
-        android:layout_marginBottom="200dp"
+        android:layout_marginTop="80dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline9">
+        app:layout_constraintEnd_toStartOf="@+id/guideline9"
+        app:layout_constraintTop_toTopOf="@+id/guideline6">
 
         <ImageButton
-            android:id="@+id/imageButton4"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:backgroundTint="#006e8c"
-            android:contentDescription="@string/bluetooth"
-            android:scaleType="fitCenter"
-            app:srcCompat="@drawable/bluetooth" />
-
-        <ImageButton
-            android:id="@+id/imageButton3"
+            android:id="@+id/musicLibraryButton"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:backgroundTint="#006e8c"
@@ -131,7 +123,7 @@
             app:srcCompat="@drawable/musiclibrary" />
 
         <ImageButton
-            android:id="@+id/imageButton5"
+            android:id="@+id/spotifyButton"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:backgroundTint="#006e8c"
@@ -144,16 +136,16 @@
         android:id="@+id/linearLayout3"
         android:layout_width="287dp"
         android:layout_height="100dp"
+        android:layout_marginTop="500dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toStartOf="@+id/guideline9"
-        app:layout_constraintTop_toBottomOf="@+id/seekBarMusic">
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
             android:id="@+id/playbutton"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:backgroundTint="#006e8c"
+            android:backgroundTint="#00BCD4"
             android:contentDescription="@string/playbutton"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/playsoundbutton" />
@@ -162,7 +154,7 @@
             android:id="@+id/pausebutton"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:backgroundTint="#006e8c"
+            android:backgroundTint="#00BCD4"
             android:contentDescription="@string/pausebutton"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/pausesoundbutton" />
@@ -231,14 +223,6 @@
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="@+id/guideline8"
         app:layout_constraintTop_toTopOf="@+id/guideline6" />
-
-    <SeekBar
-        android:id="@+id/seekBarMusic"
-        android:layout_width="400dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="80dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline9"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
