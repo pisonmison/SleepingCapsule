@@ -11,6 +11,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.text.TextWatcher;
@@ -27,6 +28,7 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
     private EditText editTextG;
     private EditText editTextB;
     private Button showColor;
+    private ImageButton stopButton;
 
     //create two color objects for current color and favorite color for saving
     private RGBColor currentColor;
@@ -118,6 +120,8 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
         editTextG.setOnFocusChangeListener(this);
         editTextB.setOnFocusChangeListener(this);
 
+        stopButton = findViewById(R.id.stopChair_lightScreen_ID2);
+        stopButton.setOnClickListener(this);
 
 
 
@@ -364,6 +368,12 @@ on focus change checks wether an edit text is actually focused or not, therefore
                 currentColor = favoriteColor;
                 apiLightClient.colorGetRequest("setlightseat", currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue());
                 System.out.println("Current Color showing:" + currentColor);
+
+                break;
+            case R.id.stopChair_lightScreen_ID2:
+                apiLightClient.stopChairGetRequest1();
+                apiLightClient.stopChairGetRequest2("setstopseating");
+                apiLightClient.stopChairGetRequest2("setstopfootrest");
 
                 break;
 

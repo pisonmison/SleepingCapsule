@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.media.AudioAttributes;
+import android.media.Image;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -33,6 +34,7 @@ public class MusicScreen<soundpool> extends AppCompatActivity implements  Button
 
     private SeekBar seekbar;
 
+    Client apiMusicClient;
 
     ArrayList<Themes> themelist = new ArrayList<Themes>();
 
@@ -52,8 +54,7 @@ public class MusicScreen<soundpool> extends AppCompatActivity implements  Button
     private ImageButton playButton;
     private ImageButton pauseButton;
     private ImageButton musicLibraryButton;
-
-
+    private ImageButton stopchairButton;
 
     SoundPool soundpool;
     int beachsound, feuersound, rainsound, forrestsound, junglesound, mountainsound;
@@ -92,6 +93,9 @@ public class MusicScreen<soundpool> extends AppCompatActivity implements  Button
         lightIcon.setOnClickListener(this);
         musicIcon.setOnClickListener(this);
 
+        stopchairButton = findViewById(R.id.stopChair_musicScreen_ID);
+        stopchairButton.setOnClickListener(this);
+
         //zuordnung
         themeview =  findViewById(R.id.textViewtheme);
 
@@ -116,6 +120,7 @@ public class MusicScreen<soundpool> extends AppCompatActivity implements  Button
 
         actualTheme = new Themes(); //create theme for saving
         favoriteTheme = new Themes();
+        apiMusicClient = new Client();
        // beachbutton = (ImageButton) findViewById(R.id.strand_button);
        // rainbutton = (ImageButton) findViewById(R.id.regen_button);
        //forrestbutton = (ImageButton) findViewById(R.id.wald_button);
@@ -296,6 +301,11 @@ public class ThemesListAdapter extends ArrayAdapter<Themes> {
                 break;
             case R.id.musicLibraryButton:
                 Toast.makeText(this, "Unplug the AUX cable from the tablet and plug it into your device.", Toast.LENGTH_LONG).show();
+            case R.id.stopChair_musicScreen_ID:
+                apiMusicClient.stopChairGetRequest1();
+                apiMusicClient.stopChairGetRequest2("setstopseating");
+                apiMusicClient.stopChairGetRequest2("setstopfootrest");
+
 
           /*  case R.id.strand_button:
                 themeview.setText("Beach");

@@ -9,7 +9,7 @@
 
 
     <ImageButton
-        android:id="@+id/stopChair_seatScreen_ID2"
+        android:id="@+id/stopChair_lightScreen_ID2"
         android:layout_width="110dp"
         android:layout_height="110dp"
         android:layout_marginTop="536dp"

@@ -32,6 +32,7 @@ public class SeatScreen extends AppCompatActivity implements SeekBar.OnSeekBarCh
 
 
 
+
     private SeekBar seekBarBackrest;
     private SeekBar seekBarSeat;
     private SeekBar seekBarFeetrest;
@@ -418,8 +419,13 @@ public void sendPositionAngles2Server(){
                     System.out.print(actualPosition);
                     break;
                 case R.id.stopChair_seatScreen_ID:
-                    //stopchair();
-                    Toast.makeText(this, "Chair Stopped!", Toast.LENGTH_SHORT).show();
+
+                    apiClient.stopChairGetRequest1();
+                    apiClient.stopChairGetRequest2("setstopseating");
+                    apiClient.stopChairGetRequest2("setstopfootrest");
+
+
+                    Toast.makeText(this, "Chair Stopped! Wait a Bit...", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.seatImageView_ID:
                     MainActivity.openSeatScreen(mContext);
@@ -429,10 +435,7 @@ public void sendPositionAngles2Server(){
                     MainActivity.openLightScreen(mContext);
 
                     break;
-                case R.id.musicImageView_ID:
-                    MainActivity.openMusicScreen(mContext);
 
-                    break;
 
             }
 
