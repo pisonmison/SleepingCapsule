@@ -56,7 +56,7 @@ public class MusicScreen<soundpool> extends AppCompatActivity implements  Button
     SoundPool soundpool;
     int beachsound, feuersound, rainsound, forrestsound, junglesound, mountainsound;
 
-    Themes currentTheme;
+    Themes actualTheme;
     Themes favoriteTheme;
 
     @Override
@@ -110,7 +110,7 @@ public class MusicScreen<soundpool> extends AppCompatActivity implements  Button
        // seekbar.setOnSeekBarChangeListener((SeekBar.OnSeekBarChangeListener) this);
 
 
-        currentTheme = new Themes(); //create theme for saving
+        actualTheme = new Themes(); //create theme for saving
         favoriteTheme = new Themes();
        // beachbutton = (ImageButton) findViewById(R.id.strand_button);
        // rainbutton = (ImageButton) findViewById(R.id.regen_button);
@@ -153,9 +153,13 @@ public class MusicScreen<soundpool> extends AppCompatActivity implements  Button
         musicListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapter , View view, int position, long l) {
-                Themes theme = themelist.get(position);
-                themeview.setText(theme.getDescription());
-                soundpool.play(theme.getMusic(), 1, 1, 1, -1, 1);
+                actualTheme = themelist.get(position);
+
+                themeview.setText(actualTheme.getDescription());
+                soundpool.play(actualTheme.getMusic(), 1, 1, 1, -1, 1);
+
+
+
             }
 
         });
@@ -240,7 +244,8 @@ public class ThemesListAdapter extends ArrayAdapter<Themes> {
             itemView = LayoutInflater.from(getContext()).inflate(R.layout.adapter_view_layout,parent,false);
         }
 
-        currentTheme = getItem(position);
+
+        Themes currentTheme = getItem(position);
         TextView themeTitle = itemView.findViewById(R.id.themetitle);
 
         assert currentTheme != null;
@@ -277,7 +282,7 @@ public class ThemesListAdapter extends ArrayAdapter<Themes> {
                 break;
 
             case R.id.saveFovriteThemeButton_ID:
-                favoriteTheme=currentTheme;
+                favoriteTheme = actualTheme;
                 break;
             case R.id.playFavoriteButtonMusic_ID:
 

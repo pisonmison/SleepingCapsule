@@ -197,9 +197,13 @@ public class SeatScreen extends AppCompatActivity implements SeekBar.OnSeekBarCh
 
     //sends 3 requests with corresponding endpoint to the server, adjust 3 values at the same time of the chair
 public void sendPositionAngles2Server(){
-    apiClient.simpleGetRequest("setanglebackrest",actualPosition.backAngle);
-    apiClient.simpleGetRequest("setangleseating",actualPosition.seatAngle);
-    apiClient.simpleGetRequest("setanglefootrest",actualPosition.feetAngle);
+        for(int i = 0; i < 3; i++){
+
+        }
+    apiClient.seatGetRequest("setanglebackrest",actualPosition.backAngle);
+    apiClient.seatGetRequest("setangleseating",actualPosition.seatAngle);
+    apiClient.seatGetRequest("setanglefootrest",actualPosition.feetAngle);
+
 }
 
 
@@ -333,17 +337,17 @@ public void sendPositionAngles2Server(){
         switch (v.getId()) {
             case R.id.editTextBackrest_ID:
                 if(!hasFocus){
-                    apiClient.simpleGetRequest("setanglebackrest", actualPosition.getBackAngle());
+                    apiClient.seatGetRequest("setanglebackrest", actualPosition.getBackAngle());
                 }
                 break;
             case R.id.editTextSeat_ID:
                 if(!hasFocus){
-                    apiClient.simpleGetRequest("setangleseating", actualPosition.getSeatAngle());
+                    apiClient.seatGetRequest("setangleseating", actualPosition.getSeatAngle());
                 }
                 break;
             case R.id.editTextFeetrest_ID:
                 if(!hasFocus){
-                    apiClient.simpleGetRequest("setanglefootrest", actualPosition.getFeetAngle());
+                    apiClient.seatGetRequest("setanglefootrest", actualPosition.getFeetAngle());
                 }
             break;
 
@@ -355,16 +359,16 @@ public void sendPositionAngles2Server(){
         public void onStopTrackingTouch(SeekBar seekBar) {
             switch (seekBar.getId()) {
                 case R.id.seekBarTop_ID:
-                    apiClient.simpleGetRequest("setanglebackrest", actualPosition.getBackAngle());
+                    apiClient.seatGetRequest("setanglebackrest", actualPosition.getBackAngle());
 
                     break;
                 case R.id.seekBarMiddle_ID:
 
-                    apiClient.simpleGetRequest("setangleseating", actualPosition.getSeatAngle());
+                    apiClient.seatGetRequest("setangleseating", actualPosition.getSeatAngle());
                     break;
                 case R.id.seekBarDown_ID:
 
-                    apiClient.simpleGetRequest("setanglefootrest", actualPosition.getFeetAngle());
+                    apiClient.seatGetRequest("setanglefootrest", actualPosition.getFeetAngle());
                     break;
             }
 

@@ -171,6 +171,7 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
                 int g = Color.green(pixel);
                 int b = Color.blue(pixel);
 
+                //ignores black when touching outside the colorwheel
                 if(r!=0 && g!=0 && b!=0){
                     currentColor.setrValue(r);
                     editTextR.setText(String.valueOf(r));
@@ -195,6 +196,10 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
 
 
 
+
+            }
+            else if(event.getAction() == MotionEvent.ACTION_UP){
+                //send light http request here
 
             }
         }
