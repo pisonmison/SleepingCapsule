@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.media.AudioAttributes;
-import android.media.Image;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,7 +17,6 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,7 +30,6 @@ public class MusicScreen<soundpool> extends AppCompatActivity implements  Button
     private Context mContext;
     private String currentScreen = "music";
 
-    private SeekBar seekbar;
 
     Client apiMusicClient;
 
@@ -40,14 +37,16 @@ public class MusicScreen<soundpool> extends AppCompatActivity implements  Button
 
 
 
-    //textview theme
+    /*
     ImageButton beachbutton;
     ImageButton rainbutton;
     ImageButton forrestbutton;
     ImageButton junglebutton;
     ImageButton fireplacebutton;
     ImageButton mountainbutton;
-    TextView themeview;
+     */
+    private TextView themeDescriptionView;
+
 
     private Button playFavoriteThemeButton;
     private Button saveFavoriteThemeButton;
@@ -97,7 +96,8 @@ public class MusicScreen<soundpool> extends AppCompatActivity implements  Button
         stopchairButton.setOnClickListener(this);
 
         //zuordnung
-        themeview =  findViewById(R.id.textViewtheme);
+        themeDescriptionView =  findViewById(R.id.textDescriptionView);
+
 
         playButton=findViewById(R.id.playbutton);
         pauseButton = findViewById(R.id.pausebutton);
@@ -164,20 +164,15 @@ public class MusicScreen<soundpool> extends AppCompatActivity implements  Button
             public void onItemClick(AdapterView<?> adapter , View view, int position, long l) {
                 actualTheme = themelist.get(position);
 
-                themeview.setText(actualTheme.getDescription());
+                themeDescriptionView.setText(actualTheme.getDescription());
                 soundpool.play(actualTheme.getMusic(), 1, 1, 1, -1, 1);
-
-
 
             }
 
         });
-/*
-        public void onProgressChanged(SeekBar seekbar; int progress; boolean arg2) {
-            seekbar.setMax(soundpool.getDuration());
-        }
 
-*/
+
+
     }
 
     public class Themes {
@@ -241,33 +236,25 @@ public class MusicScreen<soundpool> extends AppCompatActivity implements  Button
     //transfers data into our listview
 public class ThemesListAdapter extends ArrayAdapter<Themes> {
 
-
     public ThemesListAdapter(@NonNull Context context,  @NonNull ArrayList<Themes> objects) {
         super(context, 0, objects);
-
-
     }
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        View itemView = convertView;
-        if (itemView == null){
-            itemView = LayoutInflater.from(getContext()).inflate(R.layout.adapter_view_layout,parent,false);
-        }
-
-
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        convertView= inflater.inflate(R.layout.adapter_view_layout,parent,false);
         Themes currentTheme = getItem(position);
-        TextView themeTitle = itemView.findViewById(R.id.themetitle);
+        TextView themeTitle = convertView.findViewById(R.id.themetitle);
 
         assert currentTheme != null;
         themeTitle.setText(currentTheme.getTitle());
 
-        ImageView themeImage = itemView.findViewById(R.id.themeimage);
+        ImageView themeImage = convertView.findViewById(R.id.themeimage);
         themeImage.setImageResource(currentTheme.getImage());
 
-        return itemView;
-
+        return convertView;
     }
 }
 
@@ -295,6 +282,7 @@ public class ThemesListAdapter extends ArrayAdapter<Themes> {
 
             case R.id.saveFovriteThemeButton:
                 favoriteTheme = actualTheme;
+                playFavoriteThemeButton.setText("Play "+favoriteTheme.getTitle());
                 break;
             case R.id.playFavoriteThemeButton:
                 playFavorite();
@@ -337,17 +325,9 @@ public class ThemesListAdapter extends ArrayAdapter<Themes> {
     }
 
 
-
-
-
 public void playFavorite(){
-
     soundpool.play(favoriteTheme.getMusic(), 1, 1, 1, -1, 1);
-    themeview.setText(favoriteTheme.getDescription());
-
-
-
+    themeDescriptionView.setText(favoriteTheme.getDescription());
 }
-
 
 }
