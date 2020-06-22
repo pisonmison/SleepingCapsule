@@ -38,14 +38,6 @@ public class MusicScreen<soundpool> extends AppCompatActivity implements  Button
 
 
 
-    /*
-    ImageButton beachbutton;
-    ImageButton rainbutton;
-    ImageButton forrestbutton;
-    ImageButton junglebutton;
-    ImageButton fireplacebutton;
-    ImageButton mountainbutton;
-     */
     private TextView themeDescriptionView;
 
     private ImageButton spotifyButton;
@@ -124,38 +116,28 @@ public class MusicScreen<soundpool> extends AppCompatActivity implements  Button
         actualTheme = new Themes(); //create theme for saving
         favoriteTheme = new Themes();
         apiMusicClient = new Client();
-       // beachbutton = (ImageButton) findViewById(R.id.strand_button);
-       // rainbutton = (ImageButton) findViewById(R.id.regen_button);
-       //forrestbutton = (ImageButton) findViewById(R.id.wald_button);
-       // mountainbutton = (ImageButton) findViewById(R.id.berg_button);
-       // junglebutton = (ImageButton) findViewById(R.id.dschungel_button);
-        //fireplacebutton = (ImageButton) findViewById(R.id.lagerfeuer_button);
-
-        //onclicklistener
-       /* beachbutton.setOnClickListener(this);
-        rainbutton.setOnClickListener(this);
-        forrestbutton.setOnClickListener(this);
-        mountainbutton.setOnClickListener(this);
-        junglebutton.setOnClickListener(this);
-        fireplacebutton.setOnClickListener(this);
-*/
-
 
 
         MainActivity.setTaskBarIcon(musicIcon, currentScreen);
-        //
+
 
         final ListView musicListView= findViewById(R.id.listview);
         ThemesListAdapter adapter = new ThemesListAdapter(this,themelist);
         musicListView.setAdapter(adapter);
 
+        Themes beach = new Themes("Beach","The sounds of waves",R.drawable.strand,beachsound);
+        Themes forrest = new Themes("Forrest", "Forrest sounds", R.drawable.wald, forrestsound);
+        Themes fireplace = new Themes("Fireplace", "The sound of a fire", R.drawable.lagerfeuer,feuersound);
+        Themes jungle = new Themes("Jungle", "The sounds of animals in a jungle", R.drawable.dschungel, junglesound);
+        Themes rain = new Themes("Rain", "The sound of heavy rain", R.drawable.regen, rainsound);
+        Themes mountain = new Themes("Mountain", "The sound of the nature", R.drawable.berg, mountainsound);
 
-        themelist.add( new Themes("Beach", "The sounds of waves", R.drawable.strand,beachsound));
-        themelist.add( new Themes("Forrest", "Forrest sounds", R.drawable.wald, forrestsound));
-        themelist.add( new Themes("Fireplace", "The sound of a fire", R.drawable.lagerfeuer,feuersound));
-        themelist.add( new Themes("Jungle", "The sounds of animals in a jungle", R.drawable.dschungel, junglesound));
-        themelist.add( new Themes("Rain", "The sound of heavy rain", R.drawable.regen, rainsound));
-        themelist.add( new Themes("Mountain", "The sound of the nature", R.drawable.berg, mountainsound));
+        themelist.add(beach);
+        themelist.add(forrest);
+        themelist.add(fireplace);
+        themelist.add(jungle);
+        themelist.add(rain);
+        themelist.add(mountain);
 
 
         //load extra themes from server if needed.
@@ -198,12 +180,9 @@ public class MusicScreen<soundpool> extends AppCompatActivity implements  Button
 
         }
 
-
         public String getTitle() {
             return mTitle;
         }
-
-
 
         public String getDescription() {
             return mDescription;
@@ -217,21 +196,6 @@ public class MusicScreen<soundpool> extends AppCompatActivity implements  Button
             return mMusic;
         }
 
-        public void setmTitle(String mTitle) {
-            this.mTitle = mTitle;
-        }
-
-        public void setmDescription(String mDescription) {
-            this.mDescription = mDescription;
-        }
-
-        public void setmImage(int mImage) {
-            this.mImage = mImage;
-        }
-
-        public void setmMusic(int mMusic) {
-            this.mMusic = mMusic;
-        }
 
     }
 
@@ -282,7 +246,6 @@ public class ThemesListAdapter extends ArrayAdapter<Themes> {
             case R.id.pausebutton:
                 soundpool.autoPause();
                 break;
-
             case R.id.saveFovriteThemeButton:
                 favoriteTheme = actualTheme;
                 playFavoriteThemeButton.setText("Play "+favoriteTheme.getTitle());
@@ -299,32 +262,9 @@ public class ThemesListAdapter extends ArrayAdapter<Themes> {
 
 
              case R.id.spotifyButton:
-
                 openSpotify();
+                break;
 
-               break;
-
-          /*  case R.id.wald_button:
-                themeview.setText("Forrest");
-                soundpool.play(forrestsound, 1, 1, 0, -1, 1);
-                break;*/
-           /* case R.id.lagerfeuer_button:
-                themeview.setText("Fireplace");
-                soundpool.play(feuersound, 1, 1, 0, -1, 1);
-                break;
-            case R.id.dschungel_button:
-                themeview.setText("Jungle");
-                soundpool.play(junglesound, 1, 1, 0, -1, 1);
-                break;
-            case R.id.regen_button:
-                themeview.setText("Rain");
-                soundpool.play(rainsound, 1, 1, 0, -1, 1);
-                break;
-            case R.id.berg_button:
-                themeview.setText("Mountain");
-                soundpool.play(mountainsound, 1, 1, 0, -1, 1);
-                break;
-*/
         }
 
     }
