@@ -11,11 +11,11 @@
 
 
     <ImageButton
-        android:id="@+id/chaircolor"
+        android:id="@+id/button_chaircolor_ID"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginTop="567dp"
-        android:layout_marginEnd="464dp"
+        android:layout_marginTop="568dp"
+        android:layout_marginEnd="428dp"
         android:layout_weight="1"
         android:adjustViewBounds="true"
         android:background="@drawable/statelist"
@@ -27,27 +27,28 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/roomcolor"
+        android:id="@+id/button_roomcolor_ID"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginTop="567dp"
-        android:layout_marginEnd="316dp"
+        android:layout_marginTop="568dp"
+        android:layout_marginEnd="336dp"
         android:layout_weight="1"
         android:adjustViewBounds="true"
         android:background="@drawable/statelist"
         android:contentDescription="@string/room_color"
         android:padding="10dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/room"
+        android:scaleY="1"
+        android:src="@drawable/interior_light_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/light_for "
-        android:layout_width="295dp"
-        android:layout_height="32dp"
-        android:layout_marginTop="504dp"
-        android:layout_marginEnd="272dp"
+        android:id="@+id/light_for_ID"
+        android:layout_width="217dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="512dp"
+        android:layout_marginEnd="304dp"
         android:fontFamily="@font/bungee2"
         android:text="@string/light_for"
         android:textAlignment="center"
@@ -108,10 +109,10 @@
         android:id="@+id/saveAsFavoriteColor_ID"
         android:layout_width="117dp"
         android:layout_height="50dp"
-        android:layout_marginStart="270dp"
+        android:layout_marginStart="272dp"
         android:layout_marginTop="580dp"
         android:background="@drawable/rounded_corners"
-        android:backgroundTint="#03DAC5"
+
         android:text="@string/save_as_favorite"
         android:textColor="#000000"
         android:textSize="14sp"
@@ -122,7 +123,7 @@
         android:id="@+id/showFavoriteButton_ID"
         android:layout_width="117dp"
         android:layout_height="50dp"
-        android:layout_marginStart="440dp"
+        android:layout_marginStart="428dp"
         android:layout_marginTop="580dp"
         android:background="@drawable/rounded_corners"
         android:backgroundTint="@color/orangeRed"
@@ -187,8 +188,8 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="83dp"
-        android:layout_height="343dp"
+        android:layout_width="78dp"
+        android:layout_height="314dp"
         android:layout_marginTop="184dp"
         android:layout_marginEnd="452dp"
         android:orientation="vertical"
@@ -199,9 +200,13 @@
             android:id="@+id/red"
             android:layout_width="75dp"
             android:layout_height="75dp"
+            android:layout_gravity="center"
+            android:autoText="false"
             android:background="@drawable/radiusred"
+            android:foregroundGravity="center"
             android:text="@string/R"
             android:textAlignment="center"
+            android:textAllCaps="false"
             android:textColor="#000000"
             android:textSize="50sp"
             android:textStyle="bold"
@@ -211,8 +216,11 @@
             android:id="@+id/yellow"
             android:layout_width="75dp"
             android:layout_height="75dp"
+            android:layout_gravity="center"
             android:layout_marginTop="35dp"
             android:background="@drawable/radiusgreen"
+            android:foregroundGravity="center"
+            android:gravity="center_horizontal"
             android:text="@string/G"
             android:textAlignment="center"
             android:textColor="#000000"
@@ -224,8 +232,10 @@
             android:id="@+id/blue"
             android:layout_width="75dp"
             android:layout_height="75dp"
+            android:layout_gravity="center"
             android:layout_marginTop="35dp"
             android:background="@drawable/radiusblue"
+            android:gravity="center"
             android:isScrollContainer="false"
             android:text="@string/B"
             android:textAlignment="center"
@@ -300,6 +310,7 @@
             android:id="@+id/ausgabe"
             android:layout_width="match_parent"
             android:layout_marginTop="20dp"
+            android:background="@color/snoozeBlau"
             android:layout_height="60dp" />
 
         <TextView
@@ -312,10 +323,10 @@
 
     <TextView
         android:id="@+id/colorShowView_ID"
-        android:layout_width="180dp"
-        android:layout_height="51dp"
+        android:layout_width="181dp"
+        android:layout_height="47dp"
         android:layout_marginTop="76dp"
-        android:layout_marginEnd="344dp"
+        android:layout_marginEnd="328dp"
         android:fontFamily="@font/bungee2"
         android:text="@string/color_code"
         android:textAlignment="center"
@@ -326,10 +337,10 @@
 
     <TextView
         android:id="@+id/pickfromcolorwheel"
-        android:layout_width="295dp"
-        android:layout_height="32dp"
+        android:layout_width="301dp"
+        android:layout_height="46dp"
         android:layout_marginStart="260dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="72dp"
         android:fontFamily="@font/bungee2"
         android:text="@string/pick_from_colorwheel"
         android:textAlignment="center"

@@ -87,7 +87,7 @@ public class MusicScreen<soundpool> extends AppCompatActivity implements  Button
 
         stopchairButton = findViewById(R.id.stopChair_musicScreen_ID);
         stopchairButton.setOnClickListener(this);
-        spotifyButton = findViewById(R.id.spotifyButton);
+        spotifyButton = findViewById(R.id.spotifyButton_ID);
         spotifyButton.setOnClickListener(this);
 
         //zuordnung
@@ -254,14 +254,15 @@ public class ThemesListAdapter extends ArrayAdapter<Themes> {
                 playFavorite();
                 break;
             case R.id.musicLibraryButton:
-                Toast.makeText(this, "Unplug the AUX cable from the tablet and plug it into your device.", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Unplug the AUX cable from the tablet and plug it into your device.", Toast.LENGTH_SHORT).show();
+                break;
             case R.id.stopChair_musicScreen_ID:
                 apiMusicClient.stopChairGetRequest1();
                 apiMusicClient.stopChairGetRequest2("setstopseating");
                 apiMusicClient.stopChairGetRequest2("setstopfootrest");
+                break;
 
-
-             case R.id.spotifyButton:
+             case R.id.spotifyButton_ID:
                 openSpotify();
                 break;
 

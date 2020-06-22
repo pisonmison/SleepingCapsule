@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.text.TextWatcher;
+import android.widget.Toast;
 
 public class LightScreen extends AppCompatActivity implements Button.OnClickListener, ImageView.OnTouchListener, EditText.OnFocusChangeListener {
 
@@ -42,6 +43,11 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
     private Bitmap bitmap;
 
     Client apiLightClient;
+
+    private ImageButton chairLightSettings;
+    private ImageButton roomLightSettings;
+
+    private String currentColorSettings = "No settings chosen";
 
 
 
@@ -126,7 +132,11 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
         stopButton.setOnClickListener(this);
 
 
+        chairLightSettings = findViewById(R.id.button_chaircolor_ID);
+        roomLightSettings = findViewById(R.id.button_roomcolor_ID);
 
+        chairLightSettings.setOnClickListener(this);
+        roomLightSettings.setOnClickListener(this);
 
         //creating 2 instances of color class for saving
         currentColor = new RGBColor();
@@ -151,6 +161,8 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
 
 
     }
+
+
 
     /*same funtionality as in seat screen. just with color values.
     * checks wether input is empty and in [0:255]
@@ -216,7 +228,16 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
 
             else if(event.getAction() == MotionEvent.ACTION_UP){
 
-                apiLightClient.colorGetRequest("setlightseat", currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue());
+                if(currentColorSettings.equals("seat")){
+                    apiLightClient.colorGetRequest("setlightseat", currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue());
+                }else if(currentColorSettings.equals("room")){
+                    apiLightClient.colorGetRequest("setlightinterior", currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue());
+                }
+                else{
+                    System.out.println("NO COLOR SETTINGS CHOSEN");
+                    //a new user probably would think to change room color first, so we just send on undefined settings colordata to room.
+                    apiLightClient.colorGetRequest("setlightinterior", currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue());
+                }
 
             }
         }
@@ -241,8 +262,25 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
 */
 
 
+public void setChairSettings(){
+    Toast.makeText(this, "Now choose your seat color!", Toast.LENGTH_SHORT).show();
+    currentColorSettings = "seat";
+    chairLightSettings.setBackgroundResource(R.drawable.roundbutton_when_clicked);
+    roomLightSettings.setBackgroundResource(R.drawable.roundbutton);
+    apiLightClient.colorGetRequest("setlightseat", currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue());
+
+}
 
 
+public void setRoomSettings(){
+    Toast.makeText(this, "Now choose your room color!", Toast.LENGTH_SHORT).show();
+    roomLightSettings.setBackgroundResource(R.drawable.roundbutton_when_clicked);
+    chairLightSettings.setBackgroundResource(R.drawable.roundbutton);
+    currentColorSettings = "room";
+    apiLightClient.colorGetRequest("setlightinterior", currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue());
+
+
+}
 /*
 on focus change checks wether an edit text is actually focused or not, therefore
  executing methods after focus change when user finally decided his input
@@ -371,7 +409,16 @@ on focus change checks wether an edit text is actually focused or not, therefore
 
 
                 currentColor = favoriteColor;
-                apiLightClient.colorGetRequest("setlightseat", currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue());
+                if(currentColorSettings.equals("seat")){
+                    apiLightClient.colorGetRequest("setlightseat", currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue());
+                }else if(currentColorSettings.equals("room")){
+                    apiLightClient.colorGetRequest("setlightinterior", currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue());
+                }
+                else{
+                    System.out.println("NO COLOR SETTINGS CHOSEN");
+                    apiLightClient.colorGetRequest("setlightinterior", currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue());
+                }
+
                 System.out.println("Current Color showing:" + currentColor);
 
                 break;
@@ -381,6 +428,20 @@ on focus change checks wether an edit text is actually focused or not, therefore
                 apiLightClient.stopChairGetRequest2("setstopfootrest");
 
                 break;
+
+            case R.id.button_chaircolor_ID:
+
+                setChairSettings();
+
+                break;
+
+            case R.id.button_roomcolor_ID:
+
+                setRoomSettings();
+
+                break;
+
+
 
         }
     }
