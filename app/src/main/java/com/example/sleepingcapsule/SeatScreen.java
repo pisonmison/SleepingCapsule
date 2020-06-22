@@ -435,6 +435,10 @@ public void sendPositionAngles2Server(){
                     MainActivity.openLightScreen(mContext);
 
                     break;
+                case R.id.musicImageView_ID:
+                    MainActivity.openMusicScreen(mContext);
+
+                    break;
 
 
             }

@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.AudioAttributes;
 import android.media.SoundPool;
 import android.os.Bundle;
@@ -47,7 +48,7 @@ public class MusicScreen<soundpool> extends AppCompatActivity implements  Button
      */
     private TextView themeDescriptionView;
 
-
+    private ImageButton spotifyButton;
     private Button playFavoriteThemeButton;
     private Button saveFavoriteThemeButton;
     private ImageButton playButton;
@@ -94,6 +95,8 @@ public class MusicScreen<soundpool> extends AppCompatActivity implements  Button
 
         stopchairButton = findViewById(R.id.stopChair_musicScreen_ID);
         stopchairButton.setOnClickListener(this);
+        spotifyButton = findViewById(R.id.spotifyButton);
+        spotifyButton.setOnClickListener(this);
 
         //zuordnung
         themeDescriptionView =  findViewById(R.id.textDescriptionView);
@@ -295,10 +298,12 @@ public class ThemesListAdapter extends ArrayAdapter<Themes> {
                 apiMusicClient.stopChairGetRequest2("setstopfootrest");
 
 
-          /*  case R.id.strand_button:
-                themeview.setText("Beach");
-                soundpool.play(beachsound, 1, 1, 0, -1, 1);
-                break;*/
+             case R.id.spotifyButton:
+
+                openSpotify();
+
+               break;
+
           /*  case R.id.wald_button:
                 themeview.setText("Forrest");
                 soundpool.play(forrestsound, 1, 1, 0, -1, 1);
@@ -324,6 +329,20 @@ public class ThemesListAdapter extends ArrayAdapter<Themes> {
 
     }
 
+    /*
+    checks if package is installed,
+    if true, open spotify app
+    if false, notify user that app is not installed
+     */
+public void openSpotify(){
+        Intent openSpotify = getPackageManager().getLaunchIntentForPackage("com.spotify.music");
+        if(openSpotify == null){
+            Toast.makeText(this, "Spotify is not installed", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            startActivity(openSpotify);
+        }
+    }
 
 public void playFavorite(){
     soundpool.play(favoriteTheme.getMusic(), 1, 1, 1, -1, 1);

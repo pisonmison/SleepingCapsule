@@ -3,7 +3,7 @@ package com.example.sleepingcapsule;
 import android.os.Handler;
 
 import java.io.IOException;
-import java.util.TimerTask;
+
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -12,18 +12,21 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 
+//implement json lib, okhttp, retrofit
+//provide post request for different screens.
+//get for:
+//          seat , back, feet, and position -- DONE
+//          stop chair,  -- DONE
+//          color settings -- DONE
+//          fav color pick -- DONE
+//          color data from theme, when theme is picked -- MISSING
+//          get themes with json -> use retrofit.
+
 public class Client {
 
 
     OkHttpClient client;
-    //implement json lib
-    //provide post request for different screens.
-    //post for:
-    //          seat , back, feet, and position -- DONE
-    //          stop chair,
-    //          color settings + brighhtness
-    //          fav color pick
-    //          color data from theme, when theme is picked
+
 
 public Client()
     {
