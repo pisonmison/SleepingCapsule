@@ -198,7 +198,7 @@
         android:layout_width="110dp"
         android:layout_height="110dp"
         android:layout_marginTop="536dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="40dp"
         android:background="@drawable/stop_button"
         android:contentDescription="@string/stopchair"
         app:layout_constraintEnd_toEndOf="parent"
@@ -212,7 +212,7 @@
         app:layout_constraintGuide_begin="57dp" />
 
     <TextView
-        android:id="@+id/textViewtheme"
+        android:id="@+id/textDescriptionView"
         android:layout_width="250dp"
         android:layout_height="30dp"
         android:layout_marginTop="500dp"
