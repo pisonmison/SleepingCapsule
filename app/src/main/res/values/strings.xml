@@ -66,6 +66,11 @@
     <string name="music">TODO</string>
     <string name="angle" >angle</string>
     <string name="soundcontrol" >Themes SoundControl</string>
+    <string name="chair_color">Chair Color</string>
+    <string name="room_color">Room Color</string>
+    <string name="light_for">Light for:</string>
+    <string name="Chair">chair</string>
+    <string name="room">room</string>
 
     />
 

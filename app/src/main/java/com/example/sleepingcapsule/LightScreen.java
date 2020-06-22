@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -104,6 +105,7 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
         mColorwheel.setDrawingCacheEnabled(true);
         mColorwheel.buildDrawingCache(true);
 
+        // colorwheel on touch listener
         mColorwheel.setOnTouchListener(this);
 
         saveAsFavoriteColor = findViewById(R.id.saveAsFavoriteColor_ID);
@@ -173,7 +175,7 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
 
                 int pixel = bitmap.getPixel((int)event.getX(), (int)event.getY());
 
-
+                //getting RGB values
                 int r = Color.red(pixel);
                 int g = Color.green(pixel);
                 int b = Color.blue(pixel);
@@ -189,11 +191,12 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
                     currentColor.setbValue(b);
                     editTextB.setText(String.valueOf(b));
 
-
+                    //getting Hex value
                     String hex ="#"+ Integer.toHexString(pixel);
+                    //set background color of Ausgabe according to the picked color
                     mAusgabe.setBackgroundColor(Color.rgb(r,g,b));
-
-                    mHex.setText("RGB: "+ r +", "+  g +", "+ b ); //\nHEX:wert
+                    //set Hex value to textview
+                    mHex.setText("Hex: "+ hex); //\nHEX:wert "RGB: "+ r +", "+  g +", "+ b
 
                     System.out.println("CURRENT COLOR:" + currentColor);
                 }
@@ -252,6 +255,8 @@ on focus change checks wether an edit text is actually focused or not, therefore
             case R.id.editText_R_ID:
 
                 if(!hasFocus){
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(),0);
 
                     String temp = editTextR.getText().toString();
 

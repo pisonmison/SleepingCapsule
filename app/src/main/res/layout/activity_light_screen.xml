@@ -4,9 +4,57 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clickable="true"
+    android:focusableInTouchMode="true"
     android:background="@color/darkblue"
     tools:context=".LightScreen">
 
+
+    <ImageButton
+        android:id="@+id/chaircolor"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="567dp"
+        android:layout_marginEnd="464dp"
+        android:layout_weight="1"
+        android:adjustViewBounds="true"
+        android:background="@drawable/statelist"
+        android:contentDescription="@string/chair_color"
+        android:padding="10dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_action_seat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/roomcolor"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="567dp"
+        android:layout_marginEnd="316dp"
+        android:layout_weight="1"
+        android:adjustViewBounds="true"
+        android:background="@drawable/statelist"
+        android:contentDescription="@string/room_color"
+        android:padding="10dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/room"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/light_for "
+        android:layout_width="295dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="504dp"
+        android:layout_marginEnd="272dp"
+        android:fontFamily="@font/bungee2"
+        android:text="@string/light_for"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/stopChair_lightScreen_ID2"
@@ -60,8 +108,8 @@
         android:id="@+id/saveAsFavoriteColor_ID"
         android:layout_width="117dp"
         android:layout_height="50dp"
-        android:layout_marginStart="336dp"
-        android:layout_marginTop="576dp"
+        android:layout_marginStart="270dp"
+        android:layout_marginTop="580dp"
         android:background="@drawable/rounded_corners"
         android:backgroundTint="#03DAC5"
         android:text="@string/save_as_favorite"
@@ -74,14 +122,14 @@
         android:id="@+id/showFavoriteButton_ID"
         android:layout_width="117dp"
         android:layout_height="50dp"
-        android:layout_marginTop="576dp"
-        android:layout_marginEnd="336dp"
+        android:layout_marginStart="440dp"
+        android:layout_marginTop="580dp"
         android:background="@drawable/rounded_corners"
         android:backgroundTint="@color/orangeRed"
         android:text="@string/show_favorite"
         android:textColor="#000000"
         android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
@@ -100,36 +148,42 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="55dp"
-            android:autofillHints=""
+            android:singleLine="true"
+            android:imeOptions="actionDone"
             android:ems="10"
             android:gravity="center"
             android:hint="@string/nr1"
             android:inputType="number"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFFFFF"
+            android:importantForAutofill="no" />
 
         <EditText
             android:id="@+id/editText_G_ID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="60dp"
-            android:autofillHints=""
+            android:singleLine="true"
+            android:imeOptions="actionDone"
             android:ems="10"
             android:gravity="center"
             android:hint="@string/nr2"
             android:inputType="number"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFFFFF"
+            android:importantForAutofill="no" />
 
         <EditText
             android:id="@+id/editText_B_ID"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_marginBottom="20dp"
-            android:autofillHints=""
+            android:singleLine="true"
+            android:imeOptions="actionDone"
             android:ems="10"
             android:gravity="center"
             android:hint="@string/nr2"
             android:inputType="number"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFFFFF"
+            android:importantForAutofill="no" />
     </LinearLayout>
 
     <LinearLayout
@@ -227,10 +281,10 @@
         app:layout_constraintGuide_begin="1064dp" />
 
     <LinearLayout
-        android:layout_width="299dp"
-        android:layout_height="426dp"
+        android:layout_width="305dp"
+        android:layout_height="452dp"
         android:layout_marginStart="256dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="124dp"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -239,18 +293,19 @@
             android:id="@+id/colorwheel"
             android:layout_width="300dp"
             android:layout_height="300dp"
-            app:srcCompat="@drawable/colorwheel1"
-            android:contentDescription="@string/colorwheel" />
+            android:contentDescription="@string/colorwheel"
+            android:src="@drawable/colorwheel2" />
 
         <View
             android:id="@+id/ausgabe"
             android:layout_width="match_parent"
-            android:layout_height="59dp" />
+            android:layout_marginTop="20dp"
+            android:layout_height="60dp" />
 
         <TextView
             android:id="@+id/hex"
             android:layout_width="match_parent"
-            android:layout_height="66dp"
+            android:layout_height="54dp"
             android:text="@string/hex"
             android:textSize="24sp" />
     </LinearLayout>
