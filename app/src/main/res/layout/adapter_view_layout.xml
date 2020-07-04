@@ -7,12 +7,12 @@
 
     <ImageView
         android:id="@+id/themeimage"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
         android:background="#2196F3"
+        android:contentDescription="TODO"
         android:scaleType="centerCrop"
-        android:src="@drawable/strand"
-        android:contentDescription="TODO" />
+        android:src="@drawable/strand" />
 
     <TextView
         android:id="@+id/themetitle"
