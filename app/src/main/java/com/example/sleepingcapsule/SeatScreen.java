@@ -17,7 +17,24 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
 public class SeatScreen extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener, Button.OnClickListener, EditText.OnFocusChangeListener {
+
+    ArrayList<Themes> parsedJsonList = new ArrayList<Themes>();
+
+
 
     private ImageButton favPosButton;
     private ImageButton lyingPosButton;
@@ -101,10 +118,13 @@ public class SeatScreen extends AppCompatActivity implements SeekBar.OnSeekBarCh
             return getClass().getSimpleName() + "[Angles:" + backAngle + "/" + seatAngle + "/" + feetAngle + "]";
         }
     }
-
+    public static RequestQueue mQueue;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
+        mQueue = Volley.newRequestQueue(this);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seat_screen);
         //configure starting position
@@ -167,15 +187,20 @@ public class SeatScreen extends AppCompatActivity implements SeekBar.OnSeekBarCh
     /**
      * timer method which handles executing http requests slighty delayed for callback failure evasion
      */
+        public void JsonParse(){
 
+
+
+
+        }
 
 
     //pre configure settings for different positions
     public void setPositionsOnStart(){
         configurePosition(actualPosition, 0,0,0);
-        configurePosition(lyingPosition, 0, 0, 90);
-        configurePosition(zeroGPosition, 70, 15, 60);
-        configurePosition(sittingPosition, 85,0,5);
+        configurePosition(lyingPosition, 0, 0, 89);
+        configurePosition(zeroGPosition, 45, 15, 45);
+        configurePosition(sittingPosition, 75,0,5);
     }
 
     //method which sets parameters in the position object
@@ -204,13 +229,18 @@ public void sendPositionAngles2Server(){
         for(int i = 0; i < 3; i++){
 
         }
-    apiClient.seatGetRequest("setanglebackrest",actualPosition.backAngle);
-    apiClient.seatGetRequest("setangleseating",actualPosition.seatAngle);
-    apiClient.seatGetRequest("setanglefootrest",actualPosition.feetAngle);
+    apiClient.seatGetRequest("setanglebackrest","91",actualPosition.backAngle);
+    apiClient.seatGetRequest("setangleseating","92",actualPosition.seatAngle);
+    apiClient.seatGetRequest("setanglefootrest","92",actualPosition.feetAngle);
 
 }
+/*
+Rückenlehne: 0° - 80° (werden noch ermittelt)
 
+Sitzfläche: 0° - 33° (werden noch ermittelt)
 
+Fußlehne: 0° - 89° (Verstellzeit zwischen Extremalwinkel: 15 Sek)
+ */
 //textwatcher provides three different edit text input stages to call methods in.
 
     TextWatcher watcher = new TextWatcher() {
@@ -229,7 +259,7 @@ public void sendPositionAngles2Server(){
                     System.out.println("Empty Input");
                 }
                 else{
-                    if(Integer.valueOf(temp) < 88){
+                    if(Integer.valueOf(temp) < 81){
                         seekBarInfoTop.setText(temp+ "°");
                         seekBarBackrest.setProgress(Integer.valueOf(temp));
                     }
@@ -267,7 +297,7 @@ public void sendPositionAngles2Server(){
                     System.out.println("Wrong Input");
                 }
                 else{
-                    if(Integer.valueOf(temp) < 91){
+                    if(Integer.valueOf(temp) < 90){
                             seekBarInfoDown.setText(temp+ "°");
                             seekBarFeetrest.setProgress(Integer.valueOf(temp));
                         }
@@ -287,7 +317,43 @@ public void sendPositionAngles2Server(){
         }
     };
 
+    private void loadDataFromServer() {
+        String url = "https://10.18.12.95:3000/api/Themes?access_token=12345";
+        RequestQueue queue = Volley.newRequestQueue(this);
 
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+                        JSONObject jsonTheme = response.getJSONObject(i);
+                        Themes theme = new Themes();
+                        theme.setmTitle(jsonTheme.getString("title"));
+                        theme.setmDescription(jsonTheme.getString("description"));
+                        theme.setmImage(jsonTheme.getString("image"));
+                        theme.setmMusic(jsonTheme.getString("music"));
+                        theme.setmColor(jsonTheme.getString("color"));
+                        theme.setmId(jsonTheme.getInt("id"));
+                        parsedJsonList.add(theme);
+                        System.out.println(theme);
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+        queue.add(jsonArrayRequest);
+
+    }
 
     //sets all seekbars in one method after updating actual pos
     public void setAllSeekbars(int angleBack, int angleSeat, int angleFeet){
@@ -342,7 +408,7 @@ public void sendPositionAngles2Server(){
         switch (v.getId()) {
             case R.id.editTextBackrest_ID:
                 if(!hasFocus){
-                    apiClient.seatGetRequest("setanglebackrest", actualPosition.getBackAngle());
+                    apiClient.seatGetRequest("setanglebackrest","91", actualPosition.getBackAngle());
 
                 }
                 break;
@@ -350,13 +416,13 @@ public void sendPositionAngles2Server(){
 
             case R.id.editTextSeat_ID:
                 if(!hasFocus){
-                    apiClient.seatGetRequest("setangleseating", actualPosition.getSeatAngle());
+                    apiClient.seatGetRequest("setangleseating","92", actualPosition.getSeatAngle());
 
                 }
                 break;
             case R.id.editTextFeetrest_ID:
                 if(!hasFocus){
-                    apiClient.seatGetRequest("setanglefootrest", actualPosition.getFeetAngle());
+                    apiClient.seatGetRequest("setanglefootrest","92", actualPosition.getFeetAngle());
 
 
                 }
@@ -370,16 +436,16 @@ public void sendPositionAngles2Server(){
             switch (seekBar.getId()) {
                 case R.id.seekBarTop_ID:
 
-                    apiClient.seatGetRequest("setanglebackrest", actualPosition.getBackAngle());
+                    apiClient.seatGetRequest("setanglebackrest","91", actualPosition.getBackAngle());
 
                     break;
                 case R.id.seekBarMiddle_ID:
 
-                    apiClient.seatGetRequest("setangleseating", actualPosition.getSeatAngle());
+                    apiClient.seatGetRequest("setangleseating","92",actualPosition.getSeatAngle());
                     break;
                 case R.id.seekBarDown_ID:
 
-                    apiClient.seatGetRequest("setanglefootrest", actualPosition.getFeetAngle());
+                    apiClient.seatGetRequest("setanglefootrest","92", actualPosition.getFeetAngle());
                     break;
             }
 
@@ -420,12 +486,15 @@ public void sendPositionAngles2Server(){
                     break;
                 case R.id.stopChair_seatScreen_ID:
 
-                    apiClient.stopChairGetRequest1();
+                    loadDataFromServer();
+                    //apiClient.getThemesFromServerUsingRetrofit();
+
+                    /*apiClient.stopChairGetRequest1();
                     apiClient.stopChairGetRequest2("setstopseating");
                     apiClient.stopChairGetRequest2("setstopfootrest");
 
-
-                    Toast.makeText(this, "Chair Stopped! Wait a Bit...", Toast.LENGTH_SHORT).show();
+                    */
+                    Toast.makeText(this, "Chair Stopped!", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.seatImageView_ID:
                     MainActivity.openSeatScreen(mContext);

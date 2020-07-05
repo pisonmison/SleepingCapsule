@@ -21,6 +21,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 public class MusicScreen extends AppCompatActivity implements  Button.OnClickListener {
@@ -175,7 +177,7 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
 
                 if (player == null) {
 
-                    player = MediaPlayer.create(MusicScreen.this, actualTheme.getMusic());
+                    player = MediaPlayer.create(MusicScreen.this, actualTheme.getmMusic());
                     player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                         @Override
                         public void onCompletion(MediaPlayer mp) {
@@ -187,7 +189,7 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
                 }
                else{
                     stopPlayer();
-                    player=MediaPlayer.create(MusicScreen.this, actualTheme.getMusic());
+                    player=MediaPlayer.create(MusicScreen.this, actualTheme.getmMusic());
                     player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                         @Override
                         public void onCompletion(MediaPlayer mp) {
@@ -198,7 +200,7 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
                 }
                 player.start();
                 //soundpool.play(actualTheme.getMusic(), 1, 1, 1, -1, 1);
-                themeDescriptionView.setText(actualTheme.getDescription());
+                themeDescriptionView.setText(actualTheme.getmDescription());
             }
         });
 
@@ -224,10 +226,11 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
             TextView themeTitle = convertView.findViewById(R.id.themetitle);
 
             assert currentTheme != null;
-            themeTitle.setText(currentTheme.getTitle());
+            themeTitle.setText(currentTheme.getmTitle());
 
             ImageView themeImage = convertView.findViewById(R.id.themeimage);
-            themeImage.setImageResource(currentTheme.getImage());
+            Picasso.get().load(currentTheme.getmImage()).into(themeImage);
+            //themeImage.setImageResource(currentTheme.getmImage());
 
             return convertView;
         }
@@ -266,7 +269,7 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
                 break;
             case R.id.saveFovriteThemeButton:
                 favoriteTheme = actualTheme;
-                playFavoriteThemeButton.setText("Play " + favoriteTheme.getTitle());
+                playFavoriteThemeButton.setText("Play " + favoriteTheme.getmTitle());
                 break;
             case R.id.playFavoriteThemeButton:
                 playFavorite();
@@ -313,7 +316,7 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
     public void playFavorite() {
         //soundpool.play(favoriteTheme.getMusic(), 1, 1, 1, -1, 1);
         if (player == null) {
-            player = MediaPlayer.create(this, favoriteTheme.getMusic());
+            player = MediaPlayer.create(this, favoriteTheme.getmMusic());
             player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
@@ -323,7 +326,7 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
         }
         else{
             stopPlayer();
-            player=MediaPlayer.create(MusicScreen.this, favoriteTheme.getMusic());
+            player=MediaPlayer.create(MusicScreen.this, favoriteTheme.getmMusic());
             player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
@@ -333,7 +336,7 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
             });
         }
         player.start();
-        themeDescriptionView.setText(favoriteTheme.getDescription());
+        themeDescriptionView.setText(favoriteTheme.getmDescription());
 
     }
 /*
