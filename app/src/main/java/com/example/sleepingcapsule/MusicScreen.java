@@ -4,13 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.LauncherActivity;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.media.AudioAttributes;
 import android.media.MediaPlayer;
-import android.media.SoundPool;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,18 +19,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 
 
 import java.util.ArrayList;
@@ -62,11 +46,15 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
     private Button saveFavoriteThemeButton;
     private ImageButton playButton;
     private ImageButton pauseButton;
+    private ImageButton stopsoundbutton;
     private ImageButton musicLibraryButton;
     private ImageButton stopchairButton;
 
     //SoundPool soundpool;
     MediaPlayer player;
+
+
+
     int beachsound, feuersound, rainsound, forrestsound, junglesound, mountainsound;
 
     Themes actualTheme;
@@ -76,6 +64,21 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_music_screen);
+
+        String url = "https://www.mboxdrive.com/Dance%20(online-audio-converter.com).mp3"; // your URL here
+/*
+        player.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        try {
+            player.setDataSource(url);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            player.prepare(); // might take long! (for buffering, etc)
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+*/
 /*
         AudioAttributes audioAttributes = new AudioAttributes.Builder()
                 .setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION)
@@ -116,6 +119,7 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
 
         playButton = findViewById(R.id.playbutton);
         pauseButton = findViewById(R.id.pausebutton);
+        stopsoundbutton = findViewById(R.id.stopsoundbutton);
         musicLibraryButton = findViewById(R.id.musicLibraryButton);
 
 
@@ -124,6 +128,7 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
 
         playButton.setOnClickListener(this);
         pauseButton.setOnClickListener(this);
+        stopsoundbutton.setOnClickListener(this);
         musicLibraryButton.setOnClickListener(this);
 
         saveFavoriteThemeButton.setOnClickListener(this);
@@ -133,6 +138,8 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
         actualTheme = new Themes(); //create theme for saving
         favoriteTheme = new Themes();
         apiMusicClient = new Client();
+
+        //player.setLooping(true);
 
 
         MainActivity.setTaskBarIcon(musicIcon, currentScreen);
@@ -167,11 +174,25 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
                 actualTheme = themelist.get(position);
 
                 if (player == null) {
+
                     player = MediaPlayer.create(MusicScreen.this, actualTheme.getMusic());
                     player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                         @Override
                         public void onCompletion(MediaPlayer mp) {
                             stopPlayer();
+
+                        }
+                    });
+
+                }
+               else{
+                    stopPlayer();
+                    player=MediaPlayer.create(MusicScreen.this, actualTheme.getMusic());
+                    player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                        @Override
+                        public void onCompletion(MediaPlayer mp) {
+                            stopPlayer();
+
                         }
                     });
                 }
@@ -227,7 +248,12 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
                 MainActivity.openMusicScreen(mContext);
                 break;
             case R.id.playbutton:
-                player.start();
+                if (player== null ) {
+                    Toast.makeText(this, "Select a theme on the left", Toast.LENGTH_SHORT);
+                }
+                    else{
+                    player.start();
+                }
                 break;
             case R.id.pausebutton:
                 if (player != null) {
@@ -263,10 +289,12 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
     }
 
     private void stopPlayer() {
-        if (player != null) {
+        if(player!=null) {
+            player.stop();
             player.release();
             player = null;
         }
+
     }
     /*
     checks if package is installed,
@@ -293,8 +321,20 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
                 }
             });
         }
+        else{
+            stopPlayer();
+            player=MediaPlayer.create(MusicScreen.this, favoriteTheme.getMusic());
+            player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    stopPlayer();
+
+                }
+            });
+        }
         player.start();
         themeDescriptionView.setText(favoriteTheme.getDescription());
+
     }
 /*
     private void loadDataFromServer() {
