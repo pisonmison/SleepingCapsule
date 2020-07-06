@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
@@ -111,13 +112,19 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_light_screen);
 
-        mColorwheel = findViewById(R.id.colorwheel);
+        mColorwheel = findViewById(R.id.colorwheel_ID);
         mHex = findViewById(R.id.hex);
         mAusgabe = findViewById(R.id.ausgabe);
 
 
+
+        bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.colorwheel);
+        mColorwheel.setImageBitmap(bitmap);
         mColorwheel.setDrawingCacheEnabled(true);
         mColorwheel.buildDrawingCache(true);
+
+        thread = new PictureThread(mColorwheel, bitmap);
+        thread.start();
 
         // colorwheel on touch listener
         mColorwheel.setOnTouchListener(this);
@@ -152,14 +159,18 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
        // creating instance for client
         apiLightClient = new Client();
 
-        //thread = new PictureThread(mColorwheel, bitmap);
-        //thread.start();
+
+
+        //create bitmap
+
 
         seekBar2 = findViewById(R.id.seekBar2);
         seekBar2 .setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 thread.adjustBrightness(seekBar2.getProgress()-255);
+                mColorwheel.setDrawingCacheEnabled(true);
+                mColorwheel.buildDrawingCache(true);
 
             }
 
@@ -213,6 +224,7 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
 
             //get pixels data from the color wheel image
             if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_MOVE) {
+
                 bitmap = mColorwheel.getDrawingCache();
 
                 int pixel = bitmap.getPixel((int)event.getX(), (int)event.getY());

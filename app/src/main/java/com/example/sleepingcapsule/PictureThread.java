@@ -11,7 +11,8 @@ import android.os.Handler;
 
 
 public class PictureThread extends Thread {
-    private ImageView mColorwheel;
+
+    private ImageView imageView;
     private Bitmap bitmap;
     private Bitmap temp_bitmap;
     private Canvas canvas;
@@ -21,18 +22,18 @@ public class PictureThread extends Thread {
     public Handler handler;
     private boolean running = false;
 
-    public PictureThread(View mColowheel, Bitmap bitmap) {
-        this.mColorwheel = mColorwheel;
+    public PictureThread(ImageView imageView, Bitmap bitmap) {
+        this.imageView = imageView;
         this.bitmap = bitmap;
         temp_bitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
         canvas = new Canvas(temp_bitmap);
         paint = new Paint();
-        handler = new Handler() {
+        handler = new Handler();
 
-        };
+
     }
 
-    public void adjustBrightness(int amount) {
+    public void adjustBrightness(float amount) {
         colorMatrix = new ColorMatrix(new float[]{
                 1, 0, 0, 0, amount,
                 0, 1f, 0, 0, amount,
@@ -56,7 +57,7 @@ public class PictureThread extends Thread {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        mColorwheel.setImageBitmap(temp_bitmap);
+                        imageView.setImageBitmap(temp_bitmap);
                         running = false;
 
                     }

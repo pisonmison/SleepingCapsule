@@ -298,7 +298,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/colorwheel"
+            android:id="@+id/colorwheel_ID"
             android:layout_width="300dp"
             android:layout_height="300dp"
             android:contentDescription="@string/colorwheel"
@@ -356,6 +356,8 @@
         android:layout_marginTop="268dp"
         android:progressDrawable="@drawable/blacktowhite"
         android:rotation="-90"
+        android:min="0"
+        android:max="255"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

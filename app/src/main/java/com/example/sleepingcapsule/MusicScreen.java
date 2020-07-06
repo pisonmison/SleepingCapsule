@@ -71,7 +71,6 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
 
     private boolean able2PlaySound = false;
 
-    int beachsound, feuersound, rainsound, forrestsound, junglesound, mountainsound;
 
     private Themes actualTheme;
     private Themes favoriteTheme;
@@ -162,7 +161,7 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
 
 
 
-        loadDataFromServer();
+        loadThemesFromServer();
 
 
 
@@ -230,7 +229,7 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
     }
 
 
-    private void loadDataFromServer() {
+    private void loadThemesFromServer() {
         String url = "https://10.18.12.95:3000/api/Themes?access_token=12345";
 
 
