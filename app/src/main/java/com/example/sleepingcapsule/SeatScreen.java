@@ -32,7 +32,6 @@ import java.util.ArrayList;
 
 public class SeatScreen extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener, Button.OnClickListener, EditText.OnFocusChangeListener {
 
-    ArrayList<Themes> parsedJsonList = new ArrayList<Themes>();
 
 
 
@@ -182,6 +181,7 @@ public class SeatScreen extends AppCompatActivity implements SeekBar.OnSeekBarCh
         stopchairButton.setOnClickListener(this);
         MainActivity.setTaskBarIcon(seatIcon,currentScreen);
         apiClient = new Client();
+        apiClient.handleSSLHandshake();
     }
 
     /**
@@ -317,43 +317,7 @@ Fußlehne: 0° - 89° (Verstellzeit zwischen Extremalwinkel: 15 Sek)
         }
     };
 
-    private void loadDataFromServer() {
-        String url = "https://10.18.12.95:3000/api/Themes?access_token=12345";
-        RequestQueue queue = Volley.newRequestQueue(this);
 
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                for (int i = 0; i < response.length(); i++) {
-                    try {
-                        JSONObject jsonTheme = response.getJSONObject(i);
-                        Themes theme = new Themes();
-                        theme.setmTitle(jsonTheme.getString("title"));
-                        theme.setmDescription(jsonTheme.getString("description"));
-                        theme.setmImage(jsonTheme.getString("image"));
-                        theme.setmMusic(jsonTheme.getString("music"));
-                        theme.setmColor(jsonTheme.getString("color"));
-                        theme.setmId(jsonTheme.getInt("id"));
-                        parsedJsonList.add(theme);
-                        System.out.println(theme);
-
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        });
-        queue.add(jsonArrayRequest);
-
-    }
 
     //sets all seekbars in one method after updating actual pos
     public void setAllSeekbars(int angleBack, int angleSeat, int angleFeet){
@@ -486,7 +450,7 @@ Fußlehne: 0° - 89° (Verstellzeit zwischen Extremalwinkel: 15 Sek)
                     break;
                 case R.id.stopChair_seatScreen_ID:
 
-                    loadDataFromServer();
+                    apiClient.getThemesFromServer();
                     //apiClient.getThemesFromServerUsingRetrofit();
 
                     /*apiClient.stopChairGetRequest1();

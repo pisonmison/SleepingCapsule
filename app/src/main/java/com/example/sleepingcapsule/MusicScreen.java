@@ -22,8 +22,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,15 +43,16 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
     private ImageView seatIcon;
     private ImageView lightIcon;
     private ImageView musicIcon;
-    private Context mContext;
+    public static Context mContext;
     private String currentScreen = "music";
 
+    private RequestQueue mQueue;
 
-    Client apiMusicClient;
+    private Client apiMusicClient;
 
     private static final String URL_DATA = "url";
 
-    ArrayList<Themes> themelist = new ArrayList<Themes>();
+    private ArrayList<Themes> themelist = new ArrayList<Themes>();
 
 
     private TextView themeDescriptionView;
@@ -58,17 +69,31 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
     //SoundPool soundpool;
     MediaPlayer player;
 
-
+    private boolean able2PlaySound = false;
 
     int beachsound, feuersound, rainsound, forrestsound, junglesound, mountainsound;
 
-    Themes actualTheme;
-    Themes favoriteTheme;
+    private Themes actualTheme;
+    private Themes favoriteTheme;
+
+    private ListView musicListView;
+    private ThemesListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_music_screen);
+        apiMusicClient = new Client();
+        actualTheme = new Themes(); //create theme for saving
+        favoriteTheme = new Themes();
+
+
+        apiMusicClient.handleSSLHandshake();
+
+
+
+
+        mQueue = Volley.newRequestQueue(this);
 
         String url = "https://www.mboxdrive.com/Dance%20(online-audio-converter.com).mp3"; // your URL here
 /*
@@ -96,12 +121,6 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
 */
 
 /*
-        beachsound = soundpool.load(this, R.raw.beach, 1);
-        feuersound = soundpool.load(this, R.raw.fireplace, 1);
-        rainsound = soundpool.load(this, R.raw.rain, 1);
-        forrestsound = soundpool.load(this, R.raw.forest, 1);
-        junglesound = soundpool.load(this, R.raw.jungle, 1);
-        mountainsound = soundpool.load(this, R.raw.mountain, 1);
 */
         //taskbar initation
         mContext = this;
@@ -140,61 +159,54 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
         playFavoriteThemeButton.setOnClickListener(this);
 
 
-        actualTheme = new Themes(); //create theme for saving
-        favoriteTheme = new Themes();
-        apiMusicClient = new Client();
 
-        //player.setLooping(true);
+
+
+        loadDataFromServer();
+
 
 
         MainActivity.setTaskBarIcon(musicIcon, currentScreen);
 
 
-        final ListView musicListView = findViewById(R.id.listview);
-        ThemesListAdapter adapter = new ThemesListAdapter(this, themelist);
+        musicListView = findViewById(R.id.listview);
+        adapter = new ThemesListAdapter(this, themelist);
         musicListView.setAdapter(adapter);
 
-        Themes wald = new Themes("Wald","Genieße die Atmosphäre des Waldes","https://upload.wikimedia.org/wikipedia/commons/a/a4/Beskid_Ma%C5%82y_Mountains_%28PL%29.jpg", "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/ccCommunity/Chad_Crouch/Arps/Chad_Crouch_-_Shipping_Lanes.mp3", "#00FF00",1);
-        /*
-        Themes beach = new Themes("Beach","The sounds of waves",R.drawable.strand,R.raw.beach);
-        Themes forrest = new Themes("Forrest", "Forrest sounds", R.drawable.wald, R.raw.forest);
-        Themes fireplace = new Themes("Fireplace", "The sound of a fire", R.drawable.lagerfeuer,R.raw.fireplace);
-        Themes jungle = new Themes("Jungle", "The sounds of animals in a jungle", R.drawable.dschungel, R.raw.jungle);
-        Themes rain = new Themes("Rain", "The sound of heavy rain", R.drawable.regen, R.raw.rain);
-        Themes mountain = new Themes("Mountain", "The sound of the nature", R.drawable.berg, R.raw.mountain);
 
-        themelist.add(beach);
-        themelist.add(forrest);
-        themelist.add(fireplace);
-        themelist.add(jungle);
-        themelist.add(rain);
-        themelist.add(mountain);
-*/
-        themelist.add(wald);
-        //load extra themes from server if needed.
-       // loadDataFromServer();
+
+
 
 
         musicListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
+
             public void onItemClick(AdapterView<?> adapter, View view, int position, long l) {
+
+
                 actualTheme = themelist.get(position);
+
 
                 if (player == null) {
 
                     try {
+                        player = new MediaPlayer();
                         player.setDataSource(actualTheme.getmMusic());
                         player.prepare(); // might take long! (for buffering, etc)
+                        player.start();
                     } catch (Exception e) {
                         Toast.makeText(MusicScreen.this, e.getMessage(),Toast.LENGTH_SHORT).show();
                     }
+
 
                 }
                else{
                     stopPlayer();
                     try {
+                        player = new MediaPlayer();
                         player.setDataSource(actualTheme.getmMusic());
                         player.prepare(); // might take long! (for buffering, etc)
+                        player.start();
                     } catch (Exception e) {
                         Toast.makeText(MusicScreen.this, e.getMessage(),Toast.LENGTH_SHORT).show();
                     }
@@ -206,7 +218,7 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
 
                     }
                 });
-                player.start();
+
                 player.setLooping(true);
                 //soundpool.play(actualTheme.getMusic(), 1, 1, 1, -1, 1);
                 themeDescriptionView.setText(actualTheme.getmDescription());
@@ -218,7 +230,44 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
     }
 
 
+    private void loadDataFromServer() {
+        String url = "https://10.18.12.95:3000/api/Themes?access_token=12345";
 
+
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+                        JSONObject jsonTheme = response.getJSONObject(i);
+                        Themes theme = new Themes();
+                        theme.setmTitle(jsonTheme.getString("title"));
+                        theme.setmDescription(jsonTheme.getString("description"));
+                        theme.setmImage(jsonTheme.getString("image"));
+                        theme.setmMusic(jsonTheme.getString("music"));
+                        theme.setmColor(jsonTheme.getString("color"));
+                        theme.setmId(jsonTheme.getInt("id"));
+                        themelist.add(theme);
+                        System.out.println(theme);
+                        adapter.notifyDataSetChanged(); //refresh adapter on every change of themelist. in real time.
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+        mQueue.add(jsonArrayRequest);
+
+    }
 
     //transfers data into our listview
     public class ThemesListAdapter extends ArrayAdapter<Themes> {
@@ -325,10 +374,11 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
     public void playFavorite() {
         //soundpool.play(favoriteTheme.getMusic(), 1, 1, 1, -1, 1);
         if (player == null) {
-
             try {
+                player = new MediaPlayer();
                 player.setDataSource(favoriteTheme.getmMusic());
                 player.prepare(); // might take long! (for buffering, etc)
+                player.start();
             } catch (IOException e) {
                 Toast.makeText(MusicScreen.this, e.getMessage(),Toast.LENGTH_SHORT).show();
             }
@@ -342,8 +392,11 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
         else{
             stopPlayer();
             try {
+                player = new MediaPlayer();
                 player.setDataSource(favoriteTheme.getmMusic());
                 player.prepare(); // might take long! (for buffering, etc)
+                player.start();
+
             } catch (IOException e) {
                 Toast.makeText(MusicScreen.this, "Error",Toast.LENGTH_SHORT).show();
             }
@@ -355,41 +408,10 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
                 }
             });
         }
-        player.start();
+
         player.setLooping(true);
         themeDescriptionView.setText(favoriteTheme.getmDescription());
 
     }
-/*
-    private void loadDataFromServer() {
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_DATA, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject jsonObject= new JSONObject(response);
-                    JSONArray jsonArray= jsonObject.getJSONArray("themes");
-                    for(int i=0;i<jsonArray.length();i++){
-                        JSONObject object = jsonArray.getJSONObject(i);
-                        LauncherActivity.ListItem item = new LauncherActivity.ListItem(object.getString("title"),object.getString("description"));
 
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError volleyError) {
-
-                    }
-
-                });
-
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
-
-    }
-
- */
 }

@@ -1,5 +1,6 @@
 package com.example.sleepingcapsule;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Handler;
 
@@ -16,9 +17,18 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.lang.reflect.Array;
+import java.security.SecureRandom;
+import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.List;
 
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -42,22 +52,60 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Client {
 
 
-    public Context mContext;
-    OkHttpClient client;
-    public ArrayList<Themes> jsonListThemes;
+    public static Context mContext;
+    private OkHttpClient client;
+    private ArrayList<Themes> parsedJsonList;
+    private RequestQueue mQueue;
+
 
 
 
 public Client()
     {
     client = new OkHttpClient();
-    jsonListThemes = new ArrayList<Themes>();
+
+    parsedJsonList = new ArrayList<Themes>();
 
     }
 
 
+    /**
+     * Enables https connections
+     */
+    @SuppressLint("TrulyRandom")
+    public static void handleSSLHandshake() {
+        try {
+            TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager() {
+                public X509Certificate[] getAcceptedIssuers() {
+                    return new X509Certificate[0];
+                }
+
+                @Override
+                public void checkClientTrusted(X509Certificate[] certs, String authType) {
+                }
+
+                @Override
+                public void checkServerTrusted(X509Certificate[] certs, String authType) {
+                }
+            }};
+
+            SSLContext sc = SSLContext.getInstance("SSL");
+            sc.init(null, trustAllCerts, new SecureRandom());
+            HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+            HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier() {
+                @Override
+                public boolean verify(String arg0, SSLSession arg1) {
+                    return true;
+                }
+            });
+        } catch (Exception ignored) {
+        }
+    }
+
 
     public void getThemesFromServerUsingRetrofit(){
+
+
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://10.18.12.95:3000/")
@@ -116,9 +164,12 @@ public Client()
      *
      *                             jsonListThemes.add(theme);
      */
-public void getThemesFromServer(){
+public void getThemesFromServer() {
 
-    String url = "http://10.18.2.165:5000/";
+
+    mQueue = Volley.newRequestQueue(MusicScreen.mContext);
+
+    String url = "https://10.18.12.95:3000/api/Themes?access_token=12345";
 
     JsonArrayRequest request = new JsonArrayRequest(com.android.volley.Request.Method.GET, url, null,
             //when request succesfull
@@ -126,8 +177,9 @@ public void getThemesFromServer(){
                 @Override
                 public void onResponse(JSONArray response) {
 
-                    for(int i = 0; i < response.length(); i++) {
+                    for (int i = 0; i < response.length(); i++) {
                         try {
+
                             JSONObject jsonTheme = response.getJSONObject(i);
 
                             Themes theme = new Themes();
@@ -137,7 +189,7 @@ public void getThemesFromServer(){
                             theme.setmMusic(jsonTheme.getString("music"));
                             theme.setmColor(jsonTheme.getString("color"));
                             theme.setmId(jsonTheme.getInt("id"));
-
+                            parsedJsonList.add(theme);
                             System.out.println(theme);
 
                         } catch (JSONException e) {
@@ -147,18 +199,16 @@ public void getThemesFromServer(){
                     }
 
 
-
-
                 }
             }, new com.android.volley.Response.ErrorListener() {
         //call on error
         @Override
         public void onErrorResponse(VolleyError error) {
-         error.printStackTrace();
+            error.printStackTrace();
         }
     });
 
-    SeatScreen.mQueue.add(request);
+    mQueue.add(request);
 
 }
 

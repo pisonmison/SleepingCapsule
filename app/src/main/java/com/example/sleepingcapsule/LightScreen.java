@@ -45,7 +45,7 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
    private Bitmap bitmap;
    private SeekBar seekBar2;
 
-   private PictureTread thread;
+   private PictureThread thread;
 
 
 
@@ -152,10 +152,10 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
        // creating instance for client
         apiLightClient = new Client();
 
-        thread = new PictureTread(mColorwheel, bitmap);
-        thread.start();
+        //thread = new PictureThread(mColorwheel, bitmap);
+        //thread.start();
 
-        seekBar2 = (SeekBar) findViewById(R.id seekBar2);
+        seekBar2 = findViewById(R.id.seekBar2);
         seekBar2 .setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
