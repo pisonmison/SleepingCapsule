@@ -322,7 +322,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_weight="1"
             android:foregroundGravity="center"
-            android:max="87"
+            android:max="80"
             android:progressDrawable="@drawable/custom_seekbar"
             android:thumb="@drawable/custom_thumb"
             />
@@ -345,7 +345,7 @@
             android:layout_height="82dp"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:max="90"
+            android:max="89"
             android:progressDrawable="@drawable/custom_seekbar"
             android:thumb="@drawable/custom_thumb"/>
 
@@ -393,7 +393,7 @@
         android:id="@+id/savebutton_ID"
         android:layout_width="117dp"
         android:layout_height="50dp"
-        android:layout_marginStart="336dp"
+        android:layout_marginStart="368dp"
         android:layout_marginTop="576dp"
         android:background="@drawable/rounded_corners"
         android:text="@string/save_as_favorite"

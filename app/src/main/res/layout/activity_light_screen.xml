@@ -71,7 +71,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:layout_marginTop="1dp"
         android:background="@color/snoozeBlau"
 
         android:backgroundTint="#000000"
@@ -84,24 +83,24 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            app:srcCompat="@drawable/seat_icon_white"
-            android:contentDescription="@string/chair" />
+            android:contentDescription="@string/chair"
+            app:srcCompat="@drawable/seat_icon_white" />
 
         <ImageView
             android:id="@+id/lightImageView_LightScreen_ID"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            app:srcCompat="@drawable/light_icon_white"
-            android:contentDescription="@string/light" />
+            android:contentDescription="@string/light"
+            app:srcCompat="@drawable/light_icon_white" />
 
         <ImageView
             android:id="@+id/musicImageView_LightScreen_ID"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            app:srcCompat="@drawable/music_icon_white"
-            android:contentDescription="@string/music" />
+            android:contentDescription="@string/music"
+            app:srcCompat="@drawable/music_icon_white" />
     </LinearLayout>
 
 
