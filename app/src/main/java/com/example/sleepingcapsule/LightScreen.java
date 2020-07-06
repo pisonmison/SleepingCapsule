@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.text.TextWatcher;
 import android.widget.Toast;
@@ -36,12 +37,19 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
     private RGBColor currentColor;
     private RGBColor favoriteColor;
 
-
+// part for the colorwheel, with m prefix
     private ImageView mColorwheel;
     private TextView mHex;
-    private View mAusgabe;
-    private Bitmap bitmap;
+   private View mAusgabe;
+   // using bitmap
+   private Bitmap bitmap;
+   private SeekBar seekBar2;
 
+   private PictureTread thread;
+
+
+
+    // client object
     Client apiLightClient;
 
     private ImageButton chairLightSettings;
@@ -53,7 +61,7 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
 
 
 
-    //color class which handles has all three colors as parameters
+    //color class handles all three colors as parameters
     public class RGBColor{
 
         int rValue;
@@ -116,7 +124,7 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
 
         saveAsFavoriteColor = findViewById(R.id.saveAsFavoriteColor_ID);
         showColor = findViewById(R.id.showFavoriteButton_ID);
-
+       // set on click listener
         saveAsFavoriteColor.setOnClickListener(this);
         showColor.setOnClickListener(this);
 
@@ -134,15 +142,37 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
 
         chairLightSettings = findViewById(R.id.button_chaircolor_ID);
         roomLightSettings = findViewById(R.id.button_roomcolor_ID);
-
+         // set on click Listener
         chairLightSettings.setOnClickListener(this);
         roomLightSettings.setOnClickListener(this);
 
         //creating 2 instances of color class for saving
         currentColor = new RGBColor();
         favoriteColor = new RGBColor();
-
+       // creating instance for client
         apiLightClient = new Client();
+
+        thread = new PictureTread(mColorwheel, bitmap);
+        thread.start();
+
+        seekBar2 = (SeekBar) findViewById(R.id seekBar2);
+        seekBar2 .setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                thread.adjustBrightness(seekBar2.getProgress()-255);
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
 
 
         ///taskbar code////
@@ -193,7 +223,9 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
                 int b = Color.blue(pixel);
 
                 //ignores black when touching outside the colorwheel
-                if(r!=0 && g!=0 && b!=0){
+                if(r==0 && g==0 && b==0) {
+                    System.out.println("Wrong color");
+                }else{
                     currentColor.setrValue(r);
                     editTextR.setText(String.valueOf(r));
 
@@ -209,7 +241,7 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
                     mAusgabe.setBackgroundColor(Color.rgb(r,g,b));
                     //set Hex value to textview
                     mHex.setText("Hex: "+ hex); //\nHEX:wert "RGB: "+ r +", "+  g +", "+ b
-
+                    // shows current color terminal
                     System.out.println("CURRENT COLOR:" + currentColor);
                 }
 
@@ -220,12 +252,21 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
 
 
             }
+
+
+
+
+
             /**
              *  /*send light http request here:  setlightseat | setlightinterior
                   when user releases his finger from wheel -> color chosen.
                     currently this only works for seat.
              */
 
+
+
+
+               
             else if(event.getAction() == MotionEvent.ACTION_UP){
 
                 if(currentColorSettings.equals("seat")){
@@ -241,6 +282,7 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
 
             }
         }
+        // warning colorwheel
         catch(Exception e) {
                 e.printStackTrace();
                 System.out.println("!Touching outside the color wheel!");
@@ -261,7 +303,7 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
 
 */
 
-
+// chair color button
 public void setChairSettings(){
     Toast.makeText(this, "Now choose your seat color!", Toast.LENGTH_SHORT).show();
     currentColorSettings = "seat";
@@ -286,7 +328,7 @@ on focus change checks wether an edit text is actually focused or not, therefore
  executing methods after focus change when user finally decided his input
 
  */
-
+   // focus
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
         switch (v.getId()) {

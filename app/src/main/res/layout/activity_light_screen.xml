@@ -201,7 +201,6 @@
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:layout_gravity="center"
-            android:autoText="false"
             android:background="@drawable/radiusred"
             android:foregroundGravity="center"
             android:text="@string/R"
@@ -304,7 +303,8 @@
             android:layout_width="300dp"
             android:layout_height="300dp"
             android:contentDescription="@string/colorwheel"
-            android:src="@drawable/colorwheel2" />
+            android:src="@drawable/colorwheel"
+            />
 
         <View
             android:id="@+id/ausgabe"
@@ -346,6 +346,17 @@
         android:textAlignment="center"
         android:textSize="18sp"
         android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <SeekBar
+        android:id="@+id/seekBar2"
+        android:layout_width="280dp"
+        android:layout_height="10dp"
+        android:layout_marginStart="452dp"
+        android:layout_marginTop="268dp"
+        android:progressDrawable="@drawable/blacktowhite"
+        android:rotation="-90"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
