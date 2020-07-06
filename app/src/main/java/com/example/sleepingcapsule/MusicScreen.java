@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -22,7 +23,9 @@ import android.widget.Toast;
 
 
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class MusicScreen extends AppCompatActivity implements  Button.OnClickListener {
@@ -151,6 +154,8 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
         ThemesListAdapter adapter = new ThemesListAdapter(this, themelist);
         musicListView.setAdapter(adapter);
 
+        Themes wald = new Themes("Wald","Genieße die Atmosphäre des Waldes","https://upload.wikimedia.org/wikipedia/commons/a/a4/Beskid_Ma%C5%82y_Mountains_%28PL%29.jpg", "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/ccCommunity/Chad_Crouch/Arps/Chad_Crouch_-_Shipping_Lanes.mp3", "#00FF00",1);
+        /*
         Themes beach = new Themes("Beach","The sounds of waves",R.drawable.strand,R.raw.beach);
         Themes forrest = new Themes("Forrest", "Forrest sounds", R.drawable.wald, R.raw.forest);
         Themes fireplace = new Themes("Fireplace", "The sound of a fire", R.drawable.lagerfeuer,R.raw.fireplace);
@@ -164,8 +169,8 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
         themelist.add(jungle);
         themelist.add(rain);
         themelist.add(mountain);
-
-
+*/
+        themelist.add(wald);
         //load extra themes from server if needed.
        // loadDataFromServer();
 
@@ -177,30 +182,35 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
 
                 if (player == null) {
 
-                    player = MediaPlayer.create(MusicScreen.this, actualTheme.getmMusic());
-                    player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                        @Override
-                        public void onCompletion(MediaPlayer mp) {
-                            stopPlayer();
-
-                        }
-                    });
+                    try {
+                        player.setDataSource(actualTheme.getmMusic());
+                        player.prepare(); // might take long! (for buffering, etc)
+                    } catch (Exception e) {
+                        Toast.makeText(MusicScreen.this, e.getMessage(),Toast.LENGTH_SHORT).show();
+                    }
 
                 }
                else{
                     stopPlayer();
-                    player=MediaPlayer.create(MusicScreen.this, actualTheme.getmMusic());
-                    player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                        @Override
-                        public void onCompletion(MediaPlayer mp) {
-                            stopPlayer();
-
-                        }
-                    });
+                    try {
+                        player.setDataSource(actualTheme.getmMusic());
+                        player.prepare(); // might take long! (for buffering, etc)
+                    } catch (Exception e) {
+                        Toast.makeText(MusicScreen.this, e.getMessage(),Toast.LENGTH_SHORT).show();
+                    }
                 }
+                player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        stopPlayer();
+
+                    }
+                });
                 player.start();
+                player.setLooping(true);
                 //soundpool.play(actualTheme.getMusic(), 1, 1, 1, -1, 1);
                 themeDescriptionView.setText(actualTheme.getmDescription());
+
             }
         });
 
@@ -251,18 +261,17 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
                 MainActivity.openMusicScreen(mContext);
                 break;
             case R.id.playbutton:
-                if (player== null ) {
-                    Toast.makeText(this, "Select a theme on the left", Toast.LENGTH_SHORT);
+                if (player == null) {
+                    Toast.makeText(this, "select a theme", Toast.LENGTH_SHORT).show();
                 }
-                    else{
+                if(!player.isPlaying()){
                     player.start();
                 }
                 break;
             case R.id.pausebutton:
-                if (player != null) {
+                if (player.isPlaying()) {
                     player.pause();
                 }
-                //soundpool.autoPause();
                 break;
             case R.id.stopsoundbutton:
                 stopPlayer();
@@ -316,7 +325,13 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
     public void playFavorite() {
         //soundpool.play(favoriteTheme.getMusic(), 1, 1, 1, -1, 1);
         if (player == null) {
-            player = MediaPlayer.create(this, favoriteTheme.getmMusic());
+
+            try {
+                player.setDataSource(favoriteTheme.getmMusic());
+                player.prepare(); // might take long! (for buffering, etc)
+            } catch (IOException e) {
+                Toast.makeText(MusicScreen.this, e.getMessage(),Toast.LENGTH_SHORT).show();
+            }
             player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
@@ -326,7 +341,12 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
         }
         else{
             stopPlayer();
-            player=MediaPlayer.create(MusicScreen.this, favoriteTheme.getmMusic());
+            try {
+                player.setDataSource(favoriteTheme.getmMusic());
+                player.prepare(); // might take long! (for buffering, etc)
+            } catch (IOException e) {
+                Toast.makeText(MusicScreen.this, "Error",Toast.LENGTH_SHORT).show();
+            }
             player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
@@ -336,6 +356,7 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
             });
         }
         player.start();
+        player.setLooping(true);
         themeDescriptionView.setText(favoriteTheme.getmDescription());
 
     }
