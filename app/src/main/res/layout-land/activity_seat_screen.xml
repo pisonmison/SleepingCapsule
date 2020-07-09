@@ -169,7 +169,7 @@
         android:text="@string/adjustPosition"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.237"
+        app:layout_constraintHorizontal_bias="0.227"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline14" />
 
@@ -200,13 +200,14 @@
 
     <Button
         android:id="@+id/savebutton_ID"
-        android:layout_width="117dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="28dp"
+        android:layout_width="90dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/rounded_corners"
         android:text="@string/save_as_favorite"
+        android:textSize="10dp"
         app:layout_constraintEnd_toEndOf="@+id/seekBarDown_ID"
-        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintHorizontal_bias="0.522"
         app:layout_constraintStart_toStartOf="@+id/seekBarDown_ID"
         app:layout_constraintTop_toBottomOf="@+id/seekBarDown_ID" />
 
@@ -217,7 +218,7 @@
         android:layout_marginBottom="140dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintGuide_end="90dp" />
+        app:layout_constraintGuide_end="93dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline14"
@@ -230,9 +231,11 @@
         android:id="@+id/stopChair_seatScreen_ID"
         android:layout_width="90dp"
         android:layout_height="90dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="24dp"
         android:background="@drawable/stop_button"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.906"
         app:layout_constraintStart_toEndOf="@+id/textView6"
         app:layout_constraintTop_toTopOf="@+id/textView6" />
 
@@ -323,7 +326,7 @@
         android:layout_marginStart="36dp"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="@string/LyingPose"
+        android:text="@string/SittingPos"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintBottom_toBottomOf="@+id/sittingPos_ID"
         app:layout_constraintStart_toEndOf="@+id/sittingPos_ID"
@@ -425,7 +428,7 @@
         android:layout_marginBottom="36dp"
         android:layout_weight="1"
         android:gravity="center_horizontal|fill_vertical"
-        android:text="@string/SittingPos"
+        android:text="@string/LyingPose"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintBottom_toTopOf="@+id/textView7"
         app:layout_constraintEnd_toEndOf="@+id/textView7"

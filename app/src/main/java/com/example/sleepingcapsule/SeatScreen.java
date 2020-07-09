@@ -154,12 +154,13 @@ public class SeatScreen extends AppCompatActivity implements SeekBar.OnSeekBarCh
         lightIcon = findViewById(R.id.lightImageView_ID);
         musicIcon = findViewById(R.id.musicImageView_ID);
 
-        //add on click, on change listeners
-        inputBackrest.addTextChangedListener(watcher);
-        inputSeat.addTextChangedListener(watcher);
-        inputFeetrest.addTextChangedListener(watcher);
+        //add on click, on change, on focus listeners
 
         inputBackrest.setOnFocusChangeListener(this);
+        inputSeat.setOnFocusChangeListener(this);
+        inputFeetrest.setOnFocusChangeListener(this);
+
+
 
         seatIcon.setOnClickListener(this);
         lightIcon.setOnClickListener(this);
@@ -179,20 +180,13 @@ public class SeatScreen extends AppCompatActivity implements SeekBar.OnSeekBarCh
 
         saveButton.setOnClickListener(this);
         stopchairButton.setOnClickListener(this);
+
         MainActivity.setTaskBarIcon(seatIcon,currentScreen);
         apiClient = new Client();
-        apiClient.handleSSLHandshake();
+
     }
 
-    /**
-     * timer method which handles executing http requests slighty delayed for callback failure evasion
-     */
-        public void JsonParse(){
 
-
-
-
-        }
 
 
     //pre configure settings for different positions
@@ -222,8 +216,6 @@ public class SeatScreen extends AppCompatActivity implements SeekBar.OnSeekBarCh
     }
 
 
-
-
     //sends 3 requests with corresponding endpoint to the server, adjust 3 values at the same time of the chair
 public void sendPositionAngles2Server(){
         for(int i = 0; i < 3; i++){
@@ -243,80 +235,14 @@ Fußlehne: 0° - 89° (Verstellzeit zwischen Extremalwinkel: 15 Sek)
  */
 //textwatcher provides three different edit text input stages to call methods in.
 
-    TextWatcher watcher = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-        }
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-            if (inputBackrest.isFocused()) {
-
-                //check if string is "" for crash when field is empty!!
-                String temp = inputBackrest.getText().toString();
-                if(temp.isEmpty()){
-                    System.out.println("Empty Input");
-                }
-                else{
-                    if(Integer.valueOf(temp) < 81){
-                        seekBarInfoTop.setText(temp+ "°");
-                        seekBarBackrest.setProgress(Integer.valueOf(temp));
-                    }
-                    else{
-                        System.out.println("Wrong Input");
-                    }
-                }
 
 
+    public void setAllEditTexts(){
 
-
-
-            }
-
-            else if (inputSeat.isFocused()) {
-                String temp = inputSeat.getText().toString();
-                if(temp.isEmpty()){
-                    System.out.println("Empty Input");
-                }
-                else{
-                    if(Integer.valueOf(temp) < 31){
-                        seekBarInfoMid.setText(temp+ "°");
-                        seekBarSeat.setProgress(Integer.valueOf(temp));
-                    }
-                    else{
-                        System.out.println("Wrong Input");
-                    }
-                }
-
-
-            }
-            else if (inputFeetrest.isFocused()) {
-                String temp = inputFeetrest.getText().toString();
-                if(temp.isEmpty()){
-                    System.out.println("Wrong Input");
-                }
-                else{
-                    if(Integer.valueOf(temp) < 90){
-                            seekBarInfoDown.setText(temp+ "°");
-                            seekBarFeetrest.setProgress(Integer.valueOf(temp));
-                        }
-                        else{
-                            System.out.println("Wrong Input");
-                    }
-                }
-            }
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-
-
-
-
-        }
-    };
-
+        inputBackrest.setText(String.valueOf(actualPosition.getBackAngle()));
+        inputSeat.setText(String.valueOf(actualPosition.getSeatAngle()));
+        inputFeetrest.setText(String.valueOf(actualPosition.getFeetAngle()));
+    }
 
 
     //sets all seekbars in one method after updating actual pos
@@ -360,6 +286,7 @@ Fußlehne: 0° - 89° (Verstellzeit zwischen Extremalwinkel: 15 Sek)
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) {
 
+
         }
 
 
@@ -369,26 +296,68 @@ Fußlehne: 0° - 89° (Verstellzeit zwischen Extremalwinkel: 15 Sek)
 
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
+
         switch (v.getId()) {
             case R.id.editTextBackrest_ID:
                 if(!hasFocus){
-                    apiClient.seatGetRequest("setanglebackrest","91", actualPosition.getBackAngle());
-
+                    //check if string is "" for crash when field is empty!!
+                    String temp = inputBackrest.getText().toString();
+                    if(temp.isEmpty()){
+                        System.out.println("Empty Input");
+                    }
+                    else{
+                        if(Integer.valueOf(temp) < 81){
+                            seekBarInfoTop.setText(temp+ "°");
+                            seekBarBackrest.setProgress(Integer.valueOf(temp));
+                            apiClient.seatGetRequest("setanglebackrest","91", actualPosition.getBackAngle());
+                        }
+                        else{
+                            System.out.println("Wrong Input");
+                        }
+                    }
                 }
                 break;
 
 
             case R.id.editTextSeat_ID:
                 if(!hasFocus){
-                    apiClient.seatGetRequest("setangleseating","92", actualPosition.getSeatAngle());
 
+                    String temp = inputSeat.getText().toString();
+                    if(temp.isEmpty()){
+                        System.out.println("Empty Input");
+                    }
+                    else{
+                        if(Integer.valueOf(temp) < 31){
+                            seekBarInfoMid.setText(temp+ "°");
+                            seekBarSeat.setProgress(Integer.valueOf(temp));
+                            apiClient.seatGetRequest("setangleseating","92", actualPosition.getSeatAngle());
+                        }
+                        else{
+                            System.out.println("Wrong Input");
+                        }
+                    }
                 }
+
+
+
                 break;
             case R.id.editTextFeetrest_ID:
                 if(!hasFocus){
-                    apiClient.seatGetRequest("setanglefootrest","92", actualPosition.getFeetAngle());
 
-
+                    String temp = inputFeetrest.getText().toString();
+                    if(temp.isEmpty()){
+                        System.out.println("Wrong Input");
+                    }
+                    else{
+                        if(Integer.valueOf(temp) < 90){
+                            seekBarInfoDown.setText(temp+ "°");
+                            seekBarFeetrest.setProgress(Integer.valueOf(temp));
+                            apiClient.seatGetRequest("setanglefootrest","92", actualPosition.getFeetAngle());
+                        }
+                        else{
+                            System.out.println("Wrong Input");
+                        }
+                    }
                 }
                 break;
     }}
@@ -422,29 +391,34 @@ Fußlehne: 0° - 89° (Verstellzeit zwischen Extremalwinkel: 15 Sek)
             switch (v.getId()) {
                 case R.id.favPos_ID:
                     updateActualPosition(favoritePosition);
-                    Toast.makeText(this, "Fav. Position chosen", Toast.LENGTH_SHORT).show();
+                    setAllEditTexts();
+
                     sendPositionAngles2Server();
                     break;
                 case R.id.lyingPos_ID:
                     updateActualPosition(lyingPosition);
-                    Toast.makeText(this, "Lying Position chosen", Toast.LENGTH_SHORT).show();
+                    setAllEditTexts();
+
                     sendPositionAngles2Server();
                     break;
 
                     case R.id.zeroGPos_ID:
                     updateActualPosition(zeroGPosition);
-                    Toast.makeText(this, "Zero G Position chosen", Toast.LENGTH_SHORT).show();
+                    setAllEditTexts();
+
                     sendPositionAngles2Server();
                     break;
 
                 case R.id.sittingPos_ID:
                     updateActualPosition(sittingPosition);
-                    Toast.makeText(this, "Sitting Position chosen", Toast.LENGTH_SHORT).show();
+                    setAllEditTexts();
+
                     sendPositionAngles2Server();
                     break;
 
                     case R.id.savebutton_ID:
                     configurePosition(favoritePosition, actualPosition.getBackAngle(),actualPosition.getSeatAngle(), actualPosition.getFeetAngle());
+                    setAllEditTexts();
                     Toast.makeText(this, "Saved to Fav. Position!", Toast.LENGTH_SHORT).show();
                     System.out.print(actualPosition);
                     break;

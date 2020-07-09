@@ -62,12 +62,24 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
 
 
 
+
+
     //color class handles all three colors as parameters
     public class RGBColor{
 
         int rValue;
         int gValue;
         int bValue;
+
+        public String getHex() {
+            return hex;
+        }
+
+        public void setHex(String hex) {
+            this.hex = hex;
+        }
+
+        String hex;
 
         public int getrValue() {
             return rValue;
@@ -104,6 +116,8 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
 
 
     }
+
+    //**
 
 
 
@@ -203,7 +217,16 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
 
     }
 
+    public void setInfoAllViews(){
+        mAusgabe.setBackgroundColor(Color.rgb(currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue()));
+        mHex.setText("Hex:" + currentColor.getHex());
+        editTextR.setText(String.valueOf(currentColor.getrValue()));
+        editTextG.setText(String.valueOf(currentColor.getgValue()));
+        editTextB.setText(String.valueOf(currentColor.getbValue()));
 
+
+
+    }
 
     /*same funtionality as in seat screen. just with color values.
     * checks wether input is empty and in [0:255]
@@ -248,11 +271,15 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
                     editTextB.setText(String.valueOf(b));
 
                     //getting Hex value
-                    String hex ="#"+ Integer.toHexString(pixel);
+
                     //set background color of Ausgabe according to the picked color
-                    mAusgabe.setBackgroundColor(Color.rgb(r,g,b));
+                    // new function to use everywhere which uses ints instead of pixel values.
+
+
+
+                    mAusgabe.setBackgroundColor(Color.rgb(currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue()));
                     //set Hex value to textview
-                    mHex.setText("Hex: "+ hex); //\nHEX:wert "RGB: "+ r +", "+  g +", "+ b
+                    mHex.setText("Hex: "+ currentColor.getHex()); //\nHEX:wert "RGB: "+ r +", "+  g +", "+ b
                     // shows current color terminal
                     System.out.println("CURRENT COLOR:" + currentColor);
                 }
@@ -266,31 +293,10 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
             }
 
 
-
-
-
-            /**
-             *  /*send light http request here:  setlightseat | setlightinterior
-                  when user releases his finger from wheel -> color chosen.
-                    currently this only works for seat.
-             */
-
-
-
-
-               
             else if(event.getAction() == MotionEvent.ACTION_UP){
 
-                if(currentColorSettings.equals("seat")){
-                    apiLightClient.colorGetRequest("setlightseat", currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue());
-                }else if(currentColorSettings.equals("room")){
-                    apiLightClient.colorGetRequest("setlightinterior", currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue());
-                }
-                else{
-                    System.out.println("NO COLOR SETTINGS CHOSEN");
-                    //a new user probably would think to change room color first, so we just send on undefined settings colordata to room.
-                    apiLightClient.colorGetRequest("setlightinterior", currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue());
-                }
+                sendColorToServer();
+
 
             }
         }
@@ -305,6 +311,26 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
 
 
 
+    //calculates hex  value from ints of current color values.
+    public void calculateHex(){
+
+        String currentHex = String.format("#%02x%02x%02x", currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue());
+        currentColor.setHex(currentHex);
+    }
+
+    public void sendColorToServer(){
+        if(currentColorSettings.equals("seat")){
+            apiLightClient.colorGetRequest("setlightseat", currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue());
+        }else if(currentColorSettings.equals("room")){
+            apiLightClient.colorGetRequest("setlightinterior", currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue());
+        }
+        else{
+            System.out.println("NO COLOR SETTINGS CHOSEN");
+            //a new user probably would think to change room color first, so we just send on undefined settings colordata to room.
+            apiLightClient.colorGetRequest("setlightinterior", currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue());
+        }
+    }
+
 /*
     //overrides return android button to not close activity but to go to main menu instead.
     @Override
@@ -314,6 +340,8 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
     }
 
 */
+
+
 
 // chair color button
 public void setChairSettings(){
@@ -335,6 +363,7 @@ public void setRoomSettings(){
 
 
 }
+
 /*
 on focus change checks wether an edit text is actually focused or not, therefore
  executing methods after focus change when user finally decided his input
@@ -360,7 +389,7 @@ on focus change checks wether an edit text is actually focused or not, therefore
                             currentColor.setrValue(Integer.valueOf(temp));
                             System.out.println("Set R Color to:" +  temp);
                             //send server data
-                            mAusgabe.setBackgroundColor(Color.rgb(currentColor.getrValue(), currentColor.getgValue(), currentColor.getgValue()));
+                            setInfoAllViews();
                             apiLightClient.colorGetRequest("setlightseat", currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue());
 
 
@@ -386,7 +415,7 @@ on focus change checks wether an edit text is actually focused or not, therefore
                             currentColor.setgValue(Integer.valueOf(temp));
                             System.out.println("Set G Color to:" +  temp);
                             //send server data
-                            mAusgabe.setBackgroundColor(Color.rgb(currentColor.getrValue(), currentColor.getgValue(), currentColor.getgValue()));
+                           setInfoAllViews();
                             apiLightClient.colorGetRequest("setlightseat", currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue());
 
                         }
@@ -412,7 +441,7 @@ on focus change checks wether an edit text is actually focused or not, therefore
                             currentColor.setbValue(Integer.valueOf(temp));
                             System.out.println("Set B Color to:" +  temp);
                             //send server data
-                            mAusgabe.setBackgroundColor(Color.rgb(currentColor.getrValue(), currentColor.getgValue(), currentColor.getgValue()));
+                            setInfoAllViews();
                             apiLightClient.colorGetRequest("setlightseat", currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue());
 
                         }
@@ -454,26 +483,27 @@ on focus change checks wether an edit text is actually focused or not, therefore
                 break;
             case R.id.saveAsFavoriteColor_ID:
 
+                favoriteColor.setrValue(currentColor.getrValue());
+                favoriteColor.setgValue(currentColor.getgValue());
+                favoriteColor.setbValue(currentColor.getbValue());
+                favoriteColor.setHex(currentColor.getHex());
 
-                favoriteColor = currentColor;
-                System.out.println("Current Saved Color:" + favoriteColor);
+
+                System.out.println("FAV COLOR:" + currentColor);
+               // setInfoAllViews();
+                Toast.makeText(this, "Saved as Favrotie", Toast.LENGTH_SHORT).show();
 
                 break;
             case R.id.showFavoriteButton_ID:
 
+                currentColor.setrValue(favoriteColor.getrValue());
+                currentColor.setgValue(favoriteColor.getgValue());
+                currentColor.setbValue(favoriteColor.getbValue());
+                currentColor.setHex(favoriteColor.getHex());
 
-                currentColor = favoriteColor;
-                if(currentColorSettings.equals("seat")){
-                    apiLightClient.colorGetRequest("setlightseat", currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue());
-                }else if(currentColorSettings.equals("room")){
-                    apiLightClient.colorGetRequest("setlightinterior", currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue());
-                }
-                else{
-                    System.out.println("NO COLOR SETTINGS CHOSEN");
-                    apiLightClient.colorGetRequest("setlightinterior", currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue());
-                }
-
-                System.out.println("Current Color showing:" + currentColor);
+                setInfoAllViews();
+                System.out.println("FAV COLOR:" + favoriteColor);
+                Toast.makeText(this, "Favorite Shown!", Toast.LENGTH_SHORT).show();
 
                 break;
             case R.id.stopChair_lightScreen_ID2:

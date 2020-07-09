@@ -52,16 +52,19 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-//implement json lib, okhttp, retrofit
+/**
+
+implement json lib, okhttp, retrofit
 //provide post request for different screens.
 //get for:
 //          seat , back, feet, and position -- DONE
 //          stop chair,  -- DONE
 //          color settings -- DONE
 //          fav color pick -- DONE
-//          color data from theme, when theme is picked -- MISSING
-//          get themes with json -> use retrofit.
-
+//          color data from theme, when theme is picked -- TO DO
+//          get themes with json -> DONE IN MUSIC SCREEN
+//          save fav color>/pos on API Server from Team 1 --- TO DO
+**/
 public class Client {
 
 
