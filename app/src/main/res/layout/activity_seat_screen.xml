@@ -8,15 +8,57 @@
     tools:context=".SeatScreen">
 
     <TextView
+        android:id="@+id/textView3"
+        android:layout_width="90dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="48dp"
+        android:layout_weight="1"
+        android:gravity="center_horizontal|fill_vertical"
+        android:text="@string/SittingPos"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintBottom_toBottomOf="@+id/textView15"
+        app:layout_constraintStart_toEndOf="@+id/textView15"
+        app:layout_constraintTop_toTopOf="@+id/textView15"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="89dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="32dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/LyingPose"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="90dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="36dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/ZeroGravityPos"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintBottom_toBottomOf="@+id/textView2"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toTopOf="@+id/textView2" />
+
+    <TextView
         android:id="@+id/textView"
         android:layout_width="87dp"
         android:layout_height="43dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="20dp"
         android:layout_weight="1"
         android:gravity="center"
         android:text="@string/FavPos"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        tools:layout_editor_absoluteX="54dp"
-        tools:layout_editor_absoluteY="646dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline6"
@@ -188,7 +230,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="180dp"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.09"
+        app:layout_constraintGuide_percent="0.03"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -211,7 +253,7 @@
         android:id="@+id/savebutton_ID"
         android:layout_width="117dp"
         android:layout_height="50dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="36dp"
         android:background="@drawable/rounded_corners"
         android:text="@string/save_as_favorite"
         app:layout_constraintEnd_toEndOf="@+id/seekBarDown_ID"
@@ -226,7 +268,7 @@
         android:layout_marginBottom="140dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintGuide_end="112dp" />
+        app:layout_constraintGuide_end="-1dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline14"
@@ -239,11 +281,11 @@
         android:id="@+id/stopChair_seatScreen_ID"
         android:layout_width="90dp"
         android:layout_height="90dp"
-        android:layout_marginTop="848dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/stop_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/sittingPos_ID" />
 
     <LinearLayout
         android:id="@+id/linearLayout4"
@@ -312,16 +354,19 @@
 
     <ImageButton
         android:id="@+id/sittingPos_ID"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="56dp"
         android:layout_weight="1"
         android:adjustViewBounds="true"
         android:background="@drawable/statelist"
         android:padding="10dp"
         android:scaleType="fitCenter"
         android:src="@drawable/sitting_icon_transparent"
-        tools:layout_editor_absoluteX="325dp"
-        tools:layout_editor_absoluteY="702dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/zeroGPos_ID"
+        app:layout_constraintStart_toEndOf="@+id/zeroGPos_ID"
+        app:layout_constraintTop_toTopOf="@+id/zeroGPos_ID"
+        app:layout_constraintVertical_bias="0.0" />
 
     <SeekBar
         android:id="@+id/seekBarDown_ID"
@@ -339,44 +384,50 @@
 
     <ImageButton
         android:id="@+id/favPos_ID"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="20dp"
         android:layout_weight="1"
         android:adjustViewBounds="true"
         android:background="@drawable/statelist"
         android:padding="18dp"
         android:scaleType="centerInside"
         android:src="@drawable/herz_icon_transparent"
-        tools:layout_editor_absoluteX="55dp"
-        tools:layout_editor_absoluteY="702dp" />
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <ImageButton
         android:id="@+id/zeroGPos_ID"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="52dp"
         android:layout_weight="1"
         android:adjustViewBounds="true"
         android:background="@drawable/statelist"
         android:padding="10dp"
         android:scaleType="centerInside"
         android:src="@drawable/zerog_icon_transparent"
-        tools:layout_editor_absoluteX="451dp"
-        tools:layout_editor_absoluteY="702dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/lyingPos_ID"
+        app:layout_constraintStart_toEndOf="@+id/lyingPos_ID"
+        app:layout_constraintTop_toTopOf="@+id/lyingPos_ID"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageButton
         android:id="@+id/lyingPos_ID"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        android:layout_marginEnd="324dp"
-        android:layout_marginBottom="168dp"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="44dp"
         android:layout_weight="1"
         android:adjustViewBounds="true"
         android:background="@drawable/statelist"
         android:padding="7dp"
         android:scaleType="fitCenter"
         android:src="@drawable/lying_icon_transparent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/favPos_ID"
+        app:layout_constraintStart_toEndOf="@+id/favPos_ID"
+        app:layout_constraintTop_toTopOf="@+id/favPos_ID"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/seekBarViewInfo_Down_ID"
@@ -416,5 +467,12 @@
         app:layout_constraintEnd_toEndOf="@+id/seekBarViewInfo_Mid_ID"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/seekBarViewInfo_Mid_ID" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="90dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

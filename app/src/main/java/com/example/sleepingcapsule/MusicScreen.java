@@ -327,7 +327,7 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
                 break;
             case R.id.stopsoundbutton:
                 Toast.makeText(this, "Stopped Sound not Implemented.", Toast.LENGTH_SHORT).show();
-                //stopPlayer();
+                stopPlayer();
                 break;
             case R.id.saveFovriteThemeButton:
                 favoriteTheme = actualTheme;
