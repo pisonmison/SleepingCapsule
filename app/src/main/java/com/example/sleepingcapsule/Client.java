@@ -15,9 +15,20 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.Array;
+import java.net.URL;
+import java.security.KeyManagementException;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.security.cert.Certificate;
+import java.security.cert.CertificateException;
+import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +38,9 @@ import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSession;
+import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
+import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
 import okhttp3.Call;
@@ -70,7 +83,8 @@ public Client()
 
 
     /**
-     * Enables https connections
+     * Enables https connection to trust all ssl certificates. The only solutuion found which worked.
+     * This si pretty insecure and enables a man in the middle attack!.
      */
     @SuppressLint("TrulyRandom")
     public static void handleSSLHandshake() {
@@ -102,6 +116,45 @@ public Client()
         }
     }
 
+    /*
+    public SSLSocketFactory getSocketFactory(Context context)
+            throws CertificateException, IOException, KeyStoreException, NoSuchAlgorithmException, KeyManagementException {
+
+            // Load CAs from an InputStream (could be from a resource or ByteArrayInputStream or ...)
+            CertificateFactory cf = CertificateFactory.getInstance("X.509");
+
+           InputStream caInput = new BufferedInputStream(context.getResources().openRawResource(R.raw.myFile));
+            // I paste my myFile.crt in raw folder under res.
+            Certificate ca;
+
+            //noinspection TryFinallyCanBeTryWithResources
+            try {
+                ca = cf.generateCertificate(caInput);
+                System.out.println("ca=" + ((X509Certificate) ca).getSubjectDN());
+            } finally {
+                caInput.close();
+            }
+
+            // Create a KeyStore containing our trusted CAs
+            String keyStoreType = KeyStore.getDefaultType();
+            KeyStore keyStore = KeyStore.getInstance(keyStoreType);
+            keyStore.load(null, null);
+            keyStore.setCertificateEntry("ca", ca);
+
+            // Create a TrustManager that trusts the CAs in our KeyStore
+            String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
+            TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorithm);
+            tmf.init(keyStore);
+
+            // Create an SSLContext that uses our TrustManager
+            SSLContext sslContext = SSLContext.getInstance("TLS");
+            sslContext.init(null, tmf.getTrustManagers(), null);
+
+            return sslContext.getSocketFactory();
+        }
+
+
+*/
 
     public void getThemesFromServerUsingRetrofit(){
 
@@ -164,9 +217,9 @@ public Client()
      *
      *                             jsonListThemes.add(theme);
      */
-public void getThemesFromServer() {
+public void getThemesFromServer() throws CertificateException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, IOException {
 
-
+    //HttpsURLConnection.setDefaultSSLSocketFactory(getSocketFactory(mContext));
     mQueue = Volley.newRequestQueue(MusicScreen.mContext);
 
     String url = "https://10.18.12.95:3000/api/Themes?access_token=12345";
@@ -231,7 +284,7 @@ public void getThemesFromServer() {
 
         String angleString = String.valueOf(angle);
         String endBit = id + ":5000/";
-        String baseURL= "http://10.18.12A." + endBit; //change if needed
+        String baseURL= "http://10.18.12.A" + endBit; //change if needed
         String url = baseURL + command + "/" + angleString;
 
         final Request request = new Request.Builder()
@@ -281,7 +334,7 @@ public void getThemesFromServer() {
        //get color data
 
         String colorData = String.valueOf(temp);
-        String baseURL= "http://10.18.12.93:5000A/"; //change if needed
+        String baseURL= "http://10.18.12.93:5000/A"; //change if needed
         String url = baseURL + command + "/" + colorData;
 
         Request request = new Request.Builder()
@@ -321,7 +374,7 @@ public void getThemesFromServer() {
 
 
 
-        String url = "http://10.18.12.91:5000A/setstopbackrest";
+        String url = "http://10.18.12.91:5000/setstopbackrest";
 
         Request request = new Request.Builder()
                 .url(url)
@@ -353,7 +406,7 @@ public void getThemesFromServer() {
 
 
 
-        String url = "http://10.18.12.92:5000A/" + command;
+        String url = "http://10.18.12.92:5000/" + command;
 
         Request request = new Request.Builder()
                 .url(url)

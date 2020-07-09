@@ -450,14 +450,14 @@ Fußlehne: 0° - 89° (Verstellzeit zwischen Extremalwinkel: 15 Sek)
                     break;
                 case R.id.stopChair_seatScreen_ID:
 
-                    apiClient.getThemesFromServer();
-                    //apiClient.getThemesFromServerUsingRetrofit();
 
-                    /*apiClient.stopChairGetRequest1();
+                    apiClient.getThemesFromServerUsingRetrofit();
+
+                    apiClient.stopChairGetRequest1();
                     apiClient.stopChairGetRequest2("setstopseating");
                     apiClient.stopChairGetRequest2("setstopfootrest");
 
-                    */
+
                     Toast.makeText(this, "Chair Stopped!", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.seatImageView_ID:

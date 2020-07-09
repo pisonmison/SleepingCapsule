@@ -9,12 +9,12 @@
 
     <ImageButton
         android:id="@+id/seat_button1"
-        android:layout_width="175dp"
-        android:layout_height="175dp"
+        android:layout_width="145dp"
+        android:layout_height="145dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="840dp"
-        android:layout_marginBottom="150dp"
+        android:layout_marginEnd="421dp"
+        android:layout_marginBottom="392dp"
         android:background="@drawable/seat_button"
         android:backgroundTint="#4DD7FA"
         android:contentDescription='android:contentDescription="@string/desc"'
@@ -26,12 +26,12 @@
     <ImageButton
         android:id="@+id/music_button1"
         style="@style/Widget.AppCompat.ImageButton"
-        android:layout_width="175dp"
-        android:layout_height="175dp"
+        android:layout_width="145dp"
+        android:layout_height="145dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="275dp"
-        android:layout_marginBottom="150dp"
+        android:layout_marginEnd="33dp"
+        android:layout_marginBottom="385dp"
         android:background="@drawable/seat_button"
         android:backgroundTint="#4DD7FA"
         android:elevation="100dp"
@@ -40,12 +40,12 @@
 
     <ImageButton
         android:id="@+id/light_button1"
-        android:layout_width="175dp"
-        android:layout_height="175dp"
+        android:layout_width="145dp"
+        android:layout_height="145dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="558dp"
-        android:layout_marginBottom="150dp"
+        android:layout_marginEnd="229dp"
+        android:layout_marginBottom="389dp"
         android:background="@drawable/seat_button"
         android:backgroundTint="#4DD7FA"
         android:elevation="100dp"
@@ -54,14 +54,14 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="725dp"
-        android:layout_height="315dp"
+        android:layout_width="417dp"
+        android:layout_height="185dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="284dp"
-        android:layout_marginBottom="373dp"
+        android:layout_marginTop="164dp"
+        android:layout_marginEnd="93dp"
+        android:layout_marginBottom="611dp"
         app:srcCompat="@drawable/snooze_graphic" />
 
 </RelativeLayout>

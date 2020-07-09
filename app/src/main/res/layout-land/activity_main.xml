@@ -11,16 +11,18 @@
         android:id="@+id/seat_button1"
         android:layout_width="175dp"
         android:layout_height="175dp"
+        android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="840dp"
-        android:layout_marginBottom="150dp"
+        android:layout_marginStart="115dp"
+        android:layout_marginEnd="670dp"
+        android:layout_marginBottom="125dp"
         android:background="@drawable/seat_button"
         android:backgroundTint="#4DD7FA"
         android:contentDescription='android:contentDescription="@string/desc"'
+
         android:elevation="100dp"
         android:padding="100dp"
-
         android:src="@drawable/ic_action_seat" />
 
     <ImageButton
@@ -30,8 +32,8 @@
         android:layout_height="175dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="275dp"
-        android:layout_marginBottom="150dp"
+        android:layout_marginEnd="115dp"
+        android:layout_marginBottom="127dp"
         android:background="@drawable/seat_button"
         android:backgroundTint="#4DD7FA"
         android:elevation="100dp"
@@ -44,8 +46,8 @@
         android:layout_height="175dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="558dp"
-        android:layout_marginBottom="150dp"
+        android:layout_marginEnd="394dp"
+        android:layout_marginBottom="124dp"
         android:background="@drawable/seat_button"
         android:backgroundTint="#4DD7FA"
         android:elevation="100dp"
@@ -59,9 +61,9 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="284dp"
-        android:layout_marginBottom="373dp"
+        android:layout_marginTop="31dp"
+        android:layout_marginEnd="118dp"
+        android:layout_marginBottom="375dp"
         app:srcCompat="@drawable/snooze_graphic" />
 
 </RelativeLayout>

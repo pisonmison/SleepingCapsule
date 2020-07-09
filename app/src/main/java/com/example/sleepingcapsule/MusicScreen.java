@@ -67,7 +67,7 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
     private ImageButton stopchairButton;
 
     //SoundPool soundpool;
-    MediaPlayer player;
+    private MediaPlayer player;
 
     private boolean able2PlaySound = false;
 
@@ -86,8 +86,8 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
         actualTheme = new Themes(); //create theme for saving
         favoriteTheme = new Themes();
 
+        enableMusic();
 
-        apiMusicClient.handleSSLHandshake();
 
 
 
@@ -228,6 +228,10 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
 
     }
 
+    private void enableMusic(){
+        apiMusicClient.handleSSLHandshake();
+        able2PlaySound = true;
+    }
 
     private void loadThemesFromServer() {
         String url = "https://10.18.12.95:3000/api/Themes?access_token=12345";
@@ -322,7 +326,8 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
                 }
                 break;
             case R.id.stopsoundbutton:
-                stopPlayer();
+                Toast.makeText(this, "Stopped Sound not Implemented.", Toast.LENGTH_SHORT).show();
+                //stopPlayer();
                 break;
             case R.id.saveFovriteThemeButton:
                 favoriteTheme = actualTheme;
@@ -354,6 +359,9 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
             player.release();
             player = null;
         }
+        else{
+            Toast.makeText(this, "No Themes loaded yet", Toast.LENGTH_SHORT).show();
+        }
 
     }
     /*
@@ -372,44 +380,49 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
 
     public void playFavorite() {
         //soundpool.play(favoriteTheme.getMusic(), 1, 1, 1, -1, 1);
-        if (player == null) {
-            try {
-                player = new MediaPlayer();
-                player.setDataSource(favoriteTheme.getmMusic());
-                player.prepare(); // might take long! (for buffering, etc)
-                player.start();
-            } catch (IOException e) {
-                Toast.makeText(MusicScreen.this, e.getMessage(),Toast.LENGTH_SHORT).show();
-            }
-            player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                @Override
-                public void onCompletion(MediaPlayer mp) {
-                    stopPlayer();
+        if(able2PlaySound){
+            if (player == null) {
+                try {
+                    player = new MediaPlayer();
+                    player.setDataSource(favoriteTheme.getmMusic());
+                    player.prepare(); // might take long! (for buffering, etc)
+                    player.start();
+                } catch (IOException e) {
+                    Toast.makeText(MusicScreen.this, e.getMessage(),Toast.LENGTH_SHORT).show();
                 }
-            });
+                player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        stopPlayer();
+                    }
+                });
+            }
+            else{
+                stopPlayer();
+                try {
+                    player = new MediaPlayer();
+                    player.setDataSource(favoriteTheme.getmMusic());
+                    player.prepare(); // might take long! (for buffering, etc)
+                    player.start();
+
+                } catch (IOException e) {
+                    Toast.makeText(MusicScreen.this, "Error",Toast.LENGTH_SHORT).show();
+                }
+                player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        stopPlayer();
+
+                    }
+                });
+            }
+
+            player.setLooping(true);
+            themeDescriptionView.setText(favoriteTheme.getmDescription());
         }
         else{
-            stopPlayer();
-            try {
-                player = new MediaPlayer();
-                player.setDataSource(favoriteTheme.getmMusic());
-                player.prepare(); // might take long! (for buffering, etc)
-                player.start();
 
-            } catch (IOException e) {
-                Toast.makeText(MusicScreen.this, "Error",Toast.LENGTH_SHORT).show();
-            }
-            player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                @Override
-                public void onCompletion(MediaPlayer mp) {
-                    stopPlayer();
-
-                }
-            });
         }
-
-        player.setLooping(true);
-        themeDescriptionView.setText(favoriteTheme.getmDescription());
 
     }
 

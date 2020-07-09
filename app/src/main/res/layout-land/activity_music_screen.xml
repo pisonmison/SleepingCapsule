@@ -52,66 +52,58 @@
         android:layout_marginEnd="180dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintGuide_end="101dp" />
+        app:layout_constraintGuide_begin="1060dp" />
 
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="250dp"
         android:layout_height="40dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginStart="192dp"
         android:fontFamily="@font/bungee2"
         android:gravity="center"
         android:text="@string/picktheme"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/listview"
-        app:layout_constraintEnd_toEndOf="@+id/listview"
-        app:layout_constraintHorizontal_bias="0.404"
-        app:layout_constraintStart_toStartOf="@+id/listview"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintBottom_toTopOf="@+id/guideline6"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView10"
-        android:layout_width="308dp"
-        android:layout_height="39dp"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="176dp"
         android:fontFamily="@font/bungee2"
         android:gravity="center"
         android:text="@string/ownmusic"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.862" />
+        app:layout_constraintBottom_toTopOf="@+id/guideline6"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/playFavoriteThemeButton"
         android:layout_width="117dp"
         android:layout_height="50dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginStart="348dp"
+        android:layout_marginTop="432dp"
         android:background="@drawable/red_rounded_corners"
         android:text="@string/play_favorite"
         android:textColor="#0B0A0A"
         android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="@+id/textDescriptionView"
-        app:layout_constraintTop_toBottomOf="@+id/textDescriptionView" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/saveFovriteThemeButton"
         android:layout_width="117dp"
         android:layout_height="50dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="432dp"
         android:background="@drawable/rounded_corners"
         android:text="@string/save_as_favorite"
-        app:layout_constraintEnd_toStartOf="@+id/playFavoriteThemeButton"
-        app:layout_constraintHorizontal_bias="0.336"
-        app:layout_constraintStart_toStartOf="@+id/textDescriptionView"
-        app:layout_constraintTop_toBottomOf="@+id/textDescriptionView" />
+        app:layout_constraintStart_toStartOf="@+id/guideline8"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline6"
@@ -119,7 +111,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="135dp"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="122dp"
+        app:layout_constraintGuide_begin="121dp"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -129,7 +121,7 @@
         android:layout_marginBottom="140dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintGuide_begin="601dp" />
+        app:layout_constraintGuide_begin="671dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline8"
@@ -137,21 +129,19 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="180dp"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.16"
+        app:layout_constraintGuide_percent="0.15"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
         android:id="@+id/stopChair_musicScreen_ID"
         android:layout_width="90dp"
         android:layout_height="90dp"
+        android:layout_marginTop="504dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/stop_button"
         android:contentDescription="@string/stopchair"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.981" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline17"
@@ -162,113 +152,108 @@
 
     <TextView
         android:id="@+id/textDescriptionView"
-        android:layout_width="350dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="384dp"
+        android:layout_width="285dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="360dp"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/listview"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/listview"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout6" />
+        app:layout_constraintStart_toStartOf="@+id/guideline8"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
         android:id="@+id/listview"
-        android:layout_width="352dp"
-        android:layout_height="278dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="28dp"
+        android:layout_width="317dp"
+        android:layout_height="197dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="40dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/textDescriptionView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
         app:layout_constraintStart_toStartOf="@+id/guideline8"
-        app:layout_constraintTop_toTopOf="@+id/guideline6"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="@+id/guideline6" />
 
     <TextView
         android:id="@+id/SoundControl"
         android:layout_width="250dp"
         android:layout_height="40dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="172dp"
         android:fontFamily="@font/bungee2"
         android:gravity="center"
         android:text="@string/soundcontrol"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.67" />
+        app:layout_constraintTop_toBottomOf="@+id/spotifyButton_ID"
+        app:layout_constraintVertical_bias="0.032" />
 
     <ImageButton
         android:id="@+id/musicLibraryButton"
-        android:layout_width="84dp"
-        android:layout_height="86dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="86dp"
+        android:layout_height="65dp"
+        android:layout_marginEnd="52dp"
         android:backgroundTint="#006e8c"
         android:contentDescription="@string/musiclibrary"
         android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/spotifyButton_ID"
         app:layout_constraintEnd_toStartOf="@+id/spotifyButton_ID"
-        app:layout_constraintHorizontal_bias="0.276"
+        app:layout_constraintHorizontal_bias="0.75"
         app:layout_constraintStart_toStartOf="@+id/textView10"
-        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        app:layout_constraintTop_toTopOf="@+id/spotifyButton_ID"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/musiclibrary" />
 
     <ImageButton
         android:id="@+id/spotifyButton_ID"
-        android:layout_width="79dp"
-        android:layout_height="81dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="48dp"
+        android:layout_width="76dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="12dp"
         android:backgroundTint="#006e8c"
         android:contentDescription="@string/spotify"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="@+id/textView10"
-        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        app:layout_constraintTop_toTopOf="@+id/guideline17"
         app:srcCompat="@drawable/spotify" />
 
     <ImageButton
         android:id="@+id/playbutton"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginBottom="156dp"
+        android:layout_marginEnd="24dp"
         android:backgroundTint="@color/snoozeBlau"
         android:contentDescription="@string/playbutton"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/pausebutton"
         app:layout_constraintEnd_toStartOf="@+id/pausebutton"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/SoundControl"
         app:layout_constraintTop_toTopOf="@+id/pausebutton"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/playsoundbutton" />
 
     <ImageButton
         android:id="@+id/pausebutton"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginTop="56dp"
         android:backgroundTint="@color/snoozeBlau"
         android:contentDescription="@string/pausebutton"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@+id/stopsoundbutton"
-        app:layout_constraintEnd_toStartOf="@+id/stopsoundbutton"
-        app:layout_constraintTop_toTopOf="@+id/stopsoundbutton"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/pausesoundbutton" />
+        app:layout_constraintTop_toBottomOf="@+id/SoundControl"
+        app:srcCompat="@drawable/pausesoundbutton"
+        tools:layout_editor_absoluteX="726dp" />
 
     <ImageButton
         android:id="@+id/stopsoundbutton"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="196dp"
+        android:layout_marginEnd="24dp"
         android:backgroundTint="@color/snoozeBlau"
         android:contentDescription="@string/stopsound"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/SoundControl"
+        app:layout_constraintBottom_toBottomOf="@+id/playbutton"
+        app:layout_constraintEnd_toStartOf="@+id/playbutton"
+        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintStart_toStartOf="@+id/SoundControl"
+        app:layout_constraintTop_toTopOf="@+id/playbutton"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/stopsoundbutton" />
 
 
