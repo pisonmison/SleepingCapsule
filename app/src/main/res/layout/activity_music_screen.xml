@@ -71,18 +71,18 @@
 
     <TextView
         android:id="@+id/textView10"
-        android:layout_width="308dp"
+        android:layout_width="266dp"
         android:layout_height="39dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="516dp"
         android:fontFamily="@font/bungee2"
         android:gravity="center"
         android:text="@string/ownmusic"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/stopsoundbutton"
-        app:layout_constraintHorizontal_bias="0.37"
-        app:layout_constraintStart_toStartOf="@+id/playbutton"
-        app:layout_constraintTop_toBottomOf="@+id/pausebutton" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.958"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline17" />
 
     <Button
         android:id="@+id/playFavoriteThemeButton"
@@ -179,24 +179,24 @@
 
     <TextView
         android:id="@+id/SoundControl"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="88dp"
+        android:layout_width="254dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="516dp"
         android:fontFamily="@font/bungee2"
         android:gravity="center"
         android:text="@string/soundcontrol"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/textDescriptionView"
-        app:layout_constraintHorizontal_bias="0.558"
-        app:layout_constraintStart_toStartOf="@+id/textDescriptionView"
-        app:layout_constraintTop_toBottomOf="@+id/textDescriptionView" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.127"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline17" />
 
     <ImageButton
         android:id="@+id/musicLibraryButton"
         android:layout_width="70dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="196dp"
-        android:layout_marginTop="764dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="364dp"
+        android:layout_marginTop="600dp"
         android:backgroundTint="#006e8c"
         android:contentDescription="@string/musiclibrary"
         android:scaleType="fitCenter"
@@ -208,14 +208,14 @@
         android:id="@+id/spotifyButton_ID"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginStart="44dp"
+        android:layout_marginStart="28dp"
         android:backgroundTint="#006e8c"
         android:contentDescription="@string/spotify"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/musicLibraryButton"
         app:layout_constraintStart_toEndOf="@+id/musicLibraryButton"
         app:layout_constraintTop_toTopOf="@+id/musicLibraryButton"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/spotify" />
 
     <ImageButton
@@ -238,14 +238,14 @@
         android:id="@+id/pausebutton"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="12dp"
         android:backgroundTint="@color/snoozeBlau"
         android:contentDescription="@string/pausebutton"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/stopsoundbutton"
         app:layout_constraintEnd_toStartOf="@+id/stopsoundbutton"
         app:layout_constraintTop_toTopOf="@+id/stopsoundbutton"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/pausesoundbutton" />
 
     <ImageButton
@@ -253,6 +253,7 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginTop="40dp"
+        android:layout_marginEnd="12dp"
         android:backgroundTint="@color/snoozeBlau"
         android:contentDescription="@string/stopsound"
         android:scaleType="fitCenter"

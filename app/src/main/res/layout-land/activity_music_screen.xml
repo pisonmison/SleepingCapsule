@@ -59,14 +59,14 @@
         android:id="@+id/textView9"
         android:layout_width="250dp"
         android:layout_height="40dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/bungee2"
         android:gravity="center"
         android:text="@string/picktheme"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.249"
+        app:layout_constraintHorizontal_bias="0.214"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline17" />
 
@@ -103,8 +103,8 @@
         android:id="@+id/saveFovriteThemeButton"
         android:layout_width="100dp"
         android:layout_height="30dp"
-        android:layout_marginStart="184dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="164dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/rounded_corners"
         android:text="@string/save_as_favorite"
         android:textSize="10dp"
@@ -135,7 +135,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="180dp"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.15"
+        app:layout_constraintGuide_percent="0.13"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
@@ -171,10 +171,10 @@
         android:id="@+id/listview"
         android:layout_width="317dp"
         android:layout_height="197dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="24dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="@+id/textView9"
-        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintHorizontal_bias="0.388"
         app:layout_constraintStart_toStartOf="@+id/textView9"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
@@ -221,9 +221,9 @@
 
     <ImageButton
         android:id="@+id/playbutton"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginEnd="32dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="44dp"
         android:backgroundTint="@color/snoozeBlau"
         android:contentDescription="@string/playbutton"
         android:scaleType="fitCenter"
@@ -235,10 +235,10 @@
 
     <ImageButton
         android:id="@+id/pausebutton"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="160dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="176dp"
         android:backgroundTint="@color/snoozeBlau"
         android:contentDescription="@string/pausebutton"
         android:scaleType="fitCenter"
@@ -248,9 +248,9 @@
 
     <ImageButton
         android:id="@+id/stopsoundbutton"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginEnd="24dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="40dp"
         android:backgroundTint="@color/snoozeBlau"
         android:contentDescription="@string/stopsound"
         android:scaleType="fitCenter"

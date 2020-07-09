@@ -275,7 +275,7 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
                     //set background color of Ausgabe according to the picked color
                     // new function to use everywhere which uses ints instead of pixel values.
 
-
+                    calculateHex();
 
                     mAusgabe.setBackgroundColor(Color.rgb(currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue()));
                     //set Hex value to textview
@@ -387,6 +387,7 @@ on focus change checks wether an edit text is actually focused or not, therefore
                     else{
                         if(Integer.valueOf(temp) < 256){
                             currentColor.setrValue(Integer.valueOf(temp));
+                            calculateHex();
                             System.out.println("Set R Color to:" +  temp);
                             //send server data
                             setInfoAllViews();
@@ -413,6 +414,7 @@ on focus change checks wether an edit text is actually focused or not, therefore
                     else{
                         if(Integer.valueOf(temp) < 256){
                             currentColor.setgValue(Integer.valueOf(temp));
+                            calculateHex();
                             System.out.println("Set G Color to:" +  temp);
                             //send server data
                            setInfoAllViews();
@@ -439,6 +441,7 @@ on focus change checks wether an edit text is actually focused or not, therefore
                     else{
                         if(Integer.valueOf(temp) < 256){
                             currentColor.setbValue(Integer.valueOf(temp));
+                            calculateHex();
                             System.out.println("Set B Color to:" +  temp);
                             //send server data
                             setInfoAllViews();
