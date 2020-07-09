@@ -78,14 +78,14 @@
         android:id="@+id/saveAsFavoriteColor_ID"
         android:layout_width="100dp"
         android:layout_height="30dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="64dp"
 
         android:background="@drawable/rounded_corners"
         android:text="@string/save_as_favorite"
         android:textColor="#000000"
         android:textSize="10dp"
         app:layout_constraintEnd_toEndOf="@+id/hex"
-        app:layout_constraintHorizontal_bias="0.511"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="@+id/hex"
         app:layout_constraintTop_toBottomOf="@+id/hex" />
 
@@ -133,7 +133,7 @@
         android:id="@+id/showFavoriteButton_ID"
         android:layout_width="100dp"
         android:layout_height="30dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="44dp"
         android:background="@drawable/rounded_corners"
         android:backgroundTint="@color/orangeRed"
         android:text="@string/show_favorite"
@@ -243,12 +243,11 @@
         android:id="@+id/seekBar2"
         android:layout_width="248dp"
         android:layout_height="0dp"
-        android:layout_marginStart="176dp"
-        android:layout_marginTop="252dp"
+        android:layout_marginStart="324dp"
+        android:layout_marginTop="384dp"
         android:max="255"
         android:min="0"
         android:progressDrawable="@drawable/blacktowhite"
-        android:rotation="-90"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -349,9 +348,9 @@
 
     <TextView
         android:id="@+id/hex"
-        android:layout_width="229dp"
-        android:layout_height="34dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="154dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="8dp"
         android:text="@string/hex"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/ausgabe"
@@ -361,12 +360,12 @@
 
     <View
         android:id="@+id/ausgabe"
-        android:layout_width="229dp"
-        android:layout_height="24dp"
-        android:layout_marginTop="24dp"
-        android:background="@color/snoozeBlau"
+        android:layout_width="174dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="68dp"
+        android:background="@drawable/rounded_corners"
         app:layout_constraintEnd_toEndOf="@+id/colorwheel_ID"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.195"
         app:layout_constraintStart_toStartOf="@+id/colorwheel_ID"
         app:layout_constraintTop_toBottomOf="@+id/colorwheel_ID" />
 

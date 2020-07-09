@@ -3,6 +3,7 @@ package com.example.sleepingcapsule;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -178,6 +179,7 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
         //create bitmap
 
 
+
         seekBar2 = findViewById(R.id.seekBar2);
         seekBar2 .setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -218,6 +220,9 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
     }
 
     public void setInfoAllViews(){
+
+
+
         mAusgabe.setBackgroundColor(Color.rgb(currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue()));
         mHex.setText("Hex:" + currentColor.getHex());
         editTextR.setText(String.valueOf(currentColor.getrValue()));
