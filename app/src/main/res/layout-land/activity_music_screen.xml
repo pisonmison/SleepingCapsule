@@ -93,7 +93,7 @@
         android:background="@drawable/red_rounded_corners"
         android:text="@string/play_favorite"
         android:textColor="#0B0A0A"
-        android:textSize="10dp"
+        android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@+id/saveFovriteThemeButton"
         app:layout_constraintStart_toEndOf="@+id/saveFovriteThemeButton"
         app:layout_constraintTop_toTopOf="@+id/saveFovriteThemeButton"
@@ -107,7 +107,7 @@
         android:layout_marginTop="40dp"
         android:background="@drawable/rounded_corners"
         android:text="@string/save_as_favorite"
-        android:textSize="10dp"
+        android:textSize="10sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textDescriptionView" />
 
@@ -127,7 +127,7 @@
         android:layout_marginBottom="140dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintGuide_begin="671dp" />
+        app:layout_constraintGuide_end="-71dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline8"
@@ -139,15 +139,15 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
-        android:id="@+id/stopChair_musicScreen_ID"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="24dp"
-        android:background="@drawable/stop_button"
-        android:contentDescription="@string/stopchair"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pausebutton" />
+    android:id="@+id/stopChair_musicScreen_ID"
+    android:layout_width="90dp"
+    android:layout_height="90dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginEnd="24dp"
+    android:background="@drawable/stop_button"
+    android:contentDescription="@string/stopchair"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/pausebutton" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline17"
@@ -194,8 +194,8 @@
 
     <ImageButton
         android:id="@+id/musicLibraryButton"
-        android:layout_width="86dp"
-        android:layout_height="65dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:layout_marginEnd="44dp"
         android:backgroundTint="#006e8c"
         android:contentDescription="@string/musiclibrary"
@@ -208,8 +208,8 @@
 
     <ImageButton
         android:id="@+id/spotifyButton_ID"
-        android:layout_width="76dp"
-        android:layout_height="65dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:layout_marginTop="56dp"
         android:layout_marginEnd="204dp"
         android:backgroundTint="#006e8c"
@@ -223,26 +223,25 @@
         android:id="@+id/playbutton"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginEnd="44dp"
+        android:layout_marginEnd="40dp"
         android:backgroundTint="@color/snoozeBlau"
         android:contentDescription="@string/playbutton"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/pausebutton"
         app:layout_constraintEnd_toStartOf="@+id/pausebutton"
         app:layout_constraintTop_toTopOf="@+id/pausebutton"
-        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/playsoundbutton" />
 
     <ImageButton
         android:id="@+id/pausebutton"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="176dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="40dp"
         android:backgroundTint="@color/snoozeBlau"
         android:contentDescription="@string/pausebutton"
         android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/stopsoundbutton"
         app:layout_constraintTop_toBottomOf="@+id/SoundControl"
         app:srcCompat="@drawable/pausesoundbutton" />
 
@@ -250,14 +249,13 @@
         android:id="@+id/stopsoundbutton"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginEnd="175dp"
         android:backgroundTint="@color/snoozeBlau"
         android:contentDescription="@string/stopsound"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@+id/playbutton"
-        app:layout_constraintEnd_toStartOf="@+id/playbutton"
-        app:layout_constraintTop_toTopOf="@+id/playbutton"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintBottom_toBottomOf="@+id/pausebutton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/pausebutton"
         app:srcCompat="@drawable/stopsoundbutton" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -265,7 +263,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_end="93dp" />
+        app:layout_constraintGuide_percent="0.845" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline22"

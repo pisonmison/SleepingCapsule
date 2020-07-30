@@ -94,7 +94,7 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
 
         mQueue = Volley.newRequestQueue(this);
 
-        String url = "https://www.mboxdrive.com/Dance%20(online-audio-converter.com).mp3"; // your URL here
+       // String url = "https://www.mboxdrive.com/Dance%20(online-audio-converter.com).mp3"; // your URL here
 /*
         player.setAudioStreamType(AudioManager.STREAM_MUSIC);
         try {
@@ -191,8 +191,9 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
                     try {
                         player = new MediaPlayer();
                         player.setDataSource(actualTheme.getmMusic());
-                        player.prepare(); // might take long! (for buffering, etc)
+                        player.prepare();
                         player.start();
+
                     } catch (Exception e) {
                         Toast.makeText(MusicScreen.this, e.getMessage(),Toast.LENGTH_SHORT).show();
                     }
@@ -204,8 +205,9 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
                     try {
                         player = new MediaPlayer();
                         player.setDataSource(actualTheme.getmMusic());
-                        player.prepare(); // might take long! (for buffering, etc)
+                        player.prepare();
                         player.start();
+
                     } catch (Exception e) {
                         Toast.makeText(MusicScreen.this, e.getMessage(),Toast.LENGTH_SHORT).show();
                     }
@@ -229,8 +231,8 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
     }
 
     private void enableMusic(){
-        apiMusicClient.handleSSLHandshake();
-        able2PlaySound = true;
+        Client.handleSSLHandshake();
+
     }
 
     private void loadThemesFromServer() {
@@ -313,25 +315,17 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
                 MainActivity.openMusicScreen(mContext);
                 break;
             case R.id.playbutton:
-                if (player == null) {
-                    Toast.makeText(this, "select a theme", Toast.LENGTH_SHORT).show();
-                }
-                if(!player.isPlaying()){
-                    player.start();
-                }
+                resumePlayer();
                 break;
             case R.id.pausebutton:
-                if (player.isPlaying()) {
-                    player.pause();
-                }
+                pausePlayer();
                 break;
             case R.id.stopsoundbutton:
-                Toast.makeText(this, "Stopped Sound not Implemented.", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Stopped Sound not Implemented.", Toast.LENGTH_SHORT).show();
                 stopPlayer();
                 break;
             case R.id.saveFovriteThemeButton:
-                favoriteTheme = actualTheme;
-                playFavoriteThemeButton.setText("Play " + favoriteTheme.getmTitle());
+                saveFavorite();
                 break;
             case R.id.playFavoriteThemeButton:
                 playFavorite();
@@ -354,7 +348,7 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
     }
 
     private void stopPlayer() {
-        if(player!=null) {
+        if(actualTheme.mMusic!=null) {
             player.stop();
             player.release();
             player = null;
@@ -363,6 +357,40 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
             Toast.makeText(this, "No Themes loaded yet", Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    private void resumePlayer(){
+        if (actualTheme.mMusic!=null) {
+            if (player==null){
+                Toast.makeText(this,"No Themes loaded yet", Toast.LENGTH_SHORT).show();
+            }
+            if (player.isPlaying()) {
+                Toast.makeText(this, "Already playing", Toast.LENGTH_SHORT).show();
+            }
+            if (!player.isPlaying()) {
+                player.start();
+            }
+        }
+        else{
+            Toast.makeText(this,"No Themes loaded yet", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void pausePlayer(){
+        if (actualTheme.mMusic!=null) {
+            if (player == null){
+                Toast.makeText(this,"No Themes loaded yet", Toast.LENGTH_SHORT).show();
+            }
+            if (player.isPlaying()) {
+                player.pause();
+            }
+            if (!player.isPlaying()) {
+                Toast.makeText(this, "Already on pause", Toast.LENGTH_SHORT).show();
+            }
+        }
+        else {
+            Toast.makeText(this,"No Themes loaded yet", Toast.LENGTH_SHORT).show();
+        }
     }
     /*
     checks if package is installed,
@@ -378,17 +406,27 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
         }
     }
 
+    public void saveFavorite(){
+        if (actualTheme.mMusic != null){
+            favoriteTheme = actualTheme;
+            playFavoriteThemeButton.setText("Play " + favoriteTheme.getmTitle());
+        }
+        else {
+            Toast.makeText(this, "No Themes loaded yet", Toast.LENGTH_SHORT).show();
+        }
+    }
     public void playFavorite() {
         //soundpool.play(favoriteTheme.getMusic(), 1, 1, 1, -1, 1);
-        if(able2PlaySound){
+        if (favoriteTheme.mMusic != null) {
             if (player == null) {
                 try {
                     player = new MediaPlayer();
                     player.setDataSource(favoriteTheme.getmMusic());
                     player.prepare(); // might take long! (for buffering, etc)
                     player.start();
+                    able2PlaySound=true;
                 } catch (IOException e) {
-                    Toast.makeText(MusicScreen.this, e.getMessage(),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MusicScreen.this, "No Themes loaded yet", Toast.LENGTH_SHORT).show();
                 }
                 player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                     @Override
@@ -396,17 +434,17 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
                         stopPlayer();
                     }
                 });
-            }
-            else{
+            } else {
                 stopPlayer();
                 try {
                     player = new MediaPlayer();
                     player.setDataSource(favoriteTheme.getmMusic());
                     player.prepare(); // might take long! (for buffering, etc)
                     player.start();
+                    able2PlaySound=true;
 
                 } catch (IOException e) {
-                    Toast.makeText(MusicScreen.this, "Error",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MusicScreen.this, "Error", Toast.LENGTH_SHORT).show();
                 }
                 player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                     @Override
@@ -421,9 +459,9 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
             themeDescriptionView.setText(favoriteTheme.getmDescription());
         }
         else{
-
+            Toast.makeText(this, "No Themes loaded yet", Toast.LENGTH_SHORT).show();
         }
+    }
 
     }
 
-}
