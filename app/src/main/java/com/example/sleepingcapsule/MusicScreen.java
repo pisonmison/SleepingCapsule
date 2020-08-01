@@ -181,53 +181,60 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
             @Override
 
             public void onItemClick(AdapterView<?> adapter, View view, int position, long l) {
-
-
                 actualTheme = themelist.get(position);
+                playing(actualTheme);
+/*
+               */
+
+            }
+
+        });
 
 
-                if (player == null) {
+    }
 
-                    try {
-                        player = new MediaPlayer();
-                        player.setDataSource(actualTheme.getmMusic());
-                        player.prepare();
-                        player.start();
-
-                    } catch (Exception e) {
-                        Toast.makeText(MusicScreen.this, e.getMessage(),Toast.LENGTH_SHORT).show();
-                    }
+    public void playMusic(int position){
+        actualTheme = themelist.get(position);
+        playing(actualTheme);
 
 
-                }
-               else{
-                    stopPlayer();
-                    try {
-                        player = new MediaPlayer();
-                        player.setDataSource(actualTheme.getmMusic());
-                        player.prepare();
-                        player.start();
+        if (player == null) {
 
-                    } catch (Exception e) {
-                        Toast.makeText(MusicScreen.this, e.getMessage(),Toast.LENGTH_SHORT).show();
-                    }
-                }
-                player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer mp) {
-                        stopPlayer();
+            try {
+                player = new MediaPlayer();
+                player.setDataSource(actualTheme.getmMusic());
+                player.prepare();
+                player.start();
 
-                    }
-                });
+            } catch (Exception e) {
+                Toast.makeText(MusicScreen.this, "No Themes loaded yet",Toast.LENGTH_SHORT).show();
+            }
 
-                player.setLooping(true);
-                //soundpool.play(actualTheme.getMusic(), 1, 1, 1, -1, 1);
-                themeDescriptionView.setText(actualTheme.getmDescription());
+
+        }
+        else{
+            stopPlayer();
+            try {
+                player = new MediaPlayer();
+                player.setDataSource(actualTheme.getmMusic());
+                player.prepare();
+                player.start();
+
+            } catch (Exception e) {
+                Toast.makeText(MusicScreen.this,"No Themes loaded yet",Toast.LENGTH_SHORT).show();
+            }
+        }
+        player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                stopPlayer();
 
             }
         });
 
-
+        player.setLooping(true);
+        //soundpool.play(actualTheme.getMusic(), 1, 1, 1, -1, 1);
+        themeDescriptionView.setText(actualTheme.getmDescription());
     }
 
     private void enableMusic(){
@@ -328,7 +335,12 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
                 saveFavorite();
                 break;
             case R.id.playFavoriteThemeButton:
-                playFavorite();
+                if (favoriteTheme.mMusic != null) {
+                    playing(favoriteTheme);
+                }
+                else{
+                    Toast.makeText(this, "No Themes loaded yet", Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.musicLibraryButton:
                 Toast.makeText(this, "Unplug the AUX cable from the tablet and plug it into your device.", Toast.LENGTH_SHORT).show();
@@ -415,53 +427,46 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
             Toast.makeText(this, "No Themes loaded yet", Toast.LENGTH_SHORT).show();
         }
     }
-    public void playFavorite() {
+    public void playing(Themes obj) {
         //soundpool.play(favoriteTheme.getMusic(), 1, 1, 1, -1, 1);
-        if (favoriteTheme.mMusic != null) {
+      //  if (favoriteTheme.mMusic != null) {
             if (player == null) {
                 try {
                     player = new MediaPlayer();
-                    player.setDataSource(favoriteTheme.getmMusic());
+                    player.setDataSource(obj.getmMusic());
                     player.prepare(); // might take long! (for buffering, etc)
                     player.start();
-                    able2PlaySound=true;
+
                 } catch (IOException e) {
                     Toast.makeText(MusicScreen.this, "No Themes loaded yet", Toast.LENGTH_SHORT).show();
                 }
-                player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer mp) {
-                        stopPlayer();
-                    }
-                });
             } else {
                 stopPlayer();
                 try {
                     player = new MediaPlayer();
-                    player.setDataSource(favoriteTheme.getmMusic());
+                    player.setDataSource(obj.getmMusic());
                     player.prepare(); // might take long! (for buffering, etc)
                     player.start();
-                    able2PlaySound=true;
+
 
                 } catch (IOException e) {
                     Toast.makeText(MusicScreen.this, "Error", Toast.LENGTH_SHORT).show();
                 }
-                player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer mp) {
-                        stopPlayer();
-
-                    }
-                });
             }
+            player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    stopPlayer();
+                }
+            });
 
             player.setLooping(true);
-            themeDescriptionView.setText(favoriteTheme.getmDescription());
-        }
-        else{
+            themeDescriptionView.setText(obj.getmDescription());
+       }
+       /* else{
             Toast.makeText(this, "No Themes loaded yet", Toast.LENGTH_SHORT).show();
-        }
+        }*/
     }
 
-    }
+
 
