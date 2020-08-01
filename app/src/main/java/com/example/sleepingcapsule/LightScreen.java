@@ -6,7 +6,11 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.MotionEvent;
@@ -47,7 +51,7 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
    private Bitmap bitmap;
    private SeekBar seekBar2;
 
-   private PictureThread thread;
+
 
 
 
@@ -138,8 +142,7 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
         mColorwheel.setDrawingCacheEnabled(true);
         mColorwheel.buildDrawingCache(true);
 
-        thread = new PictureThread(mColorwheel, bitmap);
-        thread.start();
+
 
         // colorwheel on touch listener
         mColorwheel.setOnTouchListener(this);
@@ -184,9 +187,15 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
         seekBar2 .setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                thread.adjustBrightness(seekBar2.getProgress()-255);
+
+                mColorwheel.setImageBitmap(changeBitmapContrastBrightness(BitmapFactory.decodeResource(getResources(), R.drawable.colorwheel), (float) progress / 100f, 1));
+                System.out.println("Contrast: "+(float) progress / 100f);
+
+
+               /* thread.adjustBrightness(seekBar2.getProgress()-255);
                 mColorwheel.setDrawingCacheEnabled(true);
                 mColorwheel.buildDrawingCache(true);
+                */
 
             }
 
@@ -219,6 +228,33 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
 
     }
 
+    /**
+     * changes contrast of bitmap
+     * @param bmp
+     * @param contrast
+     * @param brightness
+     * @return
+     */
+    public static Bitmap changeBitmapContrastBrightness(Bitmap bmp, float contrast, float brightness) {
+        ColorMatrix cm = new ColorMatrix(new float[]
+                {
+                        contrast, 0, 0, 0, brightness,
+                        0, contrast, 0, 0, brightness,
+                        0, 0, contrast, 0, brightness,
+                        0, 0, 0, 1, 0
+                });
+
+        Bitmap ret = Bitmap.createBitmap(bmp.getWidth(), bmp.getHeight(), bmp.getConfig());
+
+        Canvas canvas = new Canvas(ret);
+
+        Paint paint = new Paint();
+        paint.setColorFilter(new ColorMatrixColorFilter(cm));
+        canvas.drawBitmap(bmp, 0, 0, paint);
+
+        return ret;
+    }
+
     public void setInfoAllViews(){
 
 
@@ -247,13 +283,20 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
         * */
     public void startColorWheel(View v, MotionEvent event) {
 
+
+
+
+
+
+
         try {
             //  Block of code to try
-
+            bitmap = mColorwheel.getDrawingCache();
             //get pixels data from the color wheel image
             if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_MOVE) {
 
-                bitmap = mColorwheel.getDrawingCache();
+
+
 
                 int pixel = bitmap.getPixel((int)event.getX(), (int)event.getY());
 
@@ -325,14 +368,14 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
 
     public void sendColorToServer(){
         if(currentColorSettings.equals("seat")){
-            apiLightClient.colorGetRequest("setlightseat", currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue());
+            apiLightClient.colorGetRequest("setledseat", currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue());
         }else if(currentColorSettings.equals("room")){
-            apiLightClient.colorGetRequest("setlightinterior", currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue());
+            apiLightClient.colorGetRequest("setledinterior", currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue());
         }
         else{
             System.out.println("NO COLOR SETTINGS CHOSEN");
             //a new user probably would think to change room color first, so we just send on undefined settings colordata to room.
-            apiLightClient.colorGetRequest("setlightinterior", currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue());
+            apiLightClient.colorGetRequest("setledinterior", currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue());
         }
     }
 
@@ -499,7 +542,7 @@ on focus change checks wether an edit text is actually focused or not, therefore
 
                 System.out.println("FAV COLOR:" + currentColor);
                // setInfoAllViews();
-                Toast.makeText(this, "Saved as Favrotie", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Saved as Favorite", Toast.LENGTH_SHORT).show();
 
                 break;
             case R.id.showFavoriteButton_ID:
@@ -511,7 +554,7 @@ on focus change checks wether an edit text is actually focused or not, therefore
 
                 setInfoAllViews();
                 System.out.println("FAV COLOR:" + favoriteColor);
-                Toast.makeText(this, "Favorite Shown!", Toast.LENGTH_SHORT).show();
+
 
                 break;
             case R.id.stopChair_lightScreen_ID2:

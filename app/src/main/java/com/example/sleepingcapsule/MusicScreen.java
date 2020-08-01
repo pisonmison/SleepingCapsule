@@ -242,6 +242,7 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
 
     }
 
+
     private void loadThemesFromServer() {
         String url = "https://10.18.12.95:3000/api/Themes?access_token=12345";
 

@@ -129,6 +129,10 @@ public class SeatScreen extends AppCompatActivity implements SeekBar.OnSeekBarCh
         //configure starting position
         setPositionsOnStart();
         mContext = this;
+
+        configurePosition(actualPosition, 80, 0 , 0);
+
+
         //assign all the objects to their corresponding layout objects by ID
         favPosButton = findViewById(R.id.favPos_ID);
         lyingPosButton = findViewById(R.id.lyingPos_ID);
@@ -182,6 +186,10 @@ public class SeatScreen extends AppCompatActivity implements SeekBar.OnSeekBarCh
         stopchairButton.setOnClickListener(this);
 
         MainActivity.setTaskBarIcon(seatIcon,currentScreen);
+
+        setAllEditTexts();
+        setAllSeekbars(80,0,0);
+
         apiClient = new Client();
 
     }

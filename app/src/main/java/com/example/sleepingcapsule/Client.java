@@ -87,7 +87,7 @@ public Client()
 
     /**
      * Enables https connection to trust all ssl certificates. The only solutuion found which worked.
-     * This si pretty insecure and enables a man in the middle attack!.
+     * This is insecure and enables a man in the middle attack!.
      */
     @SuppressLint("TrulyRandom")
     public static void handleSSLHandshake() {
@@ -202,24 +202,6 @@ public Client()
     }
 
 
-
-    /**
-     * Using Volley we parse the JSON themes  file from server and return the json at the end to use in other activities.
-     *for(int i = 0; i < response.length(); i++) {
-     *                         try {
-     *                             JSONObject jsonTheme = response.getJSONObject(i);
-     *
-     *                             Themes theme = new Themes();
-     *                             theme.setmTitle(jsonTheme.getString("title"));
-     *                             theme.setmDescription(jsonTheme.getString("description"));
-     *                             theme.setmImage(jsonTheme.getString("image"));
-     *                             theme.setmMusic(jsonTheme.getString("music"));
-     *                             theme.setmColor(jsonTheme.getString("color"));
-     *                             theme.setmId(jsonTheme.getString("id"));
-     *
-     *
-     *                             jsonListThemes.add(theme);
-     */
 public void getThemesFromServer() throws CertificateException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, IOException {
 
     //HttpsURLConnection.setDefaultSSLSocketFactory(getSocketFactory(mContext));
@@ -287,7 +269,7 @@ public void getThemesFromServer() throws CertificateException, NoSuchAlgorithmEx
 
         String angleString = String.valueOf(angle);
         String endBit = id + ":5000/";
-        String baseURL= "http://10.18.12.A" + endBit; //change if needed
+        String baseURL= "http://10.18.12." + endBit; //change if needed
         String url = baseURL + command + "/" + angleString;
 
         final Request request = new Request.Builder()
@@ -337,7 +319,7 @@ public void getThemesFromServer() throws CertificateException, NoSuchAlgorithmEx
        //get color data
 
         String colorData = String.valueOf(temp);
-        String baseURL= "http://10.18.12.93:5000/A"; //change if needed
+        String baseURL= "http://10.18.12.93:5000/"; //change if needed
         String url = baseURL + command + "/" + colorData;
 
         Request request = new Request.Builder()
