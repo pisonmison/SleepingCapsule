@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Paint;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.MotionEvent;
@@ -192,7 +193,7 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
                 bitmap = (changeBitmapContrastBrightness(BitmapFactory.decodeResource(getResources(), R.drawable.colorwheel), (float) progress / 100f, 1));
                 mColorwheel.setImageBitmap(bitmap);
                 mColorwheel.setDrawingCacheEnabled(true);
-                mColorwheel.buildDrawingCache(true);
+                mColorwheel.buildDrawingCache();
                 System.out.println("Contrast: "+(float) progress / 100f);
                 brightnessValue = progress;
 
@@ -294,20 +295,13 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
     public void startColorWheel(View v, MotionEvent event) {
 
 
-
-
-
-
-
         try {
-
-
 
             //get pixels data from the color wheel image
             if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_MOVE) {
 
 
-
+                bitmap = v.getDrawingCache();
                 int pixel = bitmap.getPixel((int)event.getX(), (int)event.getY());
 
                 //getting RGB values
@@ -522,7 +516,6 @@ on focus change checks wether an edit text is actually focused or not, therefore
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         startColorWheel(v, event);
-
         return true; //for continous syncing
     }
 
