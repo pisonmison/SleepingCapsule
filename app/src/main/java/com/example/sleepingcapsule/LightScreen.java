@@ -38,6 +38,7 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
     private EditText editTextB;
     private Button showColor;
     private ImageButton stopButton;
+    private int brightnessValue;
 
     //create two color objects for current color and favorite color for saving
     private RGBColor currentColor;
@@ -190,8 +191,15 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
 
                 bitmap = (changeBitmapContrastBrightness(BitmapFactory.decodeResource(getResources(), R.drawable.colorwheel), (float) progress / 100f, 1));
                 mColorwheel.setImageBitmap(bitmap);
+                mColorwheel.setDrawingCacheEnabled(true);
+                mColorwheel.buildDrawingCache(true);
                 System.out.println("Contrast: "+(float) progress / 100f);
+                brightnessValue = progress;
 
+                /*float contrast = (float) (progress + 10) / 10;
+                float brightness = 0;
+                // Changing the contrast of the bitmap
+                mColorwheel.setColorFilter(getContrastBrightnessFilter(contrast,brightness));*/
 
                /* thread.adjustBrightness(seekBar2.getProgress()-255);
                 mColorwheel.setDrawingCacheEnabled(true);
@@ -228,6 +236,7 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
 
 
     }
+
 
     /**
      * changes contrast of bitmap
@@ -291,13 +300,11 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
 
 
         try {
-            //  Block of code to try
-            //mColorwheel.setImageBitmap(bitmap);
-            //mColorwheel.buildDrawingCache(true);
-            //bitmap = mColorwheel.getDrawingCache();
+
+
+
             //get pixels data from the color wheel image
             if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_MOVE) {
-
 
 
 
