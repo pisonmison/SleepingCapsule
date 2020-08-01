@@ -183,8 +183,8 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
             public void onItemClick(AdapterView<?> adapter, View view, int position, long l) {
                 actualTheme = themelist.get(position);
                 playing(actualTheme);
-/*
-               */
+
+
 
             }
 
@@ -193,49 +193,7 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
 
     }
 
-    public void playMusic(int position){
-        actualTheme = themelist.get(position);
-        playing(actualTheme);
 
-
-        if (player == null) {
-
-            try {
-                player = new MediaPlayer();
-                player.setDataSource(actualTheme.getmMusic());
-                player.prepare();
-                player.start();
-
-            } catch (Exception e) {
-                Toast.makeText(MusicScreen.this, "No Themes loaded yet",Toast.LENGTH_SHORT).show();
-            }
-
-
-        }
-        else{
-            stopPlayer();
-            try {
-                player = new MediaPlayer();
-                player.setDataSource(actualTheme.getmMusic());
-                player.prepare();
-                player.start();
-
-            } catch (Exception e) {
-                Toast.makeText(MusicScreen.this,"No Themes loaded yet",Toast.LENGTH_SHORT).show();
-            }
-        }
-        player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                stopPlayer();
-
-            }
-        });
-
-        player.setLooping(true);
-        //soundpool.play(actualTheme.getMusic(), 1, 1, 1, -1, 1);
-        themeDescriptionView.setText(actualTheme.getmDescription());
-    }
 
     private void enableMusic(){
         Client.handleSSLHandshake();
@@ -361,7 +319,7 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
     }
 
     private void stopPlayer() {
-        if(actualTheme.mMusic!=null) {
+        if(player.isPlaying()) {
             player.stop();
             player.release();
             player = null;
@@ -373,36 +331,40 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
     }
 
     private void resumePlayer(){
-        if (actualTheme.mMusic!=null) {
-            if (player==null){
-                Toast.makeText(this,"No Themes loaded yet", Toast.LENGTH_SHORT).show();
-            }
-            if (player.isPlaying()) {
-                Toast.makeText(this, "Already playing", Toast.LENGTH_SHORT).show();
-            }
-            if (!player.isPlaying()) {
-                player.start();
+            try {
+                if (actualTheme.mMusic != null) {
+                    if (player == null) {
+                        Toast.makeText(this, "Sound is stopped", Toast.LENGTH_SHORT).show();
+                    } else if (player.isPlaying()) {
+                        Toast.makeText(this, "Already playing", Toast.LENGTH_SHORT).show();
+                    } else if (!player.isPlaying()) {
+                        player.start();
+                    }
+                } else {
+                    Toast.makeText(this, "No Themes loaded yet", Toast.LENGTH_SHORT).show();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
-        else{
-            Toast.makeText(this,"No Themes loaded yet", Toast.LENGTH_SHORT).show();
-        }
-    }
 
-    private void pausePlayer(){
-        if (actualTheme.mMusic!=null) {
-            if (player == null){
-                Toast.makeText(this,"No Themes loaded yet", Toast.LENGTH_SHORT).show();
+    private void pausePlayer() {
+        try {
+            if (actualTheme.mMusic != null) {
+                if (player == null) {
+                    Toast.makeText(this, "No Themes loaded yet", Toast.LENGTH_SHORT).show();
+                }
+                if (player.isPlaying()) {
+                    player.pause();
+                }
+                if (!player.isPlaying()) {
+                    Toast.makeText(this, "Already on pause", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(this, "No Themes loaded yet", Toast.LENGTH_SHORT).show();
             }
-            if (player.isPlaying()) {
-                player.pause();
-            }
-            if (!player.isPlaying()) {
-                Toast.makeText(this, "Already on pause", Toast.LENGTH_SHORT).show();
-            }
-        }
-        else {
-            Toast.makeText(this,"No Themes loaded yet", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
     /*
