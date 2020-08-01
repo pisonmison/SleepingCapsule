@@ -188,7 +188,8 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 
-                mColorwheel.setImageBitmap(changeBitmapContrastBrightness(BitmapFactory.decodeResource(getResources(), R.drawable.colorwheel), (float) progress / 100f, 1));
+                bitmap = (changeBitmapContrastBrightness(BitmapFactory.decodeResource(getResources(), R.drawable.colorwheel), (float) progress / 100f, 1));
+                mColorwheel.setImageBitmap(bitmap);
                 System.out.println("Contrast: "+(float) progress / 100f);
 
 
@@ -244,15 +245,15 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
                         0, 0, 0, 1, 0
                 });
 
-        Bitmap ret = Bitmap.createBitmap(bmp.getWidth(), bmp.getHeight(), bmp.getConfig());
+        Bitmap returnedBitmap = Bitmap.createBitmap(bmp.getWidth(), bmp.getHeight(), bmp.getConfig());
 
-        Canvas canvas = new Canvas(ret);
+        Canvas canvas = new Canvas(returnedBitmap);
 
         Paint paint = new Paint();
         paint.setColorFilter(new ColorMatrixColorFilter(cm));
         canvas.drawBitmap(bmp, 0, 0, paint);
 
-        return ret;
+        return returnedBitmap;
     }
 
     public void setInfoAllViews(){
@@ -291,7 +292,9 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
 
         try {
             //  Block of code to try
-            bitmap = mColorwheel.getDrawingCache();
+            //mColorwheel.setImageBitmap(bitmap);
+            //mColorwheel.buildDrawingCache(true);
+            //bitmap = mColorwheel.getDrawingCache();
             //get pixels data from the color wheel image
             if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_MOVE) {
 
