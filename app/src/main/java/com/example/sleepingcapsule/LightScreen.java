@@ -401,7 +401,7 @@ public void setChairSettings(){
     currentColorSettings = "seat";
     chairLightSettings.setBackgroundResource(R.drawable.roundbutton_when_clicked);
     roomLightSettings.setBackgroundResource(R.drawable.roundbutton);
-    apiLightClient.colorGetRequest("setlightseat", currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue());
+    apiLightClient.colorGetRequest("setledseat", currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue());
 
 }
 
@@ -411,7 +411,7 @@ public void setRoomSettings(){
     roomLightSettings.setBackgroundResource(R.drawable.roundbutton_when_clicked);
     chairLightSettings.setBackgroundResource(R.drawable.roundbutton);
     currentColorSettings = "room";
-    apiLightClient.colorGetRequest("setlightinterior", currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue());
+    apiLightClient.colorGetRequest("setledinterior", currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue());
 
 
 }
@@ -443,7 +443,7 @@ on focus change checks wether an edit text is actually focused or not, therefore
                             System.out.println("Set R Color to:" +  temp);
                             //send server data
                             setInfoAllViews();
-                            apiLightClient.colorGetRequest("setlightseat", currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue());
+                            sendColorToServer();
 
 
                         }
@@ -470,7 +470,7 @@ on focus change checks wether an edit text is actually focused or not, therefore
                             System.out.println("Set G Color to:" +  temp);
                             //send server data
                            setInfoAllViews();
-                            apiLightClient.colorGetRequest("setlightseat", currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue());
+                            sendColorToServer();
 
                         }
                         else{
@@ -497,7 +497,7 @@ on focus change checks wether an edit text is actually focused or not, therefore
                             System.out.println("Set B Color to:" +  temp);
                             //send server data
                             setInfoAllViews();
-                            apiLightClient.colorGetRequest("setlightseat", currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue());
+                            sendColorToServer();
 
                         }
                         else{
