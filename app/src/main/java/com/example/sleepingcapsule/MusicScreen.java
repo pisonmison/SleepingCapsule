@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -29,7 +28,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -157,10 +156,6 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
         saveFavoriteThemeButton.setOnClickListener(this);
         playFavoriteThemeButton.setOnClickListener(this);
 
-
-
-
-
         loadThemesFromServer();
 
 
@@ -173,18 +168,12 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
         musicListView.setAdapter(adapter);
 
 
-
-
-
-
         musicListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
 
             public void onItemClick(AdapterView<?> adapter, View view, int position, long l) {
                 actualTheme = themelist.get(position);
                 playing(actualTheme);
-
-
 
             }
 
@@ -193,7 +182,11 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
 
     }
 
-
+private void hextorgb(){
+        int rgbR= Integer.valueOf(actualTheme.getmColor().substring(0, 2), 16);
+        int rgbG= Integer.valueOf(actualTheme.getmColor().substring(2, 4), 16);
+        int rgbB= Integer.valueOf(actualTheme.getmColor().substring(4, 6), 16);
+}
 
     private void enableMusic(){
         Client.handleSSLHandshake();
@@ -287,7 +280,6 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
                 pausePlayer();
                 break;
             case R.id.stopsoundbutton:
-                //Toast.makeText(this, "Stopped Sound not Implemented.", Toast.LENGTH_SHORT).show();
                 stopPlayer();
                 break;
             case R.id.saveFovriteThemeButton:
@@ -352,12 +344,10 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
         try {
             if (actualTheme.mMusic != null) {
                 if (player == null) {
-                    Toast.makeText(this, "No Themes loaded yet", Toast.LENGTH_SHORT).show();
-                }
-                if (player.isPlaying()) {
+                    Toast.makeText(this, "Sound is stopped", Toast.LENGTH_SHORT).show();
+                } else if (player.isPlaying()) {
                     player.pause();
-                }
-                if (!player.isPlaying()) {
+                } else if (!player.isPlaying()) {
                     Toast.makeText(this, "Already on pause", Toast.LENGTH_SHORT).show();
                 }
             } else {
@@ -392,31 +382,19 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
     }
     public void playing(Themes obj) {
         //soundpool.play(favoriteTheme.getMusic(), 1, 1, 1, -1, 1);
-      //  if (favoriteTheme.mMusic != null) {
-            if (player == null) {
-                try {
-                    player = new MediaPlayer();
-                    player.setDataSource(obj.getmMusic());
-                    player.prepare(); // might take long! (for buffering, etc)
-                    player.start();
+        if (player != null) {
+            stopPlayer();
+        }
+        try {
+            player = new MediaPlayer();
+            player.setDataSource(obj.getmMusic());
+            player.prepare(); // might take long! (for buffering, etc)
+            player.start();
 
-                } catch (IOException e) {
-                    Toast.makeText(MusicScreen.this, "No Themes loaded yet", Toast.LENGTH_SHORT).show();
-                }
-            } else {
-                stopPlayer();
-                try {
-                    player = new MediaPlayer();
-                    player.setDataSource(obj.getmMusic());
-                    player.prepare(); // might take long! (for buffering, etc)
-                    player.start();
-
-
-                } catch (IOException e) {
-                    Toast.makeText(MusicScreen.this, "Error", Toast.LENGTH_SHORT).show();
-                }
-            }
-            player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+        } catch (IOException e) {
+            Toast.makeText(MusicScreen.this, "Error", Toast.LENGTH_SHORT).show();
+        }
+        player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
                     stopPlayer();
@@ -426,9 +404,7 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
             player.setLooping(true);
             themeDescriptionView.setText(obj.getmDescription());
        }
-       /* else{
-            Toast.makeText(this, "No Themes loaded yet", Toast.LENGTH_SHORT).show();
-        }*/
+
     }
 
 

@@ -12,7 +12,7 @@
         android:background="#2196F3"
         android:contentDescription="TODO"
         android:scaleType="centerCrop"
-        android:src="@drawable/strand" />
+        android:src="@mipmap/ic_launcher_foreground" />
 
     <TextView
         android:id="@+id/themetitle"
