@@ -174,6 +174,7 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
             public void onItemClick(AdapterView<?> adapter, View view, int position, long l) {
                 actualTheme = themelist.get(position);
                 playing(actualTheme);
+                hextorgbAndSend(actualTheme);
 
             }
 
@@ -182,10 +183,17 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
 
     }
 
-private void hextorgb(){
-        int rgbR= Integer.valueOf(actualTheme.getmColor().substring(0, 2), 16);
-        int rgbG= Integer.valueOf(actualTheme.getmColor().substring(2, 4), 16);
-        int rgbB= Integer.valueOf(actualTheme.getmColor().substring(4, 6), 16);
+    /**
+     * calculates rgb values from our Hex #RRGGBB String and sends it to server on
+     * itemClick -> when theme is picked.
+     */
+    private void hextorgbAndSend(Themes theme){
+        int r= Integer.valueOf(theme.getmColor().substring(1, 3), 16);
+        int g= Integer.valueOf(theme.getmColor().substring(3, 5), 16);
+        int b= Integer.valueOf(theme.getmColor().substring(5, 7), 16);
+        apiMusicClient.colorGetRequest("setlightinterior", r,g,b);
+        apiMusicClient.colorGetRequest("setledseat", r,g,b);
+        System.out.println("Theme Color was sent: (R:" + r +"/G:" + g + "/B:" +b +")");
 }
 
     private void enableMusic(){
@@ -288,6 +296,7 @@ private void hextorgb(){
             case R.id.playFavoriteThemeButton:
                 if (favoriteTheme.mMusic != null) {
                     playing(favoriteTheme);
+                    hextorgbAndSend(favoriteTheme);
                 }
                 else{
                     Toast.makeText(this, "No Themes loaded yet", Toast.LENGTH_SHORT).show();

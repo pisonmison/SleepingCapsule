@@ -26,7 +26,7 @@ import android.widget.TextView;
 import android.text.TextWatcher;
 import android.widget.Toast;
 
-public class LightScreen extends AppCompatActivity implements Button.OnClickListener, ImageView.OnTouchListener, EditText.OnFocusChangeListener {
+public class LightScreen extends AppCompatActivity implements Button.OnClickListener, ImageView.OnTouchListener, EditText.OnFocusChangeListener, SeekBar.OnSeekBarChangeListener {
 
     private ImageView seatIcon;
     private ImageView lightIcon;
@@ -64,10 +64,6 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
     private ImageButton roomLightSettings;
 
     private String currentColorSettings = "No settings chosen";
-
-
-
-
 
 
 
@@ -186,39 +182,7 @@ public class LightScreen extends AppCompatActivity implements Button.OnClickList
 
 
         seekBar2 = findViewById(R.id.seekBar2);
-        seekBar2 .setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
-                bitmap = (changeBitmapContrastBrightness(BitmapFactory.decodeResource(getResources(), R.drawable.colorwheel), (float) progress / 100f, 1));
-                mColorwheel.setImageBitmap(bitmap);
-                mColorwheel.setDrawingCacheEnabled(true);
-                mColorwheel.buildDrawingCache();
-                System.out.println("Contrast: "+(float) progress / 100f);
-                brightnessValue = progress;
-
-                /*float contrast = (float) (progress + 10) / 10;
-                float brightness = 0;
-                // Changing the contrast of the bitmap
-                mColorwheel.setColorFilter(getContrastBrightnessFilter(contrast,brightness));*/
-
-               /* thread.adjustBrightness(seekBar2.getProgress()-255);
-                mColorwheel.setDrawingCacheEnabled(true);
-                mColorwheel.buildDrawingCache(true);
-                */
-
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
+        seekBar2 .setOnSeekBarChangeListener(this);
 
 
         ///taskbar code////
@@ -401,7 +365,7 @@ public void setChairSettings(){
     currentColorSettings = "seat";
     chairLightSettings.setBackgroundResource(R.drawable.roundbutton_when_clicked);
     roomLightSettings.setBackgroundResource(R.drawable.roundbutton);
-    apiLightClient.colorGetRequest("setlightseat", currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue());
+    apiLightClient.colorGetRequest("setledseat", currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue());
 
 }
 
@@ -411,7 +375,7 @@ public void setRoomSettings(){
     roomLightSettings.setBackgroundResource(R.drawable.roundbutton_when_clicked);
     chairLightSettings.setBackgroundResource(R.drawable.roundbutton);
     currentColorSettings = "room";
-    apiLightClient.colorGetRequest("setlightinterior", currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue());
+    apiLightClient.colorGetRequest("setledinterior", currentColor.getrValue(), currentColor.getgValue(), currentColor.getbValue());
 
 
 }
@@ -519,6 +483,27 @@ on focus change checks wether an edit text is actually focused or not, therefore
         return true; //for continous syncing
     }
 
+
+
+    @Override
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        bitmap = (changeBitmapContrastBrightness(BitmapFactory.decodeResource(getResources(), R.drawable.colorwheel), 1, (float) progress / 100f));
+        mColorwheel.setImageBitmap(bitmap);
+        mColorwheel.setDrawingCacheEnabled(true);
+        mColorwheel.buildDrawingCache();
+        System.out.println("Contrast: "+(float) progress / 100f);
+        brightnessValue = progress;
+    }
+
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
+
+    }
+
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {
+
+    }
 
     //on click methods for different buttons
     @Override

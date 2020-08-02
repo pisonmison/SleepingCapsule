@@ -121,6 +121,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout2"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:layout_width="428dp"
         android:layout_height="52dp"
         android:layout_marginTop="8dp"

@@ -69,6 +69,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout2"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:layout_width="409dp"
         android:layout_height="53dp"
         android:layout_marginTop="8dp"
