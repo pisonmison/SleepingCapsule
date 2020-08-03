@@ -289,15 +289,17 @@ hier werden die themes ausgewählt
 /* stop button
 */
     private void stopPlayer() {
-        if(player.isPlaying()) {
-            player.stop();
-            player.release();
-            player = null;
+        try {
+            if (player != null) {
+                player.stop();
+                player.release();
+                player = null;
+            } else {
+                Toast.makeText(this, "No Themes loaded yet", Toast.LENGTH_SHORT).show();
+            }
+        }catch(Exception e){
+            e.printStackTrace();
         }
-        else{
-            Toast.makeText(this, "No Themes loaded yet", Toast.LENGTH_SHORT).show();
-        }
-
     }
 /*
 play button
