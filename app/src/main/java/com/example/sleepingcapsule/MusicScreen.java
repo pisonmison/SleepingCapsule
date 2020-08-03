@@ -49,7 +49,7 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
 
     private Client apiMusicClient;
 
-    private static final String URL_DATA = "url";
+
 
     private ArrayList<Themes> themelist = new ArrayList<Themes>();
 
@@ -65,10 +65,8 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
     private ImageButton musicLibraryButton;
     private ImageButton stopchairButton;
 
-    //SoundPool soundpool;
     private MediaPlayer player;
 
-    private boolean able2PlaySound = false;
 
 
     private Themes actualTheme;
@@ -82,44 +80,13 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_music_screen);
         apiMusicClient = new Client();
-        actualTheme = new Themes(); //create theme for saving
-        favoriteTheme = new Themes();
+        actualTheme = new Themes(); //theme selected in the listview
+        favoriteTheme = new Themes();//theme saved
 
         enableMusic();
-
-
-
-
-
         mQueue = Volley.newRequestQueue(this);
 
-       // String url = "https://www.mboxdrive.com/Dance%20(online-audio-converter.com).mp3"; // your URL here
-/*
-        player.setAudioStreamType(AudioManager.STREAM_MUSIC);
-        try {
-            player.setDataSource(url);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            player.prepare(); // might take long! (for buffering, etc)
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-*/
-/*
-        AudioAttributes audioAttributes = new AudioAttributes.Builder()
-                .setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION)
-                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                .build();
-        soundpool = new SoundPool.Builder()
-                .setMaxStreams(1)
-                .setAudioAttributes(audioAttributes)
-                .build();
-*/
 
-/*
-*/
         //taskbar initation
         mContext = this;
         seatIcon = findViewById(R.id.seatImageView__MusicScreen_ID);
@@ -167,13 +134,15 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
         adapter = new ThemesListAdapter(this, themelist);
         musicListView.setAdapter(adapter);
 
-
+/*
+hier werden die themes ausgewählt
+ */
         musicListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
 
             public void onItemClick(AdapterView<?> adapter, View view, int position, long l) {
                 actualTheme = themelist.get(position);
-                playing(actualTheme);
+                playMusic(actualTheme);
                 hextorgbAndSend(actualTheme);
 
             }
@@ -257,11 +226,10 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
             TextView themeTitle = convertView.findViewById(R.id.themetitle);
 
             assert currentTheme != null;
-            themeTitle.setText(currentTheme.getmTitle());
+            themeTitle.setText(currentTheme.getmTitle());//
 
             ImageView themeImage = convertView.findViewById(R.id.themeimage);
-            Picasso.get().load(currentTheme.getmImage()).into(themeImage);
-            //themeImage.setImageResource(currentTheme.getmImage());
+            Picasso.get().load(currentTheme.getmImage()).into(themeImage);//loads image from url
 
             return convertView;
         }
@@ -295,7 +263,7 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
                 break;
             case R.id.playFavoriteThemeButton:
                 if (favoriteTheme.mMusic != null) {
-                    playing(favoriteTheme);
+                    playMusic(favoriteTheme);
                     hextorgbAndSend(favoriteTheme);
                 }
                 else{
@@ -318,7 +286,8 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
         }
 
     }
-
+/* stop button
+*/
     private void stopPlayer() {
         if(player.isPlaying()) {
             player.stop();
@@ -330,7 +299,9 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
         }
 
     }
-
+/*
+play button
+ */
     private void resumePlayer(){
             try {
                 if (actualTheme.mMusic != null) {
@@ -348,7 +319,9 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
                 e.printStackTrace();
             }
         }
-
+/*
+pause button
+ */
     private void pausePlayer() {
         try {
             if (actualTheme.mMusic != null) {
@@ -379,7 +352,9 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
             startActivity(openSpotify);
         }
     }
-
+/*
+abspeichern eines themes & den text vom playfavorite button ändern
+ */
     public void saveFavorite(){
         if (actualTheme.mMusic != null){
             favoriteTheme = actualTheme;
@@ -389,15 +364,17 @@ public class MusicScreen extends AppCompatActivity implements  Button.OnClickLis
             Toast.makeText(this, "No Themes loaded yet", Toast.LENGTH_SHORT).show();
         }
     }
-    public void playing(Themes obj) {
-        //soundpool.play(favoriteTheme.getMusic(), 1, 1, 1, -1, 1);
+    /*
+    abspielen der themes
+     */
+    public void playMusic(Themes obj) {
         if (player != null) {
             stopPlayer();
         }
         try {
             player = new MediaPlayer();
-            player.setDataSource(obj.getmMusic());
-            player.prepare(); // might take long! (for buffering, etc)
+            player.setDataSource(obj.getmMusic());//url path das abgespielt werden soll
+            player.prepare(); //vorbereitung bis der mediaplayer den sound abspielen kann
             player.start();
 
         } catch (IOException e) {
